@@ -8,7 +8,7 @@ import '../../core/res/images.dart';
 import '../../core/res/styles.dart';
 
 TextStyle _errorTextStyle = AppTextStyle.body2.copyWith(color: AppColor.error, fontSize: 12, fontWeight: FontWeight.w500);
-TextStyle _labelTextStyle = AppTextStyle.body2.copyWith(fontSize: 12, fontWeight: FontWeight.w500);
+TextStyle _labelTextStyle = AppTextStyle.label.copyWith(fontSize: 12);
 TextStyle _bodyTextStyle = AppTextStyle.body2;
 TextStyle _hintTextStyle = AppTextStyle.body2.copyWith(color: AppColor.grey, fontSize: 14, fontWeight: FontWeight.w500);
 
@@ -23,6 +23,7 @@ class EditTextField extends StatefulWidget {
   TextStyle? textStyle;
   TextAlign textAlign;
   double? height;
+
 
   EdgeInsets? margin;
   EdgeInsets? padding;
@@ -63,7 +64,7 @@ class EditTextField extends StatefulWidget {
         this.textInputAction = TextInputAction.next,
         this.suffixIcon,
         this.maxLength,
-        this.counterText
+        this.counterText,
       });
 
 
@@ -78,6 +79,7 @@ class EditTextField extends StatefulWidget {
         this.placeholder,
         this.prefixIcon,
         this.padding,
+        this.textStyle,
         this.textAlign = TextAlign.left,
         this.textInputAction = TextInputAction.next,
         this.suffixIcon }) {
@@ -181,6 +183,7 @@ class _EditTextFieldState extends State<EditTextField> {
                 SizedBox(
                   height: widget.controller.minLines > 1 ? null : state.hasError ? 65 : widget.height ?? 40,
                   child: TextField(
+
                       key: widget.controller.fieldKey,
                       controller: widget.controller.textEditingController,
                       enableInteractiveSelection: true,
@@ -213,7 +216,7 @@ class _EditTextFieldState extends State<EditTextField> {
                       ] : widget.controller.inputFormatter,
 
                       decoration: InputDecoration(
-                        fillColor: !widget.enabled ? AppColor.white : isFocused ? AppColor.textOnError : Colors.white,
+                        fillColor: !widget.enabled ? AppColor.background : isFocused ? AppColor.white : AppColor.background,
                         filled: true,
                         contentPadding: widget.padding ?? const EdgeInsets.symmetric(vertical: 8.5, horizontal: 12),
                         border: _outlineInputBorder,

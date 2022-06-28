@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 import 'core/res/styles.dart';
 import 'helper/dialog_manager.dart';
 
@@ -47,12 +48,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         statusBarIconBrightness: Brightness.dark));
 
     return ScreenUtilInit(
-      designSize: Size(360, 640),
+      designSize: Size(1440, 1024),
       builder:(BuildContext context,_)=> MaterialApp(
         title: "",
         theme: AppStyle.appTheme,
         builder: _setupDialogManager,
-        initialRoute:  '/main',
+        initialRoute:  '/',
         debugShowCheckedModeBanner: false,
         navigatorKey: navigationService.navigatorKey,
         onGenerateRoute: (settings) => AppRouter.generateRoute(settings),
@@ -62,7 +63,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   Widget _setupDialogManager(context, widget) {
-    return Navigator(
+    return ResponsiveWrapper.builder(
+      Navigator(
       key: locator<DialogService>().dialogNavigationKey,
       onGenerateRoute: (settings) => MaterialPageRoute(builder: (context) {
         final MediaQueryData data = MediaQuery.of(context);
@@ -73,6 +75,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           ),
         );
       }),
+    ),
+      defaultScale: true,
+      breakpoints: [
+        ResponsiveBreakpoint.resize(480,name: MOBILE),
+        ResponsiveBreakpoint(breakpoint: 550,name:"K"),
+        ResponsiveBreakpoint(breakpoint: 700,name:"2K"),
+        ResponsiveBreakpoint.autoScale(800, name: TABLET),
+        ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+        ResponsiveBreakpoint.resize(1200,name: DESKTOP),
+        ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+        ],
     );
   }
 

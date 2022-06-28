@@ -13,7 +13,7 @@ class AppFontSize {
   static double dp19 = 19;
   static double dp13 = 13;
   static double dp30 = 30;
-  static double dp34 = 34;
+  static double dp32 = 32;
   static double dp48 = 48;
   static double dp60 = 60;
   static double dp96 = 96;

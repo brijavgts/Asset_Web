@@ -5,8 +5,14 @@ import 'package:flutter/material.dart';
 // Color Palette follows material guide
 class AppColor {
 
+  // Neutral
+  static const Color background = Color(0xFFFAFAFA);
+  //Text
+  static const Color black=Color(0xFF000000);
+  //Button
+  static const Color primary = Color(0xFF104BFC);
+
   // Primary
-  static const Color primary = Color(0xFF6418C2);
   static const Color primaryOnLight = Color(0xFF9E69FD);
   static const Color primaryOnDark = Color(0xFF3A0282);
   static const Color primaryOnHover = Color(0xFF804BDF);
@@ -72,10 +78,6 @@ class AppColor {
   static const Color white = Color(0xFFFFFFFF);
   static const Color secondaryBackground = Color(0xFFF5F5F5);
 
-
-
-  // Neutral
-  static const Color background = Color(0xFFF4F5FA);
 
   // Additional
   static const Color textOnError = Color(0xFFFFFFFF);

@@ -54,6 +54,10 @@ class VerticalSpacing extends StatelessWidget {
     return VerticalSpacing._(AppDimens.d5px,);
   }
 
+  factory VerticalSpacing.d8px(){
+    return VerticalSpacing._(AppDimens.d8px,);
+  }
+
   factory VerticalSpacing.d10px(){
     return VerticalSpacing._(AppDimens.d10px,);
   }
@@ -64,7 +68,9 @@ class VerticalSpacing extends StatelessWidget {
   factory VerticalSpacing.d16px(){
     return VerticalSpacing._(AppDimens.d16px,);
   }
-
+  factory VerticalSpacing.d18px(){
+    return VerticalSpacing._(AppDimens.d18px);
+  }
   factory VerticalSpacing.d20px(){
     return VerticalSpacing._(AppDimens.d20px,);
   }

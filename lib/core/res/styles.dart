@@ -66,9 +66,42 @@ class AppStyle {
 
 class AppTextStyle {
 
+  //App Heading
+  static  TextStyle h4Heading = TextStyle(
+      fontSize: AppFontSize.dp32.sp,letterSpacing: 0.25,
+      fontWeight: FontWeight.w700,
+      //height: 42.sp,
+      color: AppColor.black
+  );
+
+  //EditTextField Label
+  static  TextStyle label = TextStyle(
+      fontSize: AppFontSize.dp12.sp,letterSpacing: 0.5,
+      fontWeight: FontWeight.w600,
+      // height: 20.sp,
+      color: AppColor.black.withOpacity(0.8)
+  );
+
+  // TextButton
+  static  TextStyle body2 = TextStyle(
+      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.15,
+      fontWeight: FontWeight.w600,
+      // height: 20.sp,
+      color: AppColor.black
+  );
+
+  //Text
+  static  TextStyle body2SemiBold = TextStyle(
+      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.15,
+      fontWeight: FontWeight.w500,
+      //height: 109.72.sp,
+      color: AppColor.textOnSecondary
+  );
+
   static  TextStyle h1HeadingLarge = TextStyle(
       fontSize: AppFontSize.dp96.sp,letterSpacing: -1.5,
-      fontWeight: FontWeight.w500,height: 112.03.sp,
+      fontWeight: FontWeight.w500,
+      height: 112.03.sp,
       color: AppColor.textOnPrimary
   );
 
@@ -83,14 +116,11 @@ class AppTextStyle {
       color: AppColor.textOnPrimary
   );
 
-  static  TextStyle h4Heading = TextStyle(
-      fontSize: AppFontSize.dp34.sp,letterSpacing: 0.25,
-      fontWeight: FontWeight.w500,height: 42.sp,
-      color: AppColor.textOnPrimary
-  );
+
   static  TextStyle h5Heading = TextStyle(
       fontSize: AppFontSize.dp24.sp,letterSpacing: 0,
-      fontWeight: FontWeight.w500,height: 32.02.sp,
+      fontWeight: FontWeight.w500,
+     // height: 32.02.sp,
       color: AppColor.textOnPrimary
   );
   static  TextStyle h6Heading = TextStyle(
@@ -111,16 +141,7 @@ class AppTextStyle {
       color: AppColor.textOnPrimary
   );
 
-  static  TextStyle body2 = TextStyle(
-      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.15,
-      fontWeight: FontWeight.w400,height: 20.sp,
-      color: AppColor.textOnPrimary
-  );
-  static  TextStyle body2SemiBold = TextStyle(
-      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.15,
-      fontWeight: FontWeight.w500,height: 109.72.sp,
-      color: AppColor.textOnPrimary
-  );
+
   static  TextStyle subtitle1 = TextStyle(
       fontSize: AppFontSize.dp16.sp,letterSpacing: 0,
       fontWeight: FontWeight.w400,height: 24.sp,
@@ -150,7 +171,8 @@ class AppTextStyle {
 //components
   static  TextStyle buttonLarge = TextStyle(
       fontSize: AppFontSize.dp15.sp,letterSpacing: 0.46,
-      fontWeight: FontWeight.w500,height: 26.sp,
+      fontWeight: FontWeight.w500,
+      //height: 26.sp,
       color: AppColor.textOnPrimary
   );
 
@@ -159,6 +181,7 @@ class AppTextStyle {
       fontWeight: FontWeight.w500,height: 24.sp,
       color: AppColor.textOnPrimary
   );
+
   static  TextStyle buttonMediumCapital = TextStyle(
       fontSize: AppFontSize.dp14.sp,letterSpacing: 0.4,
       fontWeight: FontWeight.w500,height: 24.sp,
@@ -181,7 +204,8 @@ class AppTextStyle {
   );
   static  TextStyle inputText = TextStyle(
       fontSize: AppFontSize.dp16.sp,letterSpacing: 0.15,
-      fontWeight: FontWeight.w400,height: 24.sp,
+      fontWeight: FontWeight.w400,
+      //height: 24.sp,
       color: AppColor.textOnPrimary
   );
   static  TextStyle avatarInitials = TextStyle(
