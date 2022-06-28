@@ -9,11 +9,18 @@ GetIt locator = GetIt.instance;
 PreferenceService get preferenceService => locator<PreferenceService>();
 NavigationService get navigationService => locator<NavigationService>();
 DialogService get dialogService => locator<DialogService>();
+PushNotificationService get pushNotificationservice =>locator<PushNotificationService>();//-------
+
+//-----------
+class PushNotificationService {
+  void configure(String name, String emailId, String password, String organisationName) {}
+}
 
 void setupLocator() {
 
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => PreferenceService());
   locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton(() => PushNotificationService());//------------
 
 }

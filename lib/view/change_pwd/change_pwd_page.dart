@@ -41,51 +41,53 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 50,vertical: 150,),
-                child: Column(
-                  children: [
-                    Text("Change your password",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.h4Heading.copyWith(
-                          fontSize: 32,
-                        )),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text("Change your password",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.h4Heading.copyWith(
+                            fontSize: 32,
+                          )),
 
-                    VerticalSpacing.custom(value:24),
+                      VerticalSpacing.custom(value:24),
 
-                    SizedBox(
-                      width: 440,
-                      child: EditTextField(
-                        "New Password",
-                        textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
-                        viewModel.emailController,
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                      SizedBox(
+                        width: 440,
+                        child: EditTextField(
+                          "New Password",
+                          textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
+                          viewModel.emailController,
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                          ),
+                          onChanged: (value) {},
+                          onSubmitted: (val) {
+                            FocusNode().requestFocus();
+                          },
                         ),
-                        onChanged: (value) {},
-                        onSubmitted: (val) {
-                          FocusNode().requestFocus();
-                        },
                       ),
-                    ),
 
-                    VerticalSpacing.custom(value: 18.0),
+                      VerticalSpacing.custom(value: 18.0),
 
-                    SizedBox(
-                      width: 440,
-                      child: Button(
-                        "Change password",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
-                          color: AppColor.white,
-                          fontWeight: FontWeight.w500),
-                        key: const ValueKey("regContinue"),
-                        width: double.infinity,
-                        isLoading: viewModel.state == ViewState.Busy,
-                        onPressed: () {
-                          viewModel.register();
-                          //navigationService.popAllAndPushNamed("/main");
-                        },
+                      SizedBox(
+                        width: 440,
+                        child: Button(
+                          "Change password",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
+                            color: AppColor.white,
+                            fontWeight: FontWeight.w500),
+                          key: const ValueKey("changeKey"),
+                          width: double.infinity,
+                          isLoading: viewModel.state == ViewState.Busy,
+                          onPressed: () {
+                            viewModel.register();
+                            //navigationService.popAllAndPushNamed("/main");
+                          },
+                        ),
                       ),
-                    ),
 
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -112,7 +112,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                         "Login",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
                           color: AppColor.white,
                           fontWeight: FontWeight.w500),
-                        key: const ValueKey("regContinue"),
+                        key: const ValueKey("logKey"),
                         width: double.infinity,
                         isLoading: viewModel.state == ViewState.Busy,
                         onPressed: () {

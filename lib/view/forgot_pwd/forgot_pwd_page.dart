@@ -39,64 +39,66 @@ class ForgotPwdPage extends ViewModelBuilderWidget<ForgotPwdViewModel> {
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 50,vertical: 150,),
-                child: Column(
-                  children: [
-                    Text("Forgot your password?",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.h4Heading.copyWith(
-                          fontSize: 32,
-                        )),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text("Forgot your password?",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.h4Heading.copyWith(
+                            fontSize: 32,
+                          )),
 
-                    VerticalSpacing.d8px(),
+                      VerticalSpacing.d8px(),
 
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal:ResponsiveValue(context,defaultValue:0,valueWhen:[
-                            Condition.largerThan(name:TABLET,value: 400.0),
-                            Condition.largerThan(name:"K",),
-                          ]).value ),
-                      child: Text("Enter the email address associated with your account and we’ll send you a link to reset your password.",
-                          style: AppTextStyle.body2SemiBold.copyWith(fontSize: 14,),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-
-                    VerticalSpacing.custom(value:24),
-
-                    SizedBox(
-                      width: 440,
-                      child: EditTextField(
-                        "Email",
-                        textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
-                        viewModel.emailController,
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:ResponsiveValue(context,defaultValue:0,valueWhen:[
+                              Condition.largerThan(name:TABLET,value: 400.0),
+                              Condition.largerThan(name:"K",),
+                            ]).value ),
+                        child: Text("Enter the email address associated with your account and we’ll send you a link to reset your password.",
+                            style: AppTextStyle.body2SemiBold.copyWith(fontSize: 14,),
+                          textAlign: TextAlign.center,
                         ),
-                        onChanged: (value) {},
-                        onSubmitted: (val) {
-                          FocusNode().requestFocus();
-                        },
                       ),
-                    ),
 
-                    VerticalSpacing.custom(value: 18.0),
+                      VerticalSpacing.custom(value:24),
 
-                    SizedBox(
-                      width: 440,
-                      child: Button(
-                        "Send email",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
-                          color: AppColor.white,
-                          fontWeight: FontWeight.w500),
-                        key: const ValueKey("regContinue"),
-                        width: double.infinity,
-                        isLoading: viewModel.state == ViewState.Busy,
-                        onPressed: () {
-                          viewModel.register();
-                          //navigationService.popAllAndPushNamed("/main");
-                        },
+                      SizedBox(
+                        width: 440,
+                        child: EditTextField(
+                          "Email",
+                          textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
+                          viewModel.emailController,
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                          ),
+                          onChanged: (value) {},
+                          onSubmitted: (val) {
+                            FocusNode().requestFocus();
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+
+                      VerticalSpacing.custom(value: 18.0),
+
+                      SizedBox(
+                        width: 440,
+                        child: Button(
+                          "Send email",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
+                            color: AppColor.white,
+                            fontWeight: FontWeight.w500),
+                          key: const ValueKey("forgotKey"),
+                          width: double.infinity,
+                          isLoading: viewModel.state == ViewState.Busy,
+                          onPressed: () {
+                            viewModel.register();
+                            //navigationService.popAllAndPushNamed("/main");
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

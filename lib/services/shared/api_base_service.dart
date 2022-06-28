@@ -26,6 +26,7 @@ class ApiBaseService extends ApiBaseHelper {
 
   final PreferenceService _preferenceService = locator<PreferenceService>();
   final DialogService _dialogService = locator<DialogService>();
+
   var client = new HTTP.Client();
 
   Future<List<T>> requestList<T extends BaseModel>(RequestSettings settings) async {
@@ -82,7 +83,7 @@ class ApiBaseService extends ApiBaseHelper {
    // print(_appConfigService.config!.baseApiUrl);
 
     //String basePath = _appConfigService.config!.baseApiUrl!;
-    String basePath = "";
+    String basePath = "http://asset.dev.api.vgts.tech";
 
     String path =  basePath + endPoint ;
 

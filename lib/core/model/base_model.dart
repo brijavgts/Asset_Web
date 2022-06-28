@@ -1,5 +1,6 @@
 
 
+import 'package:asset_management/core/model/auth.dart';
 import 'package:vgts_plugin/form/base_object.dart';
 
 class BaseModel extends BaseObject {
@@ -39,11 +40,11 @@ class BaseModel extends BaseObject {
   String toString() {
     return toJson().toString();
   }
-
+  //---------------
   static T object<T extends BaseModel>() {
     switch (T) {
-      // case StudyMaterial:
-      //   return StudyMaterial() as T;
+      case RegisterAuth:
+        return RegisterAuth() as T;
 
     }
     throw "Requested Model not initialised in Base Model";

@@ -128,7 +128,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                         "Next",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
                           color: AppColor.white,
                           fontWeight: FontWeight.w500),
-                        key: const ValueKey("regContinue"),
+                        key: const ValueKey("regKey"),
                         width: double.infinity,
                         isLoading: viewModel.state == ViewState.Busy,
                         onPressed: () {
