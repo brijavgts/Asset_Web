@@ -16,7 +16,7 @@ class SplashViewModel extends VGTSBaseViewModel {
   Future onInit() async {
 
     //await locator<FirebaseRemoteHelper>().configure();
-    //await locator<PreferenceService>().init();
+    await locator<PreferenceService>().init();
     //await locator<NetworkService>().init();
     //await locator<UpdateChecker>().versionCheck(navigationService.navigatorKey.currentContext!);
 

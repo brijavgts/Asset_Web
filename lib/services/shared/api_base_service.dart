@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/services/shared/request_method.dart';
+import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -176,8 +177,8 @@ class ApiBaseService extends ApiBaseHelper {
     }
 
     if (authenticated != null && authenticated) {
-      headerParams['Authorization'] = "Token " + _preferenceService.getBearerToken();
-      headerParams['student'] = locator<PreferenceService>().getStudentId().toString();
+      headerParams['bearerToken'] = "Token" + _preferenceService.getBearerToken();
+      //headerParams['student'] = locator<PreferenceService>().getStudentId().toString();
     }
 
     return headerParams;
@@ -189,7 +190,6 @@ class ApiBaseService extends ApiBaseHelper {
     if (response == null){
       return null;
     }
-
     debugPrint(response.body);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -199,19 +199,19 @@ class ApiBaseService extends ApiBaseHelper {
     } else if (response.statusCode == 401) {
       Fluttertoast.showToast(msg: "Your session has expired. Please login again");
       _preferenceService.clearData();
-      navigationService.popAllAndPushNamed(Routes.login);
+      navigationService.popAllAndPushNamed(Routes.register);
     } else if (response.statusCode >= 400 && response.statusCode < 500) {
       var error = await handleApiError(response, false);
       if (error != null ) {
         if(error.getSingleMessage() != null ){
-          locator<DialogService>().showDialog(title: error.message ?? '',);
+          locator<DialogService>().showDialog(title: error.message ?? 'Not Registered',);
           // description: error.getSingleMessage()
         }
       }
     } else if (response.statusCode >= 500) {
       Fluttertoast.showToast(msg: "Your session has expired. Please login again");
       _preferenceService.clearData();
-      navigationService.popAllAndPushNamed(Routes.login);
+      navigationService.popAllAndPushNamed(Routes.register);
       print("response printing from hagle responce $response   500");
     }
 

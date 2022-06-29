@@ -3,8 +3,10 @@ import 'dart:html';
 
 import 'package:asset_management/core/model/auth.dart';
 import 'package:asset_management/services/api_request/auth_request.dart';
+import 'package:asset_management/view/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
@@ -24,18 +26,18 @@ class RegisterViewModel extends VGTSBaseViewModel {
 
   ScrollController regScrollController = ScrollController();
 
-  NameFormFieldController nameController= NameFormFieldController(ValueKey("txtName"),
+  NameFormFieldController nameController= NameFormFieldController(ValueKey("regName"),
       required: true,requiredText: "Please enter your Name");
 
-  NameFormFieldController orgController=NameFormFieldController(ValueKey("txtOrg"),
-      required: true,requiredText: "Please enter Organisation Name"
+  NameFormFieldController orgController=NameFormFieldController(ValueKey("regtOrg"),
+      required: true,requiredText: "Please enter Organization Name"
   );
 
-  EmailFormFieldController emailController=EmailFormFieldController(ValueKey("txtEmail"),
+  EmailFormFieldController emailController=EmailFormFieldController(ValueKey("regEmail"),
       required: true,requiredText: "Please enter an Email"
   );
 
-  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("txtPassword"),
+  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("regPassword"),
       required: true,requiredText: "Password field is required");
 
 
@@ -47,11 +49,12 @@ class RegisterViewModel extends VGTSBaseViewModel {
     //else{navigationService.pushNamed("/verification");}
     setState(ViewState.Busy);
 
-    RegisterAuth? auth = await request<RegisterAuth>(AuthRequest.register(nameController.text,
+    List<RegisterAuth>? auth = await requestList<RegisterAuth>(AuthRequest.register(nameController.text,
         emailController.text, passwordController.text,orgController.text));
     if (auth != null) {
+      Fluttertoast.showToast(msg: "Verifying Email.....");//--------
       // locator<PushNotificationService>().configure(mobileNumController.text);
-      navigationService.popAllAndPushNamed(Routes.verification,);
+      navigationService.popAllAndPushNamed(Routes.verification);
     }
 
     setState(ViewState.Idle);

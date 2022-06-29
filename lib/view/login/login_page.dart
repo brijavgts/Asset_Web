@@ -1,3 +1,4 @@
+import 'package:asset_management/router.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                             bottom: 40,
                             right: 0.2,
                             child: TextButton(onPressed: (){
-                              navigationService.pushNamed("/forgot_pwd");
+                              navigationService.pushNamed(Routes.forgot_pwd);
                             },
                                 child: Text("Forgot your password?",
                                   style: AppTextStyle.label.copyWith(
@@ -116,7 +117,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                         width: double.infinity,
                         isLoading: viewModel.state == ViewState.Busy,
                         onPressed: () {
-                          viewModel.register();
+                          viewModel.login();
                           //navigationService.popAllAndPushNamed("/main");
                         },
                       ),
@@ -130,7 +131,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                             style: AppTextStyle.body2.copyWith(fontSize: 14)),
                         TextButton(
                           onPressed: () {
-                            navigationService.pushNamed("/register",);
+                            navigationService.pushNamed(Routes.register);
                           },
                           child: Text("Join service name",
                               style: AppTextStyle.body2.copyWith(fontSize: 14,

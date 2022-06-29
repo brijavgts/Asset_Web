@@ -1,7 +1,11 @@
+import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
+import '../../core/model/auth.dart';
 import '../../locator.dart';
+import '../../router.dart';
+import '../../services/api_request/auth_request.dart';
 import '../../vgts_base_view_model.dart';
 //import '../views/vgts_base_view_model.dart';
 
@@ -10,28 +14,25 @@ class LogInViewModel extends VGTSBaseViewModel {
 
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
-  EmailFormFieldController emailController=EmailFormFieldController(ValueKey("txtLoginEmail"),
+  EmailFormFieldController emailController=EmailFormFieldController(ValueKey("logEmail"),
       required: true,requiredText: "Email field is required "
   );
 
-  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("txtLoginPassword"),
+  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("logPassword"),
       required: true,requiredText: "Password field is required");
 
 
-  register() async {
+  login() async {
 
     if(registerFormKey.currentState?.validate() != true) {
       return;
     }
-    else{navigationService.pushNamed("/main");}
-
-
-    setState(ViewState.Busy);
-    // LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(mobileNumController.text));
-    // if (auth != null) {
-    //   locator<PushNotificationService>().configure(mobileNumController.text);
-    //   navigationService.pushNamed(Routes.otp,arguments:mobileNumController.text);
-    // }
+     setState(ViewState.Busy);
+    LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(emailController.text,passwordController.text));
+    if (auth != null) {
+      // locator<PushNotificationService>().configure(mobileNumController.text);
+      navigationService.popAllAndPushNamed(Routes.main);
+    }
     setState(ViewState.Idle);
     notifyListeners();
   }

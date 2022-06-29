@@ -1,3 +1,4 @@
+import 'package:asset_management/router.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                     SizedBox(
                       width: 440,
                       child: EditTextField(
-                        "Organisation Name",
+                        "Organization Name",
                         textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
                         viewModel.orgController,
                         placeholder: "Eg: Microsoft",
@@ -146,7 +147,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                             style: AppTextStyle.body2.copyWith(fontSize: 14)),
                         TextButton(
                           onPressed: () {
-                            navigationService.pushNamed("/login",);
+                            navigationService.pushNamed(Routes.login);
                           },
                           child: Text("Login",
                               style: AppTextStyle.body2.copyWith(fontSize: 14,

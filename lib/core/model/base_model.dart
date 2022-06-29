@@ -45,6 +45,8 @@ class BaseModel extends BaseObject {
     switch (T) {
       case RegisterAuth:
         return RegisterAuth() as T;
+      case LoginAuth:
+        return LoginAuth() as T;
 
     }
     throw "Requested Model not initialised in Base Model";

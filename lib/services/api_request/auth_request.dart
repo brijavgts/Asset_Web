@@ -5,12 +5,12 @@ import '../shared/request_method.dart';
 class AuthRequest {
 
   //Register Request
-  static RequestSettings register(String name,String emailId,String password,String organisationName){
+  static RequestSettings register(String name,String emailId,String password,String organizationName){
     Map<String, dynamic> params = <String, dynamic>{};
     params['name'] = name;
     params['emailId'] = emailId;
     params['password'] = password;
-    params['organizationName'] = organisationName;
+    params['organizationName'] = organizationName;
 
     return RequestSettings(
         "/api/register",
@@ -20,9 +20,22 @@ class AuthRequest {
     );
   }
 
-  static RequestSettings login(String mobileNumber) {
+  //Login Request
+  static RequestSettings login(String emailId,String password ){
+    Map<String, dynamic> params = <String, dynamic>{};
+    params['emailId'] = emailId;
+    params['password'] = password;
     return RequestSettings(
-        "/user/otp/${mobileNumber}/",
+      "/api/login",
+      RequestMethod.POST,
+      authenticated: false,
+      params: params
+    );
+  }
+
+  static RequestSettings login1(String mobileNumber) {
+    return RequestSettings(
+        "/user/otp/$mobileNumber/",
         RequestMethod.GET,
         params: null,
         authenticated: false
@@ -42,6 +55,7 @@ class AuthRequest {
         authenticated: false
     );
   }
+
 
 
   static RequestSettings homeApi(String path) {
