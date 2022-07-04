@@ -147,7 +147,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                             style: AppTextStyle.body2.copyWith(fontSize: 14)),
                         TextButton(
                           onPressed: () {
-                            navigationService.pushNamed(Routes.login);
+                            navigationService.popAllAndPushNamed(Routes.login);
                           },
                           child: Text("Login",
                               style: AppTextStyle.body2.copyWith(fontSize: 14,

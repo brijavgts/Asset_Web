@@ -32,3 +32,23 @@ class SplashPage extends ViewModelBuilderWidget<SplashViewModel> {
     );
   }
 }
+
+
+/*
+    VerifyEmailAuth? auth = await request<VerifyEmailAuth>(AuthRequest.forgot_pwd(PreferenceService.hashedMail));
+
+    try {
+      if (preferenceService.getHashedEmail().isNotEmpty) {
+        if (auth != null) {
+          navigationService.popAllAndPushNamed(Routes.main);
+        }
+
+
+      }
+      Future.delayed(const Duration(milliseconds: 500), () {
+        navigationService.popAllAndPushNamed(Routes.login);
+      });
+
+    }  catch (ex) {
+      debugPrint("EXCEPTION $ex");
+    }*/

@@ -33,6 +33,43 @@ class AuthRequest {
     );
   }
 
+  //---------
+  //verify Email
+  static RequestSettings verifyEmail(String hashedEmail) {
+    return RequestSettings(
+        "/api/verify/$hashedEmail",
+        RequestMethod.GET,
+        params: null,
+        authenticated: false
+    );
+  }
+  //----------
+
+  //Forgot Password Request
+  static RequestSettings forgot_pwd(String emailId){
+ Map<String, dynamic> params = <String, dynamic>{};
+ params['emailId']=emailId;
+    return RequestSettings(
+        "",
+        RequestMethod.POST,
+        authenticated: false,
+        params:params,
+    );
+  }
+
+  //Change Password Request
+  static RequestSettings change_pwd(String password){
+    Map<String, dynamic> params =<String, dynamic>{};
+    return RequestSettings(
+      "",
+      RequestMethod.POST,
+      authenticated: false,
+      params: params,
+    );
+  }
+
+
+
   static RequestSettings login1(String mobileNumber) {
     return RequestSettings(
         "/user/otp/$mobileNumber/",

@@ -4,13 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceService {
-  // static const String bearerToken = "BEARERTOKEN";
+   // static const String bearerToken = "BEARERTOKEN";
   // static const String user = "USER";
   // static const String studentId = "studentId";
   // static const String isParent = "isParent";
 
+  //Response Token from Login to main
   static const String accessToken = "accessToken";
   static const String refreshToken = "refreshToken";
+
+  //Response hashedMail from Register to main
+  static const String hashedMail ="hashedEmail";
 
 
   SharedPreferences? pref;
@@ -19,12 +23,13 @@ class PreferenceService {
     pref = await SharedPreferences.getInstance();
   }
 
-  setBearerToken(String value) {
+
+  setAccessToken(String value) {
     pref?.setString(accessToken, value);
     debugPrint("Access Token stored successfully");
   }
 
-  String getBearerToken() {
+  String getAccessToken() {
     return pref?.getString(accessToken) ?? "";
   }
 
@@ -37,47 +42,40 @@ class PreferenceService {
     return pref?.getString(refreshToken) ?? "";
   }
 
+  //-------------
+  setHashedEmail(String value) {
+    pref?.setString(hashedMail, value);
+    debugPrint("Hashed Mail stored successfully");
+  }
+
+  String getHashedEmail() {
+    return pref?.getString(hashedMail) ?? "";
+  }
+//---------------
+
   /*setBearerToken(String value) {
     pref?.setString(bearerToken, value);
     debugPrint("Bearer Token stored successfully");
+  }
+
+  String getBearerToken() {
+    return pref?.getString(bearerToken) ?? "";
   }*/
 
-  /*setIsParent(bool value) {
+   /*setIsParent(bool value) {
     pref?.setBool(isParent, value);
     debugPrint("IsParent stored successfully");
   }*/
 
-  /*String getBearerToken() {
-    return pref?.getString(bearerToken) ?? "";
-  }*/
 
-  /*bool getIsParent() {
+   /*bool getIsParent() {
     return pref?.getBool(isParent) ?? false;
   }
 
   int getStudentId() {
     return pref?.getInt(studentId) ?? 0;
   }*/
-  //-------
-  // User Object
-  //
-  /*setUser(LoginAuth? value) {
-    if (value == null) {
-      return;
-    }
-  //
-    pref?.setString(accessToken, value == null ? "" : json.encode(value.toJson()));
-    debugPrint("User stored successfully");
-  }
-  LoginAuth? getUser() {
-      String? userString = pref?.getString(accessToken);
-      if (userString == null || userString == "null") {
-        return null;
-      }
-      print(LoginAuth.fromJson(jsonDecode(userString)).accessToken);
-      return LoginAuth.fromJson(jsonDecode(userString));
-    }*/
-//------
+
   /*setStudentId (int value) {
     pref?.setInt(studentId,value);
   }*/

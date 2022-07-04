@@ -1,21 +1,24 @@
 
+import 'package:asset_management/locator.dart';
+import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
 import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
 import 'package:asset_management/view/login/login_page.dart';
 import 'package:asset_management/view/main/main_page.dart';
 import 'package:asset_management/view/no_network/no_network_page.dart';
 import 'package:asset_management/view/register/register_page.dart';
+import 'package:asset_management/view/register/verify_register_page.dart';
 import 'package:asset_management/view/splash/splash_page.dart';
 import 'package:asset_management/view/verification/verification_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-const String initialRoute = "login";
+
+
 
 class Routes {
   static const String splash = "/";
-  static const String dashboard = "/dashboard";
   static const String no_network = "/no_network";
   static const String login = "/login";
   static const String main = "/main"; //used as dashboard
@@ -23,15 +26,14 @@ class Routes {
   static const String verification="/verification";
   static const String forgot_pwd="/forgot_pwd";
   static const String change_pwd="/change_pwd";
-
-
-
+  static const String verify_register="/verify-register";
 
 }
 
 class AppRouter {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+
 
     switch (settings.name) {
 
@@ -63,7 +65,7 @@ class AppRouter {
       case Routes.register:
         return MaterialPageRoute(
           builder: (_)=> RegisterPage(),
-          settings: RouteSettings(name: settings.name),
+          settings: RouteSettings(name: settings.name ),
         );
 
     //Email verification Route and Page
@@ -85,8 +87,15 @@ class AppRouter {
             builder:(_)=>ChangePwdPage(),
             settings: RouteSettings(name: settings.name));
 
-
       default:
+
+        if (settings.name!.startsWith(Routes.verify_register)) {
+          return MaterialPageRoute(
+              builder:(_)=> VerifyRegisterPage(),
+              settings: RouteSettings(name: settings.name,));
+        }
+
+
             return MaterialPageRoute(
                 builder: (_) => Scaffold(
                   body: Center(

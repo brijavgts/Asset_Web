@@ -57,7 +57,7 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
                         child: EditTextField(
                           "New Password",
                           textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
-                          viewModel.emailController,
+                          viewModel.passwordController,
                           prefixIcon: Padding(
                             padding: EdgeInsets.only(right: 4.0, left: 4.0),
                           ),
@@ -80,8 +80,7 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
                           width: double.infinity,
                           isLoading: viewModel.state == ViewState.Busy,
                           onPressed: () {
-                            viewModel.register();
-                            //navigationService.popAllAndPushNamed("/main");
+                            viewModel.change_pwd();
                           },
                         ),
                       ),

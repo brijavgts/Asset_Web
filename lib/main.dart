@@ -47,13 +47,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark));
 
+
     return ScreenUtilInit(
       designSize: Size(1440, 1024),
       builder:(BuildContext context,_)=> MaterialApp(
         title: "",
         theme: AppStyle.appTheme,
         builder: _setupDialogManager,
-        initialRoute:  '/',
+        initialRoute:  Routes.splash,
         debugShowCheckedModeBanner: false,
         navigatorKey: navigationService.navigatorKey,
         onGenerateRoute: (settings) => AppRouter.generateRoute(settings),

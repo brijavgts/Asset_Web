@@ -177,7 +177,8 @@ class ApiBaseService extends ApiBaseHelper {
     }
 
     if (authenticated != null && authenticated) {
-      headerParams['bearerToken'] = "Token" + _preferenceService.getBearerToken();
+      headerParams['accessToken'] = "Token" + _preferenceService.getAccessToken();//Bearer Token or Access Token
+      // headerParams['bearerToken'] = "Token" + _preferenceService.getBearerToken();
       //headerParams['student'] = locator<PreferenceService>().getStudentId().toString();
     }
 
@@ -199,19 +200,19 @@ class ApiBaseService extends ApiBaseHelper {
     } else if (response.statusCode == 401) {
       Fluttertoast.showToast(msg: "Your session has expired. Please login again");
       _preferenceService.clearData();
-      navigationService.popAllAndPushNamed(Routes.register);
+      navigationService.popAllAndPushNamed(Routes.login);
     } else if (response.statusCode >= 400 && response.statusCode < 500) {
       var error = await handleApiError(response, false);
       if (error != null ) {
         if(error.getSingleMessage() != null ){
-          locator<DialogService>().showDialog(title: error.message ?? 'Not Registered',);
+          locator<DialogService>().showDialog(title:"Error", description: error.message ?? '',);
           // description: error.getSingleMessage()
         }
       }
     } else if (response.statusCode >= 500) {
       Fluttertoast.showToast(msg: "Your session has expired. Please login again");
       _preferenceService.clearData();
-      navigationService.popAllAndPushNamed(Routes.register);
+      navigationService.popAllAndPushNamed(Routes.login);
       print("response printing from hagle responce $response   500");
     }
 

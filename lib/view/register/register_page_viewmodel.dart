@@ -3,6 +3,7 @@ import 'dart:html';
 
 import 'package:asset_management/core/model/auth.dart';
 import 'package:asset_management/services/api_request/auth_request.dart';
+import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/view/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
+import '../../core/model/service/auth/register_auth.dart';
 import '../../locator.dart';
 import '../../router.dart';
 import '../../vgts_base_view_model.dart';
@@ -37,7 +39,7 @@ class RegisterViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Please enter an Email"
   );
 
-  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("regPassword"),
+  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("regPwd"),
       required: true,requiredText: "Password field is required");
 
 
@@ -49,11 +51,11 @@ class RegisterViewModel extends VGTSBaseViewModel {
     //else{navigationService.pushNamed("/verification");}
     setState(ViewState.Busy);
 
-    List<RegisterAuth>? auth = await requestList<RegisterAuth>(AuthRequest.register(nameController.text,
+    RegisterAuth? auth = await request<RegisterAuth>(AuthRequest.register(nameController.text,
         emailController.text, passwordController.text,orgController.text));
     if (auth != null) {
-      Fluttertoast.showToast(msg: "Verifying Email.....");//--------
-      // locator<PushNotificationService>().configure(mobileNumController.text);
+      preferenceService.setHashedEmail(auth.hashedEmail ?? '');//-------
+      Fluttertoast.showToast(msg: "Verifying Email.....");
       navigationService.popAllAndPushNamed(Routes.verification);
     }
 
@@ -63,13 +65,3 @@ class RegisterViewModel extends VGTSBaseViewModel {
 
 }
 
-/*await request<Auth>(AuthRequest.register(nameController.text,
-        emailController.text, passwordController.text, orgController.text));
-
-     var auth = await AuthRequest.register(nameController.text,
-         emailController.text, passwordController.text, orgController.text);
-     if (auth != null) {
-       locator<PushNotificationService>().configure(nameController.text,
-       emailController.text, passwordController.text, orgController.text);
-       navigationService.pushNamed(Routes.verification,arguments: emailController.text, );
-     }*/

@@ -12,6 +12,7 @@ import '../../core/res/images.dart';
 import '../../core/res/spacing.dart';
 import '../../core/res/styles.dart';
 import '../../locator.dart';
+import '../../router.dart';
 import '../../widgets/button.dart';
 import '../../widgets/edit_text_field.dart';
 import '../../widgets/tap_outside_unfocus.dart';
@@ -92,8 +93,7 @@ class ForgotPwdPage extends ViewModelBuilderWidget<ForgotPwdViewModel> {
                           width: double.infinity,
                           isLoading: viewModel.state == ViewState.Busy,
                           onPressed: () {
-                            viewModel.register();
-                            //navigationService.popAllAndPushNamed("/main");
+                            viewModel.forgot_pwd();
                           },
                         ),
                       ),
