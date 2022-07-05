@@ -27,6 +27,7 @@ class ChangePwdViewModel extends VGTSBaseViewModel {
     setState(ViewState.Busy);
     
     ChangeAuth? auth=await request<ChangeAuth>(AuthRequest.change_pwd(passwordController.text));
+    if (auth != null) {}
     // LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(mobileNumController.text));
     // if (auth != null) {
     //   locator<PushNotificationService>().configure(mobileNumController.text);

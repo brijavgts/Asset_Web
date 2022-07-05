@@ -1,32 +1,6 @@
 import 'package:asset_management/core/model/base_model.dart';
 
-class LoginAuth extends BaseModel{
-  User? user;
-  String? accessToken;
-  String? refreshToken;
-
-  LoginAuth({this.user, this.accessToken, this.refreshToken});
-
-  LoginAuth fromJson(Map<String, dynamic> json) => LoginAuth.fromJson(json);
-
-  LoginAuth.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    accessToken = json['accessToken'];
-    refreshToken = json['refreshToken'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    data['accessToken'] = this.accessToken;
-    data['refreshToken'] = this.refreshToken;
-    return data;
-  }
-}
-
-class User {
+class ChangeAuth extends BaseModel {
   int? id;
   Null? empId;
   String? firstName;
@@ -54,7 +28,7 @@ class User {
   Null? updatedBy;
   Null? deletedBy;
 
-  User(
+  ChangeAuth(
       {this.id,
         this.empId,
         this.firstName,
@@ -82,7 +56,9 @@ class User {
         this.updatedBy,
         this.deletedBy});
 
-  User.fromJson(Map<String, dynamic> json) {
+  ChangeAuth fromJson(Map<String, dynamic> json) => ChangeAuth.fromJson(json);
+
+  ChangeAuth.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     empId = json['empId'];
     firstName = json['firstName'];

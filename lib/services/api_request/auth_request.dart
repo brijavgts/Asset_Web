@@ -50,7 +50,7 @@ class AuthRequest {
  Map<String, dynamic> params = <String, dynamic>{};
  params['emailId']=emailId;
     return RequestSettings(
-        "",
+        "api/forget",
         RequestMethod.POST,
         authenticated: false,
         params:params,
@@ -58,10 +58,12 @@ class AuthRequest {
   }
 
   //Change Password Request
-  static RequestSettings change_pwd(String password){
+  static RequestSettings change_pwd(String newpassword,){
     Map<String, dynamic> params =<String, dynamic>{};
+    params['newpassword']= newpassword;
+
     return RequestSettings(
-      "",
+      "api/reset",
       RequestMethod.POST,
       authenticated: false,
       params: params,

@@ -20,7 +20,7 @@ class LogInViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Email field is required "
   );
 
-  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("logPwd"),
+ TextFormFieldController passwordController= TextFormFieldController(ValueKey("logPwd"),
       required: true,requiredText: "Password field is required");
 
 
