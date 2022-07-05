@@ -12,9 +12,7 @@ import 'package:asset_management/view/splash/splash_page.dart';
 import 'package:asset_management/view/verification/verification_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
-
+import 'package:asset_management/services/shared/api_model/string_extension.dart';
 
 
 class Routes {
@@ -35,7 +33,9 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
 
 
-    switch (settings.name) {
+    var routingData = settings.name?.getRoutingData;
+
+    switch (routingData?.route) {
 
      case Routes.splash:
       return CupertinoPageRoute(
@@ -50,8 +50,9 @@ class AppRouter {
          );
 
       case Routes.main:
+        var id = int.parse(routingData?['id']);
         return MaterialPageRoute(
-          builder: (_) => MainPage(),
+          builder: (_) => MainPage(id),
           settings: RouteSettings(name: settings.name),
         );
 

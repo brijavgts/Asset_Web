@@ -20,8 +20,8 @@ class LogInViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Email field is required "
   );
 
-  PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("logPwd"),
-      required: true,requiredText: "Password field is required");
+  FormFieldController passwordController= FormFieldController(ValueKey("logPwd"),
+      required: true,);
 
 
   login() async {
@@ -34,7 +34,7 @@ class LogInViewModel extends VGTSBaseViewModel {
     if (auth != null) {
       Fluttertoast.showToast(msg: "Your Journey with us");
       // locator<PushNotificationService>().configure(mobileNumController.text);
-      navigationService.popAllAndPushNamed(Routes.main);
+      navigationService.popAllAndPushNamed(Routes.main,arguments: 1);
     }
     setState(ViewState.Idle);
     notifyListeners();
