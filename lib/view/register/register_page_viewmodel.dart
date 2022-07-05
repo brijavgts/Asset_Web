@@ -57,17 +57,16 @@ class RegisterViewModel extends VGTSBaseViewModel {
     if (auth != null) {
       preferenceService.setHashedEmail(auth.hashedEmail ?? '');
       Fluttertoast.showToast(msg: "Verifying Email.....");
-      navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty ? Routes.verification:Routes.verify_register);
+      // navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty ? Routes.verification:Routes.verify_register);
     }
 
-    //----------------
+//----------------
 
-    // VerifyEmailAuth? verifyAuth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
-    // if (auth != null) {
-    //   preferenceService.setAccessToken(verifyAuth?.accessToken ?? '');
-    //
-    //   navigationService.popAllAndPushNamed(preferenceService.getAccessToken().isNotEmpty ? Routes.verification:Routes.verify_register);
-    // }
+    VerifyEmailAuth? verifyAuth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
+    if (auth != null) {
+      preferenceService.setAccessToken(verifyAuth?.accessToken ?? '');
+      navigationService.popAllAndPushNamed(preferenceService.getAccessToken().isNotEmpty ? Routes.verification:Routes.verify_register);
+    }
 //--------------------
 
     setState(ViewState.Idle);

@@ -33,11 +33,6 @@ class ForgotPwdViewModel extends VGTSBaseViewModel {
       navigationService.pushNamed(Routes.change_pwd);
     }
 
-    // LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(mobileNumController.text));
-    // if (auth != null) {
-    //   locator<PushNotificationService>().configure(mobileNumController.text);
-    //   navigationService.pushNamed(Routes.otp,arguments:mobileNumController.text);
-    // }
     setState(ViewState.Idle);
     notifyListeners();
   }
