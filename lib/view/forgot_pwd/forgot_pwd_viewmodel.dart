@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
-import '../../core/model/auth.dart';
+// import '../../core/model/auth.dart';
+import '../../core/model/service/auth/forgot_pwd_auth.dart';
 import '../../locator.dart';
 import '../../services/api_request/auth_request.dart';
 import '../../vgts_base_view_model.dart';
@@ -28,7 +29,8 @@ class ForgotPwdViewModel extends VGTSBaseViewModel {
 
     ForgotAuth? auth=await request<ForgotAuth>(AuthRequest.forgot_pwd(emailController.text));
     if(auth != null){
-
+      preferenceService.setToken(auth.token ?? '');
+      navigationService.pushNamed(Routes.change_pwd);
     }
 
     // LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(mobileNumController.text));

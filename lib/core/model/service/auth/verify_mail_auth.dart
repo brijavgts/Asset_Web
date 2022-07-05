@@ -135,7 +135,7 @@ class VerifyEmailAuth extends BaseModel {
   }
 }
 
-class Organization extends BaseModel{
+class Organization{
   int? id;
   String? name;
   Null? type;
@@ -167,7 +167,6 @@ class Organization extends BaseModel{
         this.updatedBy,
         this.deletedBy});
 
-  Organization fromJson(Map<String, dynamic> json) => Organization.fromJson(json);
 
   Organization.fromJson(Map<String, dynamic> json) {
     id = json['id'];

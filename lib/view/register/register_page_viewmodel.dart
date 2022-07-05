@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:asset_management/core/model/auth.dart';
+// import 'package:asset_management/core/model/auth.dart';
 import 'package:asset_management/services/api_request/auth_request.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/view/register/register_page.dart';
@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
 import '../../core/model/service/auth/register_auth.dart';
+import '../../core/model/service/auth/verify_mail_auth.dart';
 import '../../locator.dart';
 import '../../router.dart';
 import '../../vgts_base_view_model.dart';
@@ -54,10 +55,20 @@ class RegisterViewModel extends VGTSBaseViewModel {
     RegisterAuth? auth = await request<RegisterAuth>(AuthRequest.register(nameController.text,
         emailController.text, passwordController.text,orgController.text));
     if (auth != null) {
-      preferenceService.setHashedEmail(auth.hashedEmail ?? '');//-------
+      preferenceService.setHashedEmail(auth.hashedEmail ?? '');
       Fluttertoast.showToast(msg: "Verifying Email.....");
-      navigationService.popAllAndPushNamed(Routes.verification);
+      navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty ? Routes.verification:Routes.verify_register);
     }
+
+    //----------------
+
+    // VerifyEmailAuth? verifyAuth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
+    // if (auth != null) {
+    //   preferenceService.setAccessToken(verifyAuth?.accessToken ?? '');
+    //
+    //   navigationService.popAllAndPushNamed(preferenceService.getAccessToken().isNotEmpty ? Routes.verification:Routes.verify_register);
+    // }
+//--------------------
 
     setState(ViewState.Idle);
     notifyListeners();
@@ -65,3 +76,29 @@ class RegisterViewModel extends VGTSBaseViewModel {
 
 }
 
+/*
+Future<String> signIn() async {
+      final response = await http.post(
+        serverReceiverPath,
+        headers: {'Content-Type': 'application/json'},
+      );
+      if(response.body == 'Login successful'){
+        isLogin = true;
+      }else{
+        isLogin = false;
+      }
+      print(response.body);
+      print(isLogin);
+    }
+
+    Correction =>
+
+    if(response.body == 'Login successful'){
+    isLogin = true;
+    Navigator.of(context).pushReplacementNamed('/home');
+  }else{
+    isLogin = false;
+  }
+
+
+    */

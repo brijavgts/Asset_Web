@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
-import '../../core/model/auth.dart';
+
 import '../../core/model/service/auth/login_auth.dart';
 import '../../locator.dart';
 import '../../router.dart';

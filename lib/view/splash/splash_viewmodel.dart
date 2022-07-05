@@ -27,12 +27,23 @@ class SplashViewModel extends VGTSBaseViewModel {
     //await locator<UpdateChecker>().versionCheck(navigationService.navigatorKey.currentContext!);
 
     try {
+      if (preferenceService.getHashedEmail().isNotEmpty) {
+        navigationService.popAllAndPushNamed(Routes.main);
+      }
       Future.delayed(const Duration(milliseconds: 500), () {
-        navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty
-            ?Routes.main:Routes.login);
+        navigationService.popAllAndPushNamed(Routes.login);
       });
 
-    }  catch (ex) {
+    }
+    //
+    // try {
+    //   Future.delayed(const Duration(milliseconds: 500), () {
+    //     navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty
+    //         ?Routes.main:Routes.login);
+    //   });
+    //
+    //  }
+      catch (ex) {
       debugPrint("EXCEPTION $ex");
     }
 
