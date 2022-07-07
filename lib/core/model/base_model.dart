@@ -3,6 +3,8 @@
 import 'package:asset_management/core/model/auth.dart';
 import 'package:asset_management/core/model/service/auth/login_auth.dart';
 import 'package:asset_management/core/model/service/auth/register_auth.dart';
+import 'package:asset_management/core/model/service/auth/verify_mail_auth.dart';
+import 'package:asset_management/view/register/verify_register_page.dart';
 import 'package:vgts_plugin/form/base_object.dart';
 
 class BaseModel extends BaseObject {
@@ -51,7 +53,8 @@ class BaseModel extends BaseObject {
         return LoginAuth() as T;
       case ForgotAuth:
         return ForgotAuth() as T;
-
+      case VerifyEmailAuth:
+        return VerifyEmailAuth() as T;
     }
     throw "Requested Model not initialised in Base Model";
   }

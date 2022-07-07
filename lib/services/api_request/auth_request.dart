@@ -33,6 +33,7 @@ class AuthRequest {
     );
   }
 
+
   //---------
   //verify Email
   static RequestSettings verifyEmail(String hashedEmail) {
@@ -50,7 +51,7 @@ class AuthRequest {
  Map<String, dynamic> params = <String, dynamic>{};
  params['emailId']=emailId;
     return RequestSettings(
-        "",
+        "/api/forget",
         RequestMethod.POST,
         authenticated: false,
         params:params,
@@ -61,7 +62,7 @@ class AuthRequest {
   static RequestSettings change_pwd(String password){
     Map<String, dynamic> params =<String, dynamic>{};
     return RequestSettings(
-      "",
+      "/api/reset",
       RequestMethod.POST,
       authenticated: false,
       params: params,
@@ -93,7 +94,14 @@ class AuthRequest {
     );
   }
 
-
+  static RequestSettings verifyRegister(String path) {
+    return RequestSettings(
+        path ,
+        RequestMethod.GET,
+        params: null,
+        authenticated: true
+    );
+  }
 
   static RequestSettings homeApi(String path) {
     return RequestSettings(

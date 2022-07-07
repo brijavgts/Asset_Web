@@ -6,14 +6,14 @@ import 'package:stacked/stacked.dart';
 import 'main_page_viewmodel.dart';
 
 class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
-   int id;
-   MainPage(this.id);
+   String mail;
+   MainPage({required this.mail});
 
   @override
   Widget builder(BuildContext context, MainPageViewModel viewModel, Widget? child) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome $id",),),
+        title: Text("Welcome $mail",),),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.

@@ -34,7 +34,7 @@ class LogInViewModel extends VGTSBaseViewModel {
     if (auth != null) {
       Fluttertoast.showToast(msg: "Your Journey with us");
       // locator<PushNotificationService>().configure(mobileNumController.text);
-      navigationService.popAllAndPushNamed(Routes.main,arguments: 1);
+      navigationService.popAllAndPushNamed(Routes.main,);
     }
     setState(ViewState.Idle);
     notifyListeners();

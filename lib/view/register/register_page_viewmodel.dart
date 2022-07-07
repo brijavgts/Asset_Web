@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
 import '../../core/model/service/auth/register_auth.dart';
+import '../../core/model/service/auth/verify_mail_auth.dart';
 import '../../locator.dart';
 import '../../router.dart';
 import '../../vgts_base_view_model.dart';
@@ -21,6 +22,7 @@ import '../../vgts_base_view_model.dart';
 
 
 class RegisterViewModel extends VGTSBaseViewModel {
+
 
 
 
@@ -56,12 +58,31 @@ class RegisterViewModel extends VGTSBaseViewModel {
     if (auth != null) {
       preferenceService.setHashedEmail(auth.hashedEmail ?? '');//-------
       Fluttertoast.showToast(msg: "Verifying Email.....");
-      navigationService.popAllAndPushNamed(Routes.verification);
+      navigationService.popAllAndPushNamed(Routes.verification,);
     }
-
     setState(ViewState.Idle);
     notifyListeners();
   }
+
+
+  @override
+  Future onInit() async {
+    // await locator<PreferenceService>().init();
+    setState(ViewState.Busy);
+    if(preferenceService.getHashedEmail().isNotEmpty) {
+      VerifyEmailAuth? auth = await request<VerifyEmailAuth>(
+          AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
+      if (auth != null) {
+        preferenceService.setAccessToken(auth.accessToken ?? "");
+          navigationService.pushNamed(Routes.main);
+      }
+    }
+    setState(ViewState.Idle);
+    return super.onInit();
+  }
+
+
+
 
 }
 

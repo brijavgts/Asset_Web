@@ -28,7 +28,7 @@ class ForgotPwdViewModel extends VGTSBaseViewModel {
 
     ForgotAuth? auth=await request<ForgotAuth>(AuthRequest.forgot_pwd(emailController.text));
     if(auth != null){
-
+      navigationService.popAllAndPushNamed(Routes.change_pwd);
     }
 
     // LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(mobileNumController.text));

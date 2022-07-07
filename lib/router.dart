@@ -50,9 +50,9 @@ class AppRouter {
          );
 
       case Routes.main:
-        var id = int.parse(routingData?['id']);
+        var data = routingData?['mail'];
         return MaterialPageRoute(
-          builder: (_) => MainPage(id),
+          builder: (_) => MainPage(mail:data),
           settings: RouteSettings(name: settings.name),
         );
 
