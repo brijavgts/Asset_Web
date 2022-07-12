@@ -1,9 +1,11 @@
 
 import 'package:asset_management/core/res/colors.dart';
+import 'package:asset_management/core/res/images.dart';
 import 'package:asset_management/core/res/styles.dart';
 import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
 import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
 import 'package:asset_management/view/login/login_page.dart';
+import 'package:asset_management/view/main/employee/employee_page.dart';
 import 'package:asset_management/view/register/register_page.dart';
 import 'package:asset_management/widgets/button.dart';
 import 'package:asset_management/widgets/edit_text_field.dart';
@@ -57,7 +59,7 @@ class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
                      children: [
                        Icon(CupertinoIcons.circle_grid_3x3_fill),
                       SizedBox(width: 27,),
-                      Image.asset("assets/images/Frame 349.png"),
+                       Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
                        SizedBox(width: 24,),
                        VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
 
@@ -95,7 +97,7 @@ class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
 
 
                       CircleAvatar(
-                        backgroundImage: AssetImage("assets/images/Frame 349.png"),
+                        backgroundImage: AssetImage(Images.appLogo),
                       ),
                     ],),
                   ),
@@ -113,9 +115,8 @@ class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
               child: IndexedStack(
                 index: viewModel.index,
                 children: [
-                Assets(),
                 Text("hello"),
-                Text("welcome"),
+                Text("welcome"), EmployeePage(),
               ],),
             )
 

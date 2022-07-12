@@ -25,8 +25,7 @@ class SplashPage extends ViewModelBuilderWidget<SplashViewModel> {
             width: double.infinity,
             color: AppColor.background,
             child: Center(
-              child: Text("🚀"),
-              //child: Image.asset(Images.appLogo, fit: BoxFit.fill, width: 150,),
+              child:Image.asset(Images.appLogo),
             )
         )
     );
