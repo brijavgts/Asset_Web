@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'dart:js';
 
 import 'package:asset_management/core/model/service/auth/verify_mail_auth.dart';
+import 'package:asset_management/services/shared/api_model/error_response_exception.dart';
+import 'package:asset_management/services/shared/api_model/string_extension.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:asset_management/view/register/verify_register_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ import '../../../services/shared/api_model/no_response_exception.dart';
 import '../../../services/shared/api_model/request_settings.dart';
 //import '../../../services/shared/network_service.dart';
 import '../../../services/shared/preference_service.dart';
+import '../../core/enum/view_state.dart';
 import '../../core/model/service/auth/login_auth.dart';
 import '../../services/api_request/auth_request.dart';
 import '../../vgts_base_view_model.dart';
@@ -22,20 +24,39 @@ import 'package:http/http.dart'as http;
 class SplashViewModel extends VGTSBaseViewModel {
 
 
-  @override
-  Future onInit() async {
+  VerifyEmailAuth? _auth;
+  VerifyEmailAuth? get auth => _auth;
+
+   init(String path) async {
     //await locator<FirebaseRemoteHelper>().configure();
     await locator<PreferenceService>().init();
     // await locator<NetworkService>().init();
     //await locator<UpdateChecker>().versionCheck(navigationService.navigatorKey.currentContext!);
 
+    print("AccessToken ${preferenceService.getAccessToken()}");
+    print("HashedEmail ${preferenceService.getHashedEmail()}");
+
     try {
+      if(path.startsWith(Routes.verify_register)){
+        var routingData = path.getRoutingData;
+        var data = routingData?['hashedEmail'];
+        _auth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(data));
+        if (_auth != null) {
+          await preferenceService.setAccessToken(_auth!.accessToken ?? "");
+          navigationService.pushNamed(Routes.main);
+        }
+        notifyListeners();
+        }
 
-      Future.delayed(const Duration(milliseconds: 500), () {
-        navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty?Routes.verify_register:Routes.login);
-      });
+       else if(preferenceService.getAccessToken().isNotEmpty == true){
+        navigationService.pushNamed(Routes.main);
+       }
+      else {
+        navigationService.popAllAndPushNamed(Routes.login);
+      }
 
-    } catch (ex) {
+    }
+    catch (ex) {
       debugPrint("EXCEPTION $ex");
     }
 
@@ -47,6 +68,11 @@ class SplashViewModel extends VGTSBaseViewModel {
   void handleNoResponse(RequestSettings settings, NoResponseException exception) {
     debugPrint("ViewModel ${exception.message}");
     super.handleNoResponse(settings, exception);
+  }
+
+  @override
+  void handleErrorResponse(RequestSettings settings, ErrorResponseException exception) {
+     print("asdasd");
   }
 }
 

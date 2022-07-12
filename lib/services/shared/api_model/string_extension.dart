@@ -6,5 +6,4 @@ extension StringExtension on String {
     print('queryParameters: ${uriData.queryParameters} path: ${uriData.path}');
     return RoutingData(queryParameters: uriData.queryParameters, route:  uriData.path);
   }
-
 }

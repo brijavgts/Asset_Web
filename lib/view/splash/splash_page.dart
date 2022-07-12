@@ -9,9 +9,12 @@ import '../../../core/res/images.dart';
 
 class SplashPage extends ViewModelBuilderWidget<SplashViewModel> {
 
+  String path;
+  SplashPage({this.path = ''});
+
   @override
   void onViewModelReady(SplashViewModel viewModel) {
-    viewModel.onInit();
+    viewModel.init(path);
     super.onViewModelReady(viewModel);
   }
 
@@ -31,6 +34,7 @@ class SplashPage extends ViewModelBuilderWidget<SplashViewModel> {
         )
     );
   }
+
 }
 
 

@@ -38,8 +38,9 @@ class AppRouter {
     switch (routingData?.route) {
 
      case Routes.splash:
+      case Routes.verify_register:
       return CupertinoPageRoute(
-        builder: (_) => SplashPage(),
+        builder: (_) => SplashPage(path: settings.name as String,),
          settings: RouteSettings(name: settings.name),
        );
 
@@ -50,9 +51,9 @@ class AppRouter {
          );
 
       case Routes.main:
-        var data = routingData?['mail'];
+       // var data = routingData?['mail'];
         return MaterialPageRoute(
-          builder: (_) => MainPage(mail:data),
+          builder: (_) => MainPage(),
           settings: RouteSettings(name: settings.name),
         );
 
@@ -88,13 +89,20 @@ class AppRouter {
             builder:(_)=>ChangePwdPage(),
             settings: RouteSettings(name: settings.name));
 
+      // case Routes.verify_register:
+      //   var data = routingData?['hashedEmail'];
+      //   return MaterialPageRoute(
+      //       builder:(_)=> VerifyRegisterPage(email:data ,),
+      //       settings: RouteSettings(name: settings.name));
+
       default:
 
-        if (settings.name!.startsWith(Routes.verify_register)) {
-          return MaterialPageRoute(
-              builder:(_)=> VerifyRegisterPage(),
-              settings: RouteSettings(name: settings.name,));
-        }
+        // if (settings.name!.startsWith(Routes.verify_register)) {
+        //   var data = routingData?['mail'];
+        //   return MaterialPageRoute(
+        //       builder:(_)=> VerifyRegisterPage(),
+        //       settings: RouteSettings(name: settings.name,));
+        // }
 
 
             return MaterialPageRoute(

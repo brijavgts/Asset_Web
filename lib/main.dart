@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:asset_management/locator.dart';
 import 'package:asset_management/router.dart';
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         title: "",
         theme: AppStyle.appTheme,
         builder: _setupDialogManager,
-        initialRoute:  Routes.splash,
+        initialRoute:Routes.splash,
         debugShowCheckedModeBanner: false,
         navigatorKey: navigationService.navigatorKey,
         onGenerateRoute: (settings) => AppRouter.generateRoute(settings),
