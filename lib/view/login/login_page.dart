@@ -35,12 +35,14 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
       body: SafeArea(
         child: TapOutsideUnFocus(
           child: Form(
-            key: viewModel.registerFormKey,
+            key: viewModel.loginFormKey,
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50,vertical: 150,),
+                padding: EdgeInsets.fromLTRB(0, 131.5, 0, 212),
                 child: Column(
                   children: [
+                    Image.asset("assets/images/Frame 349.png",width: 235.11,height: 23.9,),
+                    SizedBox(height: 21.1),
                     Text("Login",
                         style: AppTextStyle.h4Heading.copyWith(
                           fontSize: 32,
@@ -52,10 +54,10 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                         style: AppTextStyle.body2SemiBold.copyWith(fontSize: 14,)
                     ),
 
-                    VerticalSpacing.custom(value:24),
+                    VerticalSpacing.custom(value:16),
 
                     SizedBox(
-                      width: 440,
+                      width: 438,
                       child: EditTextField(
                         "Email",
                         textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
@@ -70,10 +72,10 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                       ),
                     ),
 
-                    VerticalSpacing.d18px(),
+                    VerticalSpacing.d16px(),
 
                     SizedBox(
-                      width: 440,
+                      width: 438,
                       child: Stack(
                         children: [
                           Positioned(
@@ -105,10 +107,11 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                       ),
                     ),
 
-                    VerticalSpacing.custom(value: 18.0),
+                    VerticalSpacing.custom(value: 24.0),
 
                     SizedBox(
-                      width: 440,
+                      width: 438,
+                      height: 40,
                       child: Button(
                         "Login",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
                           color: AppColor.white,
@@ -123,7 +126,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                       ),
                     ),
 
-                    VerticalSpacing.custom(value: 16.0),
+                     VerticalSpacing.custom(value: 20.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

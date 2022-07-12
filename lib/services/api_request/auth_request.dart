@@ -17,9 +17,9 @@ class AuthRequest {
         RequestMethod.POST,
         params:params,
         authenticated: false
+
     );
   }
-
   //Login Request
   static RequestSettings login(String emailId,String password ){
     Map<String, dynamic> params = <String, dynamic>{};
@@ -59,8 +59,11 @@ class AuthRequest {
   }
 
   //Change Password Request
-  static RequestSettings change_pwd(String password){
+  static RequestSettings change_pwd(String newpassword,String token){
     Map<String, dynamic> params =<String, dynamic>{};
+    params['newpassword']= newpassword;
+    params["token"]= token;
+
     return RequestSettings(
       "/api/reset",
       RequestMethod.POST,

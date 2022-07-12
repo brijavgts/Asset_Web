@@ -1,6 +1,6 @@
 import 'package:asset_management/core/model/base_model.dart';
 
-class VerifyEmailAuth extends BaseModel {
+class ChangeAuth extends BaseModel {
   int? id;
   Null? empId;
   String? firstName;
@@ -27,11 +27,8 @@ class VerifyEmailAuth extends BaseModel {
   Null? createdBy;
   Null? updatedBy;
   Null? deletedBy;
-  Organization? organization;
-  String? accessToken;
-  String? refreshToken;
 
-  VerifyEmailAuth(
+  ChangeAuth(
       {this.id,
         this.empId,
         this.firstName,
@@ -57,14 +54,11 @@ class VerifyEmailAuth extends BaseModel {
         this.deletedAt,
         this.createdBy,
         this.updatedBy,
-        this.deletedBy,
-        this.organization,
-        this.accessToken,
-        this.refreshToken});
+        this.deletedBy});
 
-  VerifyEmailAuth fromJson(Map<String, dynamic> json) => VerifyEmailAuth.fromJson(json);
+  ChangeAuth fromJson(Map<String, dynamic> json) => ChangeAuth.fromJson(json);
 
-  VerifyEmailAuth.fromJson(Map<String, dynamic> json) {
+  ChangeAuth.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     empId = json['empId'];
     firstName = json['firstName'];
@@ -91,11 +85,6 @@ class VerifyEmailAuth extends BaseModel {
     createdBy = json['createdBy'];
     updatedBy = json['updatedBy'];
     deletedBy = json['deletedBy'];
-    organization = json['organization'] != null
-        ? new Organization.fromJson(json['organization'])
-        : null;
-    accessToken = json['accessToken'];
-    refreshToken = json['refreshToken'];
   }
 
   Map<String, dynamic> toJson() {
@@ -118,81 +107,6 @@ class VerifyEmailAuth extends BaseModel {
     data['organizationId'] = this.organizationId;
     data['locationId'] = this.locationId;
     data['image'] = this.image;
-    data['status'] = this.status;
-    data['deleted'] = this.deleted;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    data['createdBy'] = this.createdBy;
-    data['updatedBy'] = this.updatedBy;
-    data['deletedBy'] = this.deletedBy;
-    if (this.organization != null) {
-      data['organization'] = this.organization!.toJson();
-    }
-    data['accessToken'] = this.accessToken;
-    data['refreshToken'] = this.refreshToken;
-    return data;
-  }
-}
-
-class Organization{
-  int? id;
-  String? name;
-  Null? type;
-  Null? address;
-  Null? phoneNumber;
-  Null? emailId;
-  bool? status;
-  bool? deleted;
-  String? createdAt;
-  String? updatedAt;
-  Null? deletedAt;
-  Null? createdBy;
-  Null? updatedBy;
-  Null? deletedBy;
-
-  Organization(
-      {this.id,
-        this.name,
-        this.type,
-        this.address,
-        this.phoneNumber,
-        this.emailId,
-        this.status,
-        this.deleted,
-        this.createdAt,
-        this.updatedAt,
-        this.deletedAt,
-        this.createdBy,
-        this.updatedBy,
-        this.deletedBy});
-
-
-  Organization.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    type = json['type'];
-    address = json['address'];
-    phoneNumber = json['phoneNumber'];
-    emailId = json['emailId'];
-    status = json['status'];
-    deleted = json['deleted'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    deletedAt = json['deletedAt'];
-    createdBy = json['createdBy'];
-    updatedBy = json['updatedBy'];
-    deletedBy = json['deletedBy'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['address'] = this.address;
-    data['phoneNumber'] = this.phoneNumber;
-    data['emailId'] = this.emailId;
     data['status'] = this.status;
     data['deleted'] = this.deleted;
     data['createdAt'] = this.createdAt;

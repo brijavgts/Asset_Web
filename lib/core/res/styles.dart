@@ -84,7 +84,7 @@ class AppTextStyle {
 
   // TextButton
   static  TextStyle body2 = TextStyle(
-      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.15,
+      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.1,
       fontWeight: FontWeight.w600,
       // height: 20.sp,
       color: AppColor.black
@@ -94,9 +94,25 @@ class AppTextStyle {
   static  TextStyle body2SemiBold = TextStyle(
       fontSize: AppFontSize.dp14.sp,letterSpacing: 0.15,
       fontWeight: FontWeight.w500,
-      //height: 109.72.sp,
       color: AppColor.textOnSecondary
   );
+
+  static  TextStyle body3 = TextStyle(
+      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.1,
+      fontWeight: FontWeight.w500,
+      color: AppColor.black
+  );
+
+  //Navigation Text
+  static  TextStyle body1SemiBold = TextStyle(
+
+      fontSize: AppFontSize.dp16.sp,letterSpacing: 0.44,
+      fontWeight: FontWeight.w500,
+      // height: 24.sp,
+      color: AppColor.grey
+  );
+
+
 
   static  TextStyle h1HeadingLarge = TextStyle(
       fontSize: AppFontSize.dp96.sp,letterSpacing: -1.5,
@@ -132,12 +148,6 @@ class AppTextStyle {
   static  TextStyle body1 = TextStyle(
       fontSize: AppFontSize.dp16.sp,letterSpacing: 0.15,
       fontWeight: FontWeight.w400,height: 24.sp,
-      color: AppColor.textOnPrimary
-  );
-
-  static  TextStyle body1SemiBold = TextStyle(
-      fontSize: AppFontSize.dp16.sp,letterSpacing: 0.15,
-      fontWeight: FontWeight.w500,height: 24.sp,
       color: AppColor.textOnPrimary
   );
 

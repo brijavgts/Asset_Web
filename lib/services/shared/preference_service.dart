@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:asset_management/core/model/auth.dart';
+// import 'package:asset_management/core/model/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +11,7 @@ class PreferenceService {
 
   //Response Token from Login to main
   static const String accessToken = "accessToken";
-  static const String refreshToken = "refreshToken";
+  static const String token = "token";
 
   //Response hashedMail from Register to main
   static const String hashedMail ="hashedEmail";
@@ -33,16 +33,15 @@ class PreferenceService {
     return pref?.getString(accessToken) ?? "";
   }
 
-  setRefreshToken(String value) {
-    pref?.setString(refreshToken, value);
-    debugPrint("Refresh Token stored successfully");
+  setToken(String value) {
+    pref?.setString(token, value);
+    debugPrint("Token stored successfully");
   }
 
-  String getRefreshToken() {
-    return pref?.getString(refreshToken) ?? "";
+  String getToken() {
+    return pref?.getString(token) ?? "";
   }
 
-  //-------------
   setHashedEmail(String value) {
     pref?.setString(hashedMail, value);
     debugPrint("Hashed Mail stored successfully");
@@ -51,7 +50,7 @@ class PreferenceService {
   String getHashedEmail() {
     return pref?.getString(hashedMail) ?? "";
   }
-//---------------
+
 
   /*setBearerToken(String value) {
     pref?.setString(bearerToken, value);

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
-import '../../core/model/auth.dart';
+
 import '../../core/model/service/auth/login_auth.dart';
 import '../../locator.dart';
 import '../../router.dart';
@@ -14,26 +14,26 @@ import '../../vgts_base_view_model.dart';
 class LogInViewModel extends VGTSBaseViewModel {
 
 
-  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   EmailFormFieldController emailController=EmailFormFieldController(ValueKey("logEmail"),
       required: true,requiredText: "Email field is required "
   );
 
-  FormFieldController passwordController= FormFieldController(ValueKey("logPwd"),
-      required: true,);
+ TextFormFieldController passwordController= TextFormFieldController(ValueKey("logPwd"),
+      required: true,requiredText: "Password field is required");
 
 
   login() async {
 
-    if(registerFormKey.currentState?.validate() != true) {
+    if(loginFormKey.currentState?.validate() != true) {
       return;
     }
      setState(ViewState.Busy);
     LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(emailController.text,passwordController.text));
     if (auth != null) {
       Fluttertoast.showToast(msg: "Your Journey with us");
-      preferenceService.setAccessToken(auth.accessToken ?? '');
+      // locator<PushNotificationService>().configure(mobileNumController.text);
       navigationService.popAllAndPushNamed(Routes.main);
     }
     setState(ViewState.Idle);
