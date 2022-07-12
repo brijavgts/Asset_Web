@@ -13,7 +13,7 @@ import '../../vgts_base_view_model.dart';
 class ChangePwdViewModel extends VGTSBaseViewModel {
 
 
-  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> changePwdFormKey = GlobalKey<FormState>();
 
   PasswordFormFieldController passwordController=PasswordFormFieldController(ValueKey("changeEmail"),
       required: true,requiredText: "Enter your new Password"
@@ -21,7 +21,7 @@ class ChangePwdViewModel extends VGTSBaseViewModel {
 
   change_pwd() async {
 
-    if(registerFormKey.currentState?.validate() != true) {
+    if(changePwdFormKey.currentState?.validate() != true) {
       return;
     }
     //else{navigationService.popAllAndPushNamed("/verification");}

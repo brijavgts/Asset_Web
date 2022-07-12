@@ -37,23 +37,25 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
       body: SafeArea(
         child: TapOutsideUnFocus(
           child: Form(
-            key: viewModel.registerFormKey,
+            key: viewModel.changePwdFormKey,
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50,vertical: 150,),
+                padding: EdgeInsets.fromLTRB(0, 131.5, 0, 360),
                 child: Center(
                   child: Column(
                     children: [
+                      Image.asset("assets/images/Frame 349.png",width: 235.11,height: 23.9,),
+                      SizedBox(height: 21.1),
                       Text("Change your password",
                           textAlign: TextAlign.center,
                           style: AppTextStyle.h4Heading.copyWith(
                             fontSize: 32,
                           )),
 
-                      VerticalSpacing.custom(value:24),
+                      VerticalSpacing.custom(value:16),
 
                       SizedBox(
-                        width: 440,
+                        width: 438,
                         child: EditTextField(
                           "New Password",
                           textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
@@ -68,10 +70,11 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
                         ),
                       ),
 
-                      VerticalSpacing.custom(value: 18.0),
+                      VerticalSpacing.custom(value: 24.0),
 
                       SizedBox(
-                        width: 440,
+                        width: 438,
+                        height: 40,
                         child: Button(
                           "Change password",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
                             color: AppColor.white,

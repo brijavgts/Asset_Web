@@ -10,7 +10,7 @@ import '../../core/res/styles.dart';
 TextStyle _errorTextStyle = AppTextStyle.body2.copyWith(color: AppColor.error, fontSize: 12, fontWeight: FontWeight.w500);
 TextStyle _labelTextStyle = AppTextStyle.label.copyWith(fontSize: 12);
 TextStyle _bodyTextStyle = AppTextStyle.body2;
-TextStyle _hintTextStyle = AppTextStyle.body2.copyWith(color: AppColor.grey, fontSize: 14, fontWeight: FontWeight.w500);
+TextStyle _hintTextStyle = AppTextStyle.body2.copyWith(color: AppColor.hint, fontSize: 14, fontWeight: FontWeight.w500);
 
 BorderRadius _borderRadius = BorderRadius.circular(4.0);
 
@@ -65,6 +65,7 @@ class EditTextField extends StatefulWidget {
         this.suffixIcon,
         this.maxLength,
         this.counterText,
+
       });
 
 
@@ -273,7 +274,7 @@ class _EditTextFieldState extends State<EditTextField> {
 
 InputBorder _outlineInputBorder = OutlineInputBorder(
   borderRadius: _borderRadius,
-  borderSide:  BorderSide(color: AppColor.grey, width:1),
+  borderSide:  BorderSide(color: AppColor.black, width:0.5),
 );
 
 InputBorder _focusedInputBorder = OutlineInputBorder(

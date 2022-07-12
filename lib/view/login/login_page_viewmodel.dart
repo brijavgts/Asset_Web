@@ -14,7 +14,7 @@ import '../../vgts_base_view_model.dart';
 class LogInViewModel extends VGTSBaseViewModel {
 
 
-  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   EmailFormFieldController emailController=EmailFormFieldController(ValueKey("logEmail"),
       required: true,requiredText: "Email field is required "
@@ -26,7 +26,7 @@ class LogInViewModel extends VGTSBaseViewModel {
 
   login() async {
 
-    if(registerFormKey.currentState?.validate() != true) {
+    if(loginFormKey.currentState?.validate() != true) {
       return;
     }
      setState(ViewState.Busy);

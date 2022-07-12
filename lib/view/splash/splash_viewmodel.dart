@@ -27,23 +27,14 @@ class SplashViewModel extends VGTSBaseViewModel {
     //await locator<UpdateChecker>().versionCheck(navigationService.navigatorKey.currentContext!);
 
     try {
-      if (preferenceService.getHashedEmail().isNotEmpty) {
-        navigationService.popAllAndPushNamed(Routes.main);
-      }
+
       Future.delayed(const Duration(milliseconds: 500), () {
-        navigationService.popAllAndPushNamed(Routes.login);
+        navigationService.popAllAndPushNamed(Routes.main);
+        //-----------------------------instead of above code------------use below----------------
+        // navigationService.popAllAndPushNamed(preferenceService.getAccessToken().isNotEmpty?Routes.verify_register:Routes.login);
       });
 
-    }
-    //
-    // try {
-    //   Future.delayed(const Duration(milliseconds: 500), () {
-    //     navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty
-    //         ?Routes.main:Routes.login);
-    //   });
-    //
-    //  }
-      catch (ex) {
+    } catch (ex) {
       debugPrint("EXCEPTION $ex");
     }
 

@@ -14,7 +14,7 @@ import '../../vgts_base_view_model.dart';
 class ForgotPwdViewModel extends VGTSBaseViewModel {
 
 
-  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> forgotPwdFormKey = GlobalKey<FormState>();
 
   EmailFormFieldController emailController=EmailFormFieldController(ValueKey("forgotEmail"),
       required: true,requiredText: "Please enter your Email"
@@ -22,7 +22,7 @@ class ForgotPwdViewModel extends VGTSBaseViewModel {
 
   forgot_pwd() async {
 
-    if(registerFormKey.currentState?.validate() != true) {
+    if(forgotPwdFormKey.currentState?.validate() != true) {
       return;
     }
     setState(ViewState.Busy);

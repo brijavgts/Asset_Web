@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'dart:html';
 
-// import 'package:asset_management/core/model/auth.dart';
 import 'package:asset_management/services/api_request/auth_request.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/view/register/register_page.dart';
@@ -22,6 +19,7 @@ import '../../vgts_base_view_model.dart';
 
 
 class RegisterViewModel extends VGTSBaseViewModel {
+
 
 
 
@@ -57,47 +55,30 @@ class RegisterViewModel extends VGTSBaseViewModel {
     if (auth != null) {
       preferenceService.setHashedEmail(auth.hashedEmail ?? '');
       Fluttertoast.showToast(msg: "Verifying Email.....");
-      // navigationService.popAllAndPushNamed(preferenceService.getHashedEmail().isNotEmpty ? Routes.verification:Routes.verify_register);
+      navigationService.popAllAndPushNamed(Routes.verification,);
     }
-
-//----------------
-
-    VerifyEmailAuth? verifyAuth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
-    if (auth != null) {
-      preferenceService.setAccessToken(verifyAuth?.accessToken ?? '');
-      navigationService.popAllAndPushNamed(preferenceService.getAccessToken().isNotEmpty ? Routes.verification:Routes.verify_register);
-    }
-//--------------------
-
     setState(ViewState.Idle);
     notifyListeners();
   }
 
-}
 
-/*
-Future<String> signIn() async {
-      final response = await http.post(
-        serverReceiverPath,
-        headers: {'Content-Type': 'application/json'},
-      );
-      if(response.body == 'Login successful'){
-        isLogin = true;
-      }else{
-        isLogin = false;
+  @override
+  Future onInit() async {
+    // await locator<PreferenceService>().init();
+    setState(ViewState.Busy);
+    if(preferenceService.getHashedEmail().isNotEmpty) {
+      VerifyEmailAuth? auth = await request<VerifyEmailAuth>(
+          AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
+      if (auth != null) {
+        preferenceService.setAccessToken(auth.accessToken ?? "");
+        navigationService.pushNamed(Routes.main);
       }
-      print(response.body);
-      print(isLogin);
     }
-
-    Correction =>
-
-    if(response.body == 'Login successful'){
-    isLogin = true;
-    Navigator.of(context).pushReplacementNamed('/home');
-  }else{
-    isLogin = false;
+    setState(ViewState.Idle);
+    return super.onInit();
   }
 
 
-    */
+
+
+}
