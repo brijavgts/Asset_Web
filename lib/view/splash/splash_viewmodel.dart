@@ -4,7 +4,6 @@ import 'package:asset_management/core/model/service/auth/verify_mail_auth.dart';
 import 'package:asset_management/services/shared/api_model/error_response_exception.dart';
 import 'package:asset_management/services/shared/api_model/string_extension.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
-import 'package:asset_management/view/register/verify_register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 //import '../../../helper/firebase_remote_helper.dart';

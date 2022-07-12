@@ -7,7 +7,6 @@ import 'package:asset_management/view/login/login_page.dart';
 import 'package:asset_management/view/main/main_page.dart';
 import 'package:asset_management/view/no_network/no_network_page.dart';
 import 'package:asset_management/view/register/register_page.dart';
-import 'package:asset_management/view/register/verify_register_page.dart';
 import 'package:asset_management/view/splash/splash_page.dart';
 import 'package:asset_management/view/verification/verification_page.dart';
 import 'package:flutter/cupertino.dart';
