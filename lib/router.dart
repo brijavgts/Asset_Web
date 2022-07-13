@@ -1,10 +1,14 @@
 
 import 'package:asset_management/locator.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
+import 'package:asset_management/vgts_base_view_model.dart';
 import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
 import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
 import 'package:asset_management/view/login/login_page.dart';
+import 'package:asset_management/view/main/assets/asset_page.dart';
+import 'package:asset_management/view/main/main_layout.dart';
 import 'package:asset_management/view/main/main_page.dart';
+import 'package:asset_management/view/main/main_page_viewmodel.dart';
 import 'package:asset_management/view/no_network/no_network_page.dart';
 import 'package:asset_management/view/register/register_page.dart';
 import 'package:asset_management/view/splash/splash_page.dart';
@@ -12,6 +16,7 @@ import 'package:asset_management/view/verification/verification_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:asset_management/services/shared/api_model/string_extension.dart';
+import 'package:go_router/go_router.dart';
 
 
 class Routes {
@@ -49,12 +54,12 @@ class AppRouter {
            settings: RouteSettings(name: settings.name),
          );
 
-      case Routes.main:
-       // var data = routingData?['mail'];
-        return MaterialPageRoute(
-          builder: (_) => MainPage(),
-          settings: RouteSettings(name: settings.name),
-        );
+      // case Routes.main:
+      //  // var data = routingData?['mail'];
+      //   return MaterialPageRoute(
+      //     builder: (_) => MainPage(),
+      //     settings: RouteSettings(name: settings.name),
+      //   );
 
       case Routes.login:
         return MaterialPageRoute(
@@ -102,8 +107,6 @@ class AppRouter {
         //       builder:(_)=> VerifyRegisterPage(),
         //       settings: RouteSettings(name: settings.name,));
         // }
-
-
             return MaterialPageRoute(
                 builder: (_) => Scaffold(
                   body: Center(
@@ -114,7 +117,47 @@ class AppRouter {
         }
     }
 
-  }
+
+
+  static GoRouter goRouters = GoRouter(
+      urlPathStrategy: UrlPathStrategy.path,
+      navigatorBuilder: (context, state, child) {
+        print("asdkjhasdkjasd");
+        return preferenceService.getAccessToken().isNotEmpty != true ? MainLayout(child) : child;
+      },
+      routes: <GoRoute>[
+        GoRoute(
+          path: Routes.login,
+          builder: (BuildContext context, GoRouterState state) => LogInPage(),
+        ),
+        GoRoute(
+            path: Routes.main,
+            builder: (BuildContext context, GoRouterState state) => MainPage(0),
+            routes: <GoRoute>[
+              GoRoute(
+                path: "assets" ,
+                builder: (BuildContext context, GoRouterState state) {
+                  return  Assets();
+                },
+              ),
+              GoRoute(
+                path: "employees" ,
+                builder: (BuildContext context, GoRouterState state) {
+                  return Center(child: Text("Employee"),);
+                },
+              ),
+              GoRoute(
+                path: "analytics" ,
+                builder: (BuildContext context, GoRouterState state) {
+                  return Center(child: Text("analytics"),);
+                },
+              ),
+            ]
+        ),
+      ],
+      initialLocation: Routes.splash
+  );
+}
 
 
 

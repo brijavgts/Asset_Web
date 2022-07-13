@@ -44,7 +44,9 @@ class ForgotPwdPage extends ViewModelBuilderWidget<ForgotPwdViewModel> {
                   child: Column(
 
                     children: [
+
                       Image.asset("assets/images/Frame 349.png",width: 235.11,height: 23.9,),
+
                       SizedBox(height: 21.1),
                       Text("Forgot your password?",
                           textAlign: TextAlign.center,

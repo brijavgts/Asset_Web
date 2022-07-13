@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:asset_management/core/model/auth.dart';
+
 import 'package:asset_management/services/api_request/auth_request.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/view/register/register_page.dart';

@@ -19,13 +19,13 @@ class MainPageViewModel extends VGTSBaseViewModel {
 
   List<Item> navBarItems = [
     Item(
-      text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,
+      text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,path: "/analytics"
     ),
     Item(
-      text: 'Assets', iconData:CupertinoIcons.cube_box,
+      text: 'Assets', iconData:CupertinoIcons.cube_box,path: "/assets"
     ),
     Item(
-      text: 'Employes',iconData: Icons.group_outlined,
+      text: 'Employees',iconData: Icons.group_outlined,path: "/employees"
     ),
   ];
 
@@ -33,11 +33,21 @@ class MainPageViewModel extends VGTSBaseViewModel {
 
   TextFormFieldController textController=TextFormFieldController(ValueKey("text"),);
 
+  void init(int data) {
+    _index = data;
+
+
+
+
+    notifyListeners();
+  }
+
 }
 
 
 class Item {
   String? text;
   IconData? iconData;
-  Item({this.text, this.iconData});
+  String? path;
+  Item({this.text, this.iconData,this.path});
 }

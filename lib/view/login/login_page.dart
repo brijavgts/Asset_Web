@@ -120,7 +120,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                         width: double.infinity,
                         isLoading: viewModel.state == ViewState.Busy,
                         onPressed: () {
-                          viewModel.login();
+                          viewModel.login(context);
                           //navigationService.popAllAndPushNamed("/main");
                         },
                       ),
