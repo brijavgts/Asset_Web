@@ -1,6 +1,6 @@
 class Images {
 
-  static const String appLogo = "assets/images/app_logo.png";
+  static const String appLogo = "assets/images/Frame 349.png";
 
   static const String passHidden = "assets/images/pass_hidden.svg";
   static const String passShow = "assets/images/pass_show.svg";

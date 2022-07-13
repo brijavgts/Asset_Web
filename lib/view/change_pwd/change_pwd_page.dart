@@ -44,7 +44,7 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
                 child: Center(
                   child: Column(
                     children: [
-                      Image.asset("assets/images/Frame 349.png",width: 235.11,height: 23.9,),
+                      Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
                       SizedBox(height: 21.1),
                       Text("Change your password",
                           textAlign: TextAlign.center,

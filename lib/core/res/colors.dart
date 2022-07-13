@@ -4,11 +4,21 @@ import 'package:flutter/material.dart';
 
 // Color Palette follows material guide
 class AppColor {
-  static const Color hint = Color(0xFF999999);
-  // Neutral
+
   static const Color background = Color(0xFFFAFAFA);
+
   //Text
   static const Color black=Color(0xFF000000);
+  static const Color hint = Color(0xFF999999);
+
+  //Container Color
+  static const Color rd=Color(0xFFFDC3BB);
+  static const Color pm=Color(0xFFD6BEEA);
+  static const Color store=Color(0xFFF7C8A3);
+  static const Color admin=Color(0xFFFCDFA1);
+  static const Color hr=Color(0xFFB3D6EB);
+  static const Color production=Color(0xFFBEE9BA);
+
   //Button
   static const Color primary = Color(0xFF104BFC);
   static const Color nav=Color(0xFF666666);

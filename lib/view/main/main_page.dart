@@ -1,15 +1,23 @@
 
 import 'package:asset_management/core/res/colors.dart';
 import 'package:asset_management/core/res/styles.dart';
-import 'package:asset_management/view/main/tab_view.dart';
+import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
+import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
+import 'package:asset_management/view/login/login_page.dart';
+import 'package:asset_management/view/register/register_page.dart';
+import 'package:asset_management/widgets/button.dart';
+import 'package:asset_management/widgets/edit_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:go_router/go_router.dart';
 import 'package:stacked/stacked.dart';
-import '../../router.dart';
+
+
 import 'assets/asset_page.dart';
 import 'main_page_viewmodel.dart';
+
+
+
 
 
 class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
@@ -33,9 +41,9 @@ class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
           child: IndexedStack(
             index: viewModel.index,
             children: [
-            Assets(),
             Text("welcome"),
             Text("welcome"),
+            EmployeePage()
           ],),
         ),
       ),
@@ -44,8 +52,14 @@ class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
 
   @override
   MainPageViewModel viewModelBuilder(BuildContext context) => MainPageViewModel();
-
 }
+
+
+
+
+double collapsableHeight = 0.0;
+Color selected =AppColor.primary;
+Color notSelected = AppColor.nav;
 
 
 
@@ -109,6 +123,7 @@ class _NavBarItemState extends State<NavBarItem> {
                   Text(widget.text,style: AppTextStyle.body1SemiBold.copyWith(fontSize: 16,color: color),),
                 ],
               ),
+
             ),
           ),
         ),

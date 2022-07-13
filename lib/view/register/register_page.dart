@@ -40,7 +40,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                 padding: EdgeInsets.fromLTRB(0, 131.5, 0, 164),
                 child: Column(
                   children: [
-                    Image.asset("assets/images/Frame 349.png",width: 235.11,height: 23.9,),
+                    Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
                     SizedBox(height: 21.1,),
                     Text("Setup Your Organization",
                       textAlign: TextAlign.center,
