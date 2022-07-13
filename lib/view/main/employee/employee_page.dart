@@ -18,6 +18,7 @@ class EmployeePage extends ViewModelBuilderWidget<EmployeeViewModel> {
   @override
   Widget builder(BuildContext context, EmployeeViewModel viewModel,
       Widget? child) {
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +56,11 @@ class EmployeePage extends ViewModelBuilderWidget<EmployeeViewModel> {
             ],
           ),
           SizedBox(height: 20,),
-          viewModel.buildDataTable(),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            child: viewModel.buildDataTable(),
+          )
 
         ],
       ),
