@@ -5,6 +5,7 @@ import 'package:asset_management/services/shared/api_model/error_response_except
 import 'package:asset_management/services/shared/api_model/string_extension.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stacked/stacked.dart';
 //import '../../../helper/firebase_remote_helper.dart';
 //import '../../../helper/update_checker.dart';
@@ -22,11 +23,10 @@ import 'package:http/http.dart'as http;
 
 class SplashViewModel extends VGTSBaseViewModel {
 
-
   VerifyEmailAuth? _auth;
   VerifyEmailAuth? get auth => _auth;
 
-   init(String path) async {
+   init(String path, BuildContext context) async {
     //await locator<FirebaseRemoteHelper>().configure();
     await locator<PreferenceService>().init();
     // await locator<NetworkService>().init();
@@ -42,16 +42,18 @@ class SplashViewModel extends VGTSBaseViewModel {
         _auth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(data));
         if (_auth != null) {
           await preferenceService.setAccessToken(_auth!.accessToken ?? "");
-          navigationService.pushNamed(Routes.main);
+          // navigationService.pushNamed(Routes.main);
+          context.go(Routes.dashboard);
         }
         notifyListeners();
         }
 
        else if(preferenceService.getAccessToken().isNotEmpty == true){
-        navigationService.pushNamed(Routes.main);
-       }
+        context.go(Routes.dashboard);
+      }
       else {
         navigationService.popAllAndPushNamed(Routes.login);
+        context.go(Routes.login);
       }
 
     }

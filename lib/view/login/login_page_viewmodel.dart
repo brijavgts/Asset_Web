@@ -34,7 +34,10 @@ class LogInViewModel extends VGTSBaseViewModel {
     LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(emailController.text,passwordController.text));
     if (auth != null) {
       Fluttertoast.showToast(msg: "Your Journey with us");
-      context.go(Routes.main);
+
+      print(auth.accessToken);
+      preferenceService.setAccessToken(auth.accessToken!);
+      context.go(Routes.dashboard);
       // locator<PushNotificationService>().configure(mobileNumController.text);
     }
     setState(ViewState.Idle);

@@ -23,7 +23,11 @@ class Routes {
   static const String splash = "/";
   static const String no_network = "/no_network";
   static const String login = "/login";
-  static const String main = "/main"; //used as dashboard
+  // static const String main = "/main"; //used as dashboard
+  static const String dashboard = "/main/assets"; //used as dashboard
+  static const String assets = "/main/assets"; //used as dashboard
+  static const String analytics = "/main/analytics"; //used as dashboard
+  static const String employee = "/main/employee"; //used as dashboard
   static const String register="/register";
   static const String verification="/verification";
   static const String forgot_pwd="/forgot_pwd";
@@ -35,7 +39,6 @@ class Routes {
 class AppRouter {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-
 
     var routingData = settings.name?.getRoutingData;
 
@@ -117,21 +120,20 @@ class AppRouter {
         }
     }
 
-
-
   static GoRouter goRouters = GoRouter(
-      urlPathStrategy: UrlPathStrategy.path,
-      navigatorBuilder: (context, state, child) {
-        print("asdkjhasdkjasd");
-        return preferenceService.getAccessToken().isNotEmpty != true ? MainLayout(child) : child;
-      },
-      routes: <GoRoute>[
+    urlPathStrategy: UrlPathStrategy.path,
+    navigatorBuilder: (context, state, child) {
+      print(preferenceService.getAccessToken());
+      return preferenceService.getAccessToken().isEmpty == true ? child :  MainLayout(child);
+    },
+    initialLocation: Routes.splash,
+    routes: <GoRoute>[
         GoRoute(
           path: Routes.login,
           builder: (BuildContext context, GoRouterState state) => LogInPage(),
         ),
         GoRoute(
-            path: Routes.main,
+            path: "/main",
             builder: (BuildContext context, GoRouterState state) => MainPage(0),
             routes: <GoRoute>[
               GoRoute(
@@ -154,8 +156,27 @@ class AppRouter {
               ),
             ]
         ),
+        GoRoute(
+          path: Routes.register,
+          builder: (BuildContext context, GoRouterState state) => RegisterPage(),
+        ),
+        GoRoute(
+          path: Routes.verification,
+          builder: (BuildContext context, GoRouterState state) => VerificationPage(),
+        ),
+        GoRoute(
+          path: Routes.change_pwd,
+          builder: (BuildContext context, GoRouterState state) => VerificationPage(),
+        ),
+        GoRoute(
+          path: Routes.forgot_pwd,
+          builder: (BuildContext context, GoRouterState state) => ForgotPwdPage(),
+        ),
+        GoRoute(
+          path: Routes.splash,
+          builder: (BuildContext context, GoRouterState state) => SplashPage(),
+        ),
       ],
-      initialLocation: Routes.splash
   );
 }
 

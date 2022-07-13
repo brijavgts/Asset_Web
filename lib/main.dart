@@ -63,7 +63,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         builder: _setupDialogManager,
         //initialRoute:Routes.splash,
         debugShowCheckedModeBanner: false,
-        //navigatorKey: navigationService.navigatorKey,
         //  onGenerateRoute: (settings) => AppRouter.generateRoute(settings),
         // navigatorObservers: [FirebaseAnalyticsObserver(analytics: analytics)],
       ),

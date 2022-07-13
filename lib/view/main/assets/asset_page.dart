@@ -11,52 +11,53 @@ import 'asset_viewmodel.dart';
 
 class Assets extends ViewModelBuilderWidget<AssetViewModel> {
 
-
-
-
   @override
   Widget builder(BuildContext context, AssetViewModel viewModel,
       Widget? child) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: 200,
-                child: EditTextField("",viewModel.searchController,
-                placeholder: "Search",
-                  prefixIcon: Padding(
-                    padding:EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Icon(CupertinoIcons.search,size: 18,),
+    return Scaffold(
+      body: Container(
+        margin: EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 200,
+                  child: EditTextField("",viewModel.searchController,
+                  placeholder: "Search",
+                    prefixIcon: Padding(
+                      padding:EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Icon(CupertinoIcons.search,size: 18,),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-               width: 156,height: 36,
-               child: Button("",
-                 key: ValueKey("assetKey"),
-                   onPressed: (){
+                SizedBox(
+                 width: 156,height: 36,
+                 child: Button("",
+                   key: ValueKey("assetKey"),
+                     onPressed: (){
 
-                   },
-                    icon: Row(
-                   children: [
-                     Icon(Icons.person_add_alt_1_outlined,color: AppColor.white,),
-                     SizedBox(width: 8,),
-                     Text("New Employee",style:AppTextStyle.body2SemiBold.copyWith(color: AppColor.white,fontSize: 14),)
-                   ],
+                     },
+                      icon: Row(
+                     children: [
+                       Icon(Icons.person_add_alt_1_outlined,color: AppColor.white,),
+                       SizedBox(width: 8,),
+                       Text("New Employee",style:AppTextStyle.body2SemiBold.copyWith(color: AppColor.white,fontSize: 14),)
+                     ],
+                   ),
                  ),
                ),
-             ),
 
-            ],
-          ),
-          SizedBox(height: 20,),
-          viewModel.buildDataTable(),
+              ],
+            ),
+            SizedBox(height: 20,),
 
-        ],
+            viewModel.buildDataTable(),
+
+          ],
+        ),
       ),
     );
 

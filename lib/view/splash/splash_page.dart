@@ -7,35 +7,63 @@ import 'package:stacked/stacked.dart';
 import '../../../core/res/colors.dart';
 import '../../../core/res/images.dart';
 
-class SplashPage extends ViewModelBuilderWidget<SplashViewModel> {
-
+class SplashPage extends StatelessWidget {
   String path;
   SplashPage({this.path = ''});
 
   @override
-  void onViewModelReady(SplashViewModel viewModel) {
-    viewModel.init(path);
-    super.onViewModelReady(viewModel);
-  }
-
-  @override
-  SplashViewModel viewModelBuilder(BuildContext context) => SplashViewModel();
-
-  @override
-  Widget builder(BuildContext context, SplashViewModel viewModel, Widget? child) {
-    return Scaffold(
-        body: Container(
-            width: double.infinity,
-            color: AppColor.background,
-            child: Center(
-              child: Text("🚀"),
-              //child: Image.asset(Images.appLogo, fit: BoxFit.fill, width: 150,),
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<SplashViewModel>.reactive(
+      onModelReady: (viewModel) {
+        viewModel.init(path, context);
+      },
+      viewModelBuilder: ()=> SplashViewModel(),
+      builder: (context, viewModel, child) {
+        return Scaffold(
+            body: Container(
+                width: double.infinity,
+                color: AppColor.background,
+                child: Center(
+                  child: Text("🚀"),
+                  //child: Image.asset(Images.appLogo, fit: BoxFit.fill, width: 150,),
+                )
             )
-        )
+        );
+      }
     );
   }
 
 }
+
+// class SplashPage extends ViewModelBuilderWidget<SplashViewModel> {
+//
+//   String path;
+//   SplashPage({this.path = ''});
+//
+//   @override
+//   void onViewModelReady(SplashViewModel viewModel) {
+//     viewModel.init(path, context);
+//     super.onViewModelReady(viewModel);
+//   }
+//
+//   @override
+//   SplashViewModel viewModelBuilder(BuildContext context) => SplashViewModel();
+//
+//   @override
+//   Widget builder(BuildContext context, SplashViewModel viewModel, Widget? child) {
+//     return Scaffold(
+//         body: Container(
+//             width: double.infinity,
+//             color: AppColor.background,
+//             child: Center(
+//               child: Text("🚀"),
+//               //child: Image.asset(Images.appLogo, fit: BoxFit.fill, width: 150,),
+//             )
+//         )
+//     );
+//   }
+//
+// }
 
 
 /*

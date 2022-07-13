@@ -42,7 +42,7 @@ class MainLayout extends ViewModelBuilderWidget<MainPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
                           viewModel.index = key;
-                          context.go("${Routes.main}${value.path}");
+                          context.go("${value.path}");
                           viewModel.notifyListeners();
                         }, index:viewModel.index,
                         ))).values.toList().cast<Widget>(),),

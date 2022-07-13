@@ -1,4 +1,5 @@
 
+import 'package:asset_management/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
@@ -19,13 +20,13 @@ class MainPageViewModel extends VGTSBaseViewModel {
 
   List<Item> navBarItems = [
     Item(
-      text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,path: "/analytics"
+      text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,path: Routes.analytics
     ),
     Item(
-      text: 'Assets', iconData:CupertinoIcons.cube_box,path: "/assets"
+      text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets
     ),
     Item(
-      text: 'Employees',iconData: Icons.group_outlined,path: "/employees"
+      text: 'Employees',iconData: Icons.group_outlined,path: Routes.employee
     ),
   ];
 
