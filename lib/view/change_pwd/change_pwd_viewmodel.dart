@@ -1,6 +1,7 @@
 import 'package:asset_management/router.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
 // import '../../core/model/auth.dart';
@@ -19,7 +20,7 @@ class ChangePwdViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Enter your new Password"
   );
 
-  change_pwd() async {
+  changePwd(BuildContext context) async {
 
     if(changePwdFormKey.currentState?.validate() != true) {
       return;
@@ -31,7 +32,7 @@ class ChangePwdViewModel extends VGTSBaseViewModel {
     
     ChangeAuth? auth=await request<ChangeAuth>(AuthRequest.change_pwd(passwordController.text,preferenceService.getToken()));
     if (auth != null) {
-      navigationService.popAllAndPushNamed(Routes.login);
+      context.go(Routes.login);
     }
     // LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(mobileNumController.text));
     // if (auth != null) {

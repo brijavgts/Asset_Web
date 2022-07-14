@@ -6,9 +6,10 @@ import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
 import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
 import 'package:asset_management/view/login/login_page.dart';
 import 'package:asset_management/view/main/assets/asset_page.dart';
+import 'package:asset_management/view/main/employee/employee_page.dart';
 import 'package:asset_management/view/main/main_layout.dart';
-import 'package:asset_management/view/main/main_page.dart';
-import 'package:asset_management/view/main/main_page_viewmodel.dart';
+import 'package:asset_management/view/main/nav_bar_item.dart';
+import 'package:asset_management/view/main/main_layout_viewmodel.dart';
 import 'package:asset_management/view/no_network/no_network_page.dart';
 import 'package:asset_management/view/register/register_page.dart';
 import 'package:asset_management/view/splash/splash_page.dart';
@@ -123,8 +124,8 @@ class AppRouter {
   static GoRouter goRouters = GoRouter(
     urlPathStrategy: UrlPathStrategy.path,
     navigatorBuilder: (context, state, child) {
-      print(preferenceService.getAccessToken());
-      return preferenceService.getAccessToken().isEmpty == true ? child :  MainLayout(child);
+      print("Nav${preferenceService.getAccessToken()}");
+      return MainLayout(child);
     },
     initialLocation: Routes.splash,
     routes: <GoRoute>[
@@ -134,24 +135,18 @@ class AppRouter {
         ),
         GoRoute(
             path: "/main",
-            builder: (BuildContext context, GoRouterState state) => MainPage(0),
+            builder: (BuildContext context, GoRouterState state) => Center(child: Text("assets"),),
             routes: <GoRoute>[
               GoRoute(
                 path: "assets" ,
                 builder: (BuildContext context, GoRouterState state) {
-                  return  Assets();
+                  return Center(child: Text("assets"),);
                 },
               ),
               GoRoute(
-                path: "employees" ,
+                path: "employee" ,
                 builder: (BuildContext context, GoRouterState state) {
-                  return Center(child: Text("Employee"),);
-                },
-              ),
-              GoRoute(
-                path: "analytics" ,
-                builder: (BuildContext context, GoRouterState state) {
-                  return Center(child: Text("analytics"),);
+                  return EmployeePage();
                 },
               ),
             ]
@@ -166,7 +161,7 @@ class AppRouter {
         ),
         GoRoute(
           path: Routes.change_pwd,
-          builder: (BuildContext context, GoRouterState state) => VerificationPage(),
+          builder: (BuildContext context, GoRouterState state) => ChangePwdPage(),
         ),
         GoRoute(
           path: Routes.forgot_pwd,
@@ -175,6 +170,14 @@ class AppRouter {
         GoRoute(
           path: Routes.splash,
           builder: (BuildContext context, GoRouterState state) => SplashPage(),
+            routes: <GoRoute>[
+              GoRoute(
+                path: "verify-register" ,
+                builder: (BuildContext context, GoRouterState state) {
+                  return SplashPage();
+                },
+              ),
+            ]
         ),
       ],
   );

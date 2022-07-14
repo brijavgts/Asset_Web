@@ -38,7 +38,6 @@ class LogInViewModel extends VGTSBaseViewModel {
       print(auth.accessToken);
       preferenceService.setAccessToken(auth.accessToken!);
       context.go(Routes.dashboard);
-      // locator<PushNotificationService>().configure(mobileNumController.text);
     }
     setState(ViewState.Idle);
     notifyListeners();

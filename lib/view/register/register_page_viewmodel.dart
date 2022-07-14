@@ -6,6 +6,7 @@ import 'package:asset_management/view/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
@@ -40,7 +41,7 @@ class RegisterViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Password field is required");
 
 
-  register() async {
+  register(BuildContext context) async {
 
     if(registerFormKey.currentState?.validate() != true) {
       return;
@@ -51,7 +52,7 @@ class RegisterViewModel extends VGTSBaseViewModel {
     RegisterAuth? auth = await request<RegisterAuth>(AuthRequest.register(nameController.text, emailController.text, passwordController.text,orgController.text));
     if (auth != null) {
       Fluttertoast.showToast(msg: "Verifying Email.....");
-      navigationService.pushNamed(Routes.verification,);
+      context.go(Routes.verification,);
     }
     setState(ViewState.Idle);
 

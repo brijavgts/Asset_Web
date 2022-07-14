@@ -2,6 +2,7 @@ import 'package:asset_management/router.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +22,7 @@ import '../../widgets/tap_outside_unfocus.dart';
 //import '../widgets/tap_outside_unfocus.dart';
 import 'package:http/http.dart' as http;
 
-import '../main/main_page.dart';
+import '../main/nav_bar_item.dart';
 import 'login_page_viewmodel.dart';
 
 
@@ -82,7 +83,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                             bottom: 40,
                             right: 0.2,
                             child: TextButton(onPressed: (){
-                              navigationService.pushNamed(Routes.forgot_pwd);
+                              context.go(Routes.forgot_pwd);
                             },
                                 child: Text("Forgot your password?",
                                   style: AppTextStyle.label.copyWith(
@@ -134,7 +135,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                             style: AppTextStyle.body2.copyWith(fontSize: 14)),
                         TextButton(
                           onPressed: () {
-                            navigationService.pushNamed(Routes.register);
+                            context.go(Routes.register);
                           },
                           child: Text("Join service name",
                               style: AppTextStyle.body2.copyWith(fontSize: 14,

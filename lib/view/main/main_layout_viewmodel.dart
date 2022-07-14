@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 
 import '../../vgts_base_view_model.dart';
-import 'main_page.dart';
 
-class MainPageViewModel extends VGTSBaseViewModel {
+class MainLayoutViewModel extends VGTSBaseViewModel {
 
   int _index = 0;
 
@@ -19,9 +18,9 @@ class MainPageViewModel extends VGTSBaseViewModel {
   }
 
   List<Item> navBarItems = [
-    Item(
-      text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,path: Routes.analytics
-    ),
+    // Item(
+    //   text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,path: Routes.analytics
+    // ),
     Item(
       text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets
     ),
@@ -36,10 +35,6 @@ class MainPageViewModel extends VGTSBaseViewModel {
 
   void init(int data) {
     _index = data;
-
-
-
-
     notifyListeners();
   }
 

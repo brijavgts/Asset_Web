@@ -14,47 +14,45 @@ import 'package:stacked/stacked.dart';
 
 
 import 'assets/asset_page.dart';
-import 'main_page_viewmodel.dart';
+import 'employee/employee_page.dart';
+import 'main_layout_viewmodel.dart';
 
-
-
-
-
-class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
-
-  int index;
-  MainPage(this.index);
-
-  @override
-  void onViewModelReady(MainPageViewModel viewModel) {
-    viewModel.init(index);
-    super.onViewModelReady(viewModel);
-  }
-
-  @override
-  Widget builder(BuildContext context, MainPageViewModel viewModel, Widget? child) {
-    return Scaffold(
-      backgroundColor: AppColor.background,
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16,horizontal: 24),
-          child: IndexedStack(
-            index: viewModel.index,
-            children: [
-            Text("welcome"),
-            Text("welcome"),
-            EmployeePage()
-          ],),
-        ),
-      ),
-    );
-  }
-
-  @override
-  MainPageViewModel viewModelBuilder(BuildContext context) => MainPageViewModel();
-}
-
-
+//
+// class MainPage extends ViewModelBuilderWidget<MainPageViewModel>{
+//
+//   int index;
+//   MainPage(this.index);
+//
+//   @override
+//   void onViewModelReady(MainPageViewModel viewModel) {
+//     viewModel.init(index);
+//     super.onViewModelReady(viewModel);
+//   }
+//
+//   @override
+//   Widget builder(BuildContext context, MainPageViewModel viewModel, Widget? child) {
+//     return Scaffold(
+//       backgroundColor: AppColor.background,
+//       body: SingleChildScrollView(
+//         child: Container(
+//           padding: EdgeInsets.symmetric(vertical: 16,horizontal: 24),
+//           // child: IndexedStack(
+//           //   index: viewModel.index,
+//           //   children: [
+//           //   Text("welcome"),
+//           //   Text("welcome"),
+//           //   EmployeePage()
+//           // ],),
+//         ),
+//       ),
+//     );
+//   }
+//
+//   @override
+//   MainPageViewModel viewModelBuilder(BuildContext context) => MainPageViewModel();
+// }
+//
+//
 
 
 double collapsableHeight = 0.0;
@@ -65,12 +63,11 @@ Color notSelected = AppColor.nav;
 
 class NavBarItem extends StatefulWidget {
   final String text;
-  final int index;
   IconData iconData;
   Function() tap;
 
   NavBarItem({
-    required this.text,required this.iconData,required this.tap,required this.index
+    required this.text,required this.iconData,required this.tap,
   });
 
   @override

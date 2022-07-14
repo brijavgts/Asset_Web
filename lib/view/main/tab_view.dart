@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/res/colors.dart';
 import '../../core/res/styles.dart';
-import 'main_page_viewmodel.dart';
+import 'main_layout_viewmodel.dart';
 
 class TabViewMenu extends StatefulWidget {
 

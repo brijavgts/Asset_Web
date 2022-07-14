@@ -52,7 +52,6 @@ class SplashViewModel extends VGTSBaseViewModel {
         context.go(Routes.dashboard);
       }
       else {
-        navigationService.popAllAndPushNamed(Routes.login);
         context.go(Routes.login);
       }
 

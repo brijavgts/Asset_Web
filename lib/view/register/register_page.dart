@@ -2,6 +2,7 @@ import 'package:asset_management/router.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +22,7 @@ import '../../widgets/tap_outside_unfocus.dart';
 //import '../widgets/tap_outside_unfocus.dart';
 import 'package:http/http.dart' as http;
 
-import '../main/main_page.dart';
+import '../main/nav_bar_item.dart';
 
 
 class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
@@ -136,7 +137,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                         width: double.infinity,
                         isLoading: viewModel.state == ViewState.Busy,
                         onPressed: () {
-                          viewModel.register();
+                          viewModel.register(context);
                           //navigationService.popAllAndPushNamed("/main");
                         },
                       ),
@@ -150,7 +151,7 @@ class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
                             style: AppTextStyle.body2.copyWith(fontSize: 14)),
                         TextButton(
                           onPressed: () {
-                            navigationService.popAllAndPushNamed(Routes.login);
+                            context.go(Routes.login);
                           },
                           child: Text("Login",
                               style: AppTextStyle.body2.copyWith(fontSize: 14,
