@@ -8,14 +8,14 @@ import '../../../core/res/colors.dart';
 import '../../../core/res/images.dart';
 
 class SplashPage extends StatelessWidget {
-  String path;
-  SplashPage({this.path = ''});
+  String hashedEmail;
+  SplashPage({this.hashedEmail = ''});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashViewModel>.reactive(
       onModelReady: (viewModel) {
-        viewModel.init(path, context);
+        viewModel.init(hashedEmail, context);
       },
       viewModelBuilder: ()=> SplashViewModel(),
       builder: (context, viewModel, child) {
@@ -23,8 +23,8 @@ class SplashPage extends StatelessWidget {
             body: Container(
                 width: double.infinity,
                 color: AppColor.background,
-                child: Center(
-                  child: Text("🚀"),
+                child: const Center(
+                  child: const CircularProgressIndicator(),
                   //child: Image.asset(Images.appLogo, fit: BoxFit.fill, width: 150,),
                 )
             )

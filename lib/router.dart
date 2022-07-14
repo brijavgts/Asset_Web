@@ -21,7 +21,7 @@ import 'package:go_router/go_router.dart';
 
 
 class Routes {
-  static const String splash = "/";
+  static const String verify_register = "/verify-register";
   static const String no_network = "/no_network";
   static const String login = "/login";
   // static const String main = "/main"; //used as dashboard
@@ -33,101 +33,101 @@ class Routes {
   static const String verification="/verification";
   static const String forgot_pwd="/forgot_pwd";
   static const String change_pwd="/change_pwd";
-  static const String verify_register="/verify-register";
 
 }
 
 class AppRouter {
 
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-
-    var routingData = settings.name?.getRoutingData;
-
-    switch (routingData?.route) {
-
-     case Routes.splash:
-      case Routes.verify_register:
-      return CupertinoPageRoute(
-        builder: (_) => SplashPage(path: settings.name as String,),
-         settings: RouteSettings(name: settings.name),
-       );
-
-      case Routes.no_network:
-         return NoTransitionRoute(
-           builder: (_) => NoNetWorkPage(),
-           settings: RouteSettings(name: settings.name),
-         );
-
-      // case Routes.main:
-      //  // var data = routingData?['mail'];
-      //   return MaterialPageRoute(
-      //     builder: (_) => MainPage(),
-      //     settings: RouteSettings(name: settings.name),
-      //   );
-
-      case Routes.login:
-        return MaterialPageRoute(
-          builder: (_)=> LogInPage(),
-          settings: RouteSettings(name: settings.name),
-        );
-
-    //Register Route and Page
-      case Routes.register:
-        return MaterialPageRoute(
-          builder: (_)=> RegisterPage(),
-          settings: RouteSettings(name: settings.name ),
-        );
-
-    //Email verification Route and Page
-      case Routes.verification:
-        return MaterialPageRoute(
-          builder:(_)=> VerificationPage(),
-          settings: RouteSettings(name: settings.name),
-        );
-
-    //Forgot Password Page
-      case Routes.forgot_pwd:
-        return MaterialPageRoute(
-            builder:(_)=>ForgotPwdPage(),
-            settings: RouteSettings(name: settings.name));
-
-    //Change Password Page
-      case Routes.change_pwd:
-        return MaterialPageRoute(
-            builder:(_)=>ChangePwdPage(),
-            settings: RouteSettings(name: settings.name));
-
-      // case Routes.verify_register:
-      //   var data = routingData?['hashedEmail'];
-      //   return MaterialPageRoute(
-      //       builder:(_)=> VerifyRegisterPage(email:data ,),
-      //       settings: RouteSettings(name: settings.name));
-
-      default:
-
-        // if (settings.name!.startsWith(Routes.verify_register)) {
-        //   var data = routingData?['mail'];
-        //   return MaterialPageRoute(
-        //       builder:(_)=> VerifyRegisterPage(),
-        //       settings: RouteSettings(name: settings.name,));
-        // }
-            return MaterialPageRoute(
-                builder: (_) => Scaffold(
-                  body: Center(
-                    child: Text('No route defined for ${settings.name}'),
-                  ),
-                )
-            );
-        }
-    }
+  // static Route<dynamic> generateRoute(RouteSettings settings) {
+  //
+  //   var routingData = settings.name?.getRoutingData;
+  //
+  //   switch (routingData?.route) {
+  //
+  //    case Routes.splash:
+  //     case Routes.verify_register:
+  //     return CupertinoPageRoute(
+  //       builder: (_) => SplashPage(path: settings.name as String,),
+  //        settings: RouteSettings(name: settings.name),
+  //      );
+  //
+  //     case Routes.no_network:
+  //        return NoTransitionRoute(
+  //          builder: (_) => NoNetWorkPage(),
+  //          settings: RouteSettings(name: settings.name),
+  //        );
+  //
+  //     // case Routes.main:
+  //     //  // var data = routingData?['mail'];
+  //     //   return MaterialPageRoute(
+  //     //     builder: (_) => MainPage(),
+  //     //     settings: RouteSettings(name: settings.name),
+  //     //   );
+  //
+  //     case Routes.login:
+  //       return MaterialPageRoute(
+  //         builder: (_)=> LogInPage(),
+  //         settings: RouteSettings(name: settings.name),
+  //       );
+  //
+  //   //Register Route and Page
+  //     case Routes.register:
+  //       return MaterialPageRoute(
+  //         builder: (_)=> RegisterPage(),
+  //         settings: RouteSettings(name: settings.name ),
+  //       );
+  //
+  //   //Email verification Route and Page
+  //     case Routes.verification:
+  //       return MaterialPageRoute(
+  //         builder:(_)=> VerificationPage(),
+  //         settings: RouteSettings(name: settings.name),
+  //       );
+  //
+  //   //Forgot Password Page
+  //     case Routes.forgot_pwd:
+  //       return MaterialPageRoute(
+  //           builder:(_)=>ForgotPwdPage(),
+  //           settings: RouteSettings(name: settings.name));
+  //
+  //   //Change Password Page
+  //     case Routes.change_pwd:
+  //       return MaterialPageRoute(
+  //           builder:(_)=>ChangePwdPage(),
+  //           settings: RouteSettings(name: settings.name));
+  //
+  //     // case Routes.verify_register:
+  //     //   var data = routingData?['hashedEmail'];
+  //     //   return MaterialPageRoute(
+  //     //       builder:(_)=> VerifyRegisterPage(email:data ,),
+  //     //       settings: RouteSettings(name: settings.name));
+  //
+  //     default:
+  //
+  //       // if (settings.name!.startsWith(Routes.verify_register)) {
+  //       //   var data = routingData?['mail'];
+  //       //   return MaterialPageRoute(
+  //       //       builder:(_)=> VerifyRegisterPage(),
+  //       //       settings: RouteSettings(name: settings.name,));
+  //       // }
+  //           return MaterialPageRoute(
+  //               builder: (_) => Scaffold(
+  //                 body: Center(
+  //                   child: Text('No route defined for ${settings.name}'),
+  //                 ),
+  //               )
+  //           );
+  //       }
+  //   }
 
   static GoRouter goRouters = GoRouter(
     urlPathStrategy: UrlPathStrategy.path,
     navigatorBuilder: (context, state, child) {
       print("Nav${preferenceService.getAccessToken()}");
-      return MainLayout(child);
+      return preferenceService.getAccessToken().isEmpty ? child : MainLayout(child);
     },
-    initialLocation: Routes.splash,
+    refreshListenable: preferenceService,
+    initialLocation: Routes.login,
     routes: <GoRoute>[
         GoRoute(
           path: Routes.login,
@@ -135,50 +135,78 @@ class AppRouter {
         ),
         GoRoute(
             path: "/main",
-            builder: (BuildContext context, GoRouterState state) => Center(child: Text("assets"),),
+           builder: (BuildContext context, GoRouterState state) {
+             return Center(child: Text("assets"),);
+           } ,
             routes: <GoRoute>[
               GoRoute(
                 path: "assets" ,
                 builder: (BuildContext context, GoRouterState state) {
+                  final id = state.params['id'];
+                  print(id);
                   return Center(child: Text("assets"),);
+                },
+                redirect: (state){
+                  final loggedIn  = preferenceService.getAccessToken().isNotEmpty;
+                  return loggedIn ? "/main/assets" : "/login";
                 },
               ),
               GoRoute(
                 path: "employee" ,
                 builder: (BuildContext context, GoRouterState state) {
+                  final id = state.params['id'];
+                  print(id);
                   return EmployeePage();
                 },
+                redirect: (state){
+                  final loggedIn  = preferenceService.getAccessToken().isNotEmpty;
+                  return loggedIn ? "/main/employee" : "/login";
+                },
               ),
-            ]
+            ],
+          redirect: (state){
+            final loggedIn  = preferenceService.getAccessToken().isNotEmpty;
+            return loggedIn ? "/main/assets" : "/login";
+          },
         ),
         GoRoute(
           path: Routes.register,
           builder: (BuildContext context, GoRouterState state) => RegisterPage(),
+          // routes: [
+          //     GoRoute(
+          //     path: "${Routes.register}/:id",
+          //     builder: (BuildContext context, GoRouterState state) => RegisterPage(state.params['id']!),)
+          // ]
         ),
+
         GoRoute(
           path: Routes.verification,
-          builder: (BuildContext context, GoRouterState state) => VerificationPage(),
+          builder: (BuildContext context, GoRouterState state) {
+            return VerificationPage();
+          },
+          redirect: (state){
+            final loggedIn  = preferenceService.getAccessToken().isNotEmpty;
+            return loggedIn ? "/main/assets" : "/login";
+          }
         ),
+
+        GoRoute(
+        path: Routes.verify_register,
+        builder: (BuildContext context, GoRouterState state) {
+          final query = state.queryParams['hashedEmail'];
+          return SplashPage(hashedEmail:query!,);},
+        ),
+
         GoRoute(
           path: Routes.change_pwd,
           builder: (BuildContext context, GoRouterState state) => ChangePwdPage(),
         ),
+
         GoRoute(
           path: Routes.forgot_pwd,
           builder: (BuildContext context, GoRouterState state) => ForgotPwdPage(),
         ),
-        GoRoute(
-          path: Routes.splash,
-          builder: (BuildContext context, GoRouterState state) => SplashPage(),
-            routes: <GoRoute>[
-              GoRoute(
-                path: "verify-register" ,
-                builder: (BuildContext context, GoRouterState state) {
-                  return SplashPage();
-                },
-              ),
-            ]
-        ),
+
       ],
   );
 }

@@ -135,7 +135,7 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
                             style: AppTextStyle.body2.copyWith(fontSize: 14)),
                         TextButton(
                           onPressed: () {
-                            context.go(Routes.register);
+                            context.goNamed(Routes.register,params: {'id': "1"});
                           },
                           child: Text("Join service name",
                               style: AppTextStyle.body2.copyWith(fontSize: 14,

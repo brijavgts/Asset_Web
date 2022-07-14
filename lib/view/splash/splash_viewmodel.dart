@@ -26,35 +26,15 @@ class SplashViewModel extends VGTSBaseViewModel {
   VerifyEmailAuth? _auth;
   VerifyEmailAuth? get auth => _auth;
 
-   init(String path, BuildContext context) async {
-    //await locator<FirebaseRemoteHelper>().configure();
-    await locator<PreferenceService>().init();
-    // await locator<NetworkService>().init();
-    //await locator<UpdateChecker>().versionCheck(navigationService.navigatorKey.currentContext!);
-
-    print("AccessToken ${preferenceService.getAccessToken()}");
-    print("HashedEmail ${preferenceService.getHashedEmail()}");
-
-    try {
-      if(path.startsWith(Routes.verify_register)){
-        var routingData = path.getRoutingData;
-        var data = routingData?['hashedEmail'];
-        _auth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(data));
+   init(hashedEmail,BuildContext context) async {
+     try {
+        var data = GoRouter.of(context).location;
+        _auth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(hashedEmail));
         if (_auth != null) {
           await preferenceService.setAccessToken(_auth!.accessToken ?? "");
-          // navigationService.pushNamed(Routes.main);
           context.go(Routes.dashboard);
         }
         notifyListeners();
-        }
-
-       else if(preferenceService.getAccessToken().isNotEmpty == true){
-        context.go(Routes.dashboard);
-      }
-      else {
-        context.go(Routes.login);
-      }
-
     }
     catch (ex) {
       debugPrint("EXCEPTION $ex");

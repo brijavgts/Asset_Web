@@ -18,9 +18,6 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
   }
 
   List<Item> navBarItems = [
-    // Item(
-    //   text: 'Analytics', iconData: CupertinoIcons.waveform_path_ecg,path: Routes.analytics
-    // ),
     Item(
       text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets
     ),

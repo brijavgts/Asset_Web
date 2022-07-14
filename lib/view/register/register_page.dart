@@ -27,6 +27,9 @@ import '../main/nav_bar_item.dart';
 
 class RegisterPage extends ViewModelBuilderWidget<RegisterViewModel> {
 
+  // String id;
+  // RegisterPage(this.id);
+
   @override
   Widget builder(BuildContext context, RegisterViewModel viewModel,
       Widget? child) {

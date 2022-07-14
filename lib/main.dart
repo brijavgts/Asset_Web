@@ -4,6 +4,7 @@ import 'package:asset_management/locator.dart';
 import 'package:asset_management/router.dart';
 import 'package:asset_management/services/shared/dialog_service.dart';
 import 'package:asset_management/services/shared/navigator_service.dart';
+import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/view/login/login_page.dart';
 import 'package:asset_management/view/main/assets/asset_page.dart';
 import 'package:asset_management/view/main/nav_bar_item.dart';
@@ -21,8 +22,8 @@ Future<Null> main() async {
   setupLocator();
 
   WidgetsFlutterBinding.ensureInitialized();
-
-    runApp(MyApp());
+  await locator<PreferenceService>().init();
+  runApp(MyApp());
 
 }
 
