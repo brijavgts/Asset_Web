@@ -27,6 +27,21 @@ class DialogService {
     _bottomSheetListener = bottomSheetListener;
   }
 
+  // //Custom Dialog Box for New Employee
+  // Future<AlertResponse>? showDialogbox({Widget? title , Widget? description , String buttonTitle = 'OK', bool dismissable = true}) {
+  //   _dialogCompleter = Completer<AlertResponse>();
+  //   _showDialogListener!(AlertRequest(
+  //       description: description,
+  //       buttonTitle: buttonTitle,
+  //       title: title,
+  //       dismissable: dismissable
+  //   ));
+  //
+  //   return _dialogCompleter?.future;
+  // }
+
+
+
   Future<AlertResponse>? showDialog({String title = 'Message', String description = '', String buttonTitle = 'OK', bool dismissable = true}) {
     _dialogCompleter = Completer<AlertResponse>();
     _showDialogListener!(AlertRequest(
