@@ -24,11 +24,10 @@ class Routes {
   static const String verify_register = "/verify-register";
   static const String no_network = "/no_network";
   static const String login = "/login";
-  // static const String main = "/main"; //used as dashboard
-  static const String dashboard = "/main/assets"; //used as dashboard
-  static const String assets = "/main/assets"; //used as dashboard
-  static const String analytics = "/main/analytics"; //used as dashboard
-  static const String employee = "/main/employee"; //used as dashboard
+  static const String dashboard = "/main/assets";
+  static const String assets = "/main/assets";
+  static const String analytics = "/main/analytics";
+  static const String employee = "/main/employee";
   static const String register="/register";
   static const String verification="/verification";
   static const String forgot_pwd="/forgot_pwd";

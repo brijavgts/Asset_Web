@@ -80,48 +80,45 @@ class _NavBarItemState extends State<NavBarItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: MouseRegion(
-        onEnter: (value) {
-          setState(() {
-            color = selected;
-            boxDecoration = BoxDecoration(border: Border(bottom: BorderSide(color:selected,width: 2)));
-          });
-        },
-        onExit: (value) {
-          setState(() {
-              color = notSelected;
-              boxDecoration = BoxDecoration(border: Border(bottom: BorderSide.none));
-          });
-        },
-        onHover: (value){
-          setState(() {
-            color = selected;
-            boxDecoration = BoxDecoration(border: Border(bottom: BorderSide(color:selected,width: 2)));
-          });
-        },
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.white60,
-            onTap: () {
-             setState(() {
-               widget.tap();
-             });
-            },
-            child: Container(
-              decoration: boxDecoration,
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Row(
-                children: [
-                  Icon(widget.iconData,color: color),
-                  Text(widget.text,style: AppTextStyle.body1SemiBold.copyWith(fontSize: 16,color: color),),
-                ],
-              ),
-
+    return MouseRegion(
+      onEnter: (value) {
+        setState(() {
+          color = selected;
+          boxDecoration = BoxDecoration(border: Border(bottom: BorderSide(color:selected,width: 2)));
+        });
+      },
+      onExit: (value) {
+        setState(() {
+            color = notSelected;
+            boxDecoration = BoxDecoration(border: Border(bottom: BorderSide.none));
+        });
+      },
+      onHover: (value){
+        setState(() {
+          color = selected;
+          boxDecoration = BoxDecoration(border: Border(bottom: BorderSide(color:selected,width: 2)));
+        });
+      },
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+           setState(() {
+             widget.tap();
+           });
+          },
+          child: Container(
+            decoration: boxDecoration,
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.fromLTRB(0, 0, 18.5, 0),
+            child: Row(
+              children: [
+                Icon(widget.iconData,color: color),
+                SizedBox(width: 8.5,),
+                Text(widget.text,style: AppTextStyle.body1SemiBold.copyWith(fontSize: 16,color: color),),
+              ],
             ),
+
           ),
         ),
       ),

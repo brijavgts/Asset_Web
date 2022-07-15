@@ -21,54 +21,44 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
     return Scaffold(
       body: Column(
         children: [
-
-          Container(
-            color: AppColor.background,
-            height: 56.0,
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+          MediaQuery.of(context).size.width > 800 ?  Padding(
+            padding: EdgeInsets.fromLTRB(24, 12, 32, 12),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  flex: 10,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        Icon(CupertinoIcons.circle_grid_3x3_fill),
-                        SizedBox(width: 27,),
-                        Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
-                        SizedBox(width: 24,),
-                        VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
+                IntrinsicHeight(
+                  child: Row(
+                    children: [
+                      Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
+                      SizedBox(width: 23.89,),
+                      VerticalDivider(width: 1,),
+                      SizedBox(width: 27.12,),
 
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
-                            viewModel.index = key;
-                            context.goNamed(value.path!,params:{'id': key.toString()});
-                            print("Key${key}");
-                            viewModel.notifyListeners();
-                          },
-                          ))).values.toList(),),
-                      ],
-                    ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
+                          viewModel.index = key;
+                          context.goNamed(value.path!,params:{'id': key.toString()});
+                          viewModel.notifyListeners();
+                        },
+                        ))).values.toList(),),
+                    ],
                   ),
                 ),
 
 
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+                IntrinsicHeight(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+
                     children: [
 
-                      VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
+                      VerticalDivider(width: 1,),
 
-                      SizedBox(width: 39,),
+                      SizedBox(width: 27.75,),
 
                       IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell)),
 
-                      SizedBox(width: 24,),
+                      SizedBox(width:31.75,),
 
                       CircleAvatar(
                         backgroundImage: AssetImage(Images.appLogo),
@@ -77,7 +67,40 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
                 ),
               ],
             ),
+          )
+              :Padding(
+            padding: EdgeInsets.fromLTRB(24, 12, 32, 12),
+                child: Column(
+            children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
+
+                    Row(
+                      children: [
+                        IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell)),
+
+                        SizedBox(width: 31.75,),
+
+                        CircleAvatar(
+                          backgroundImage: AssetImage(Images.appLogo),
+                        ),
+                      ],),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
+                    viewModel.index = key;
+                    context.goNamed(value.path!,params:{'id': key.toString()});
+                    viewModel.notifyListeners();
+                  },
+                  ))).values.toList(),),
+            ],
           ),
+              ),
 
           Divider(height: 0.5,color: Color(0xFF999999),),
 

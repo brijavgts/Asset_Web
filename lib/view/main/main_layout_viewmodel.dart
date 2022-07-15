@@ -24,6 +24,7 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
     Item(
       text: 'Employees',iconData: Icons.group_outlined,path: Routes.employee
     ),
+
   ];
 
   ScrollController itemScrollController = ScrollController();
