@@ -21,7 +21,7 @@ import '../../widgets/tap_outside_unfocus.dart';
 //import '../widgets/tap_outside_unfocus.dart';
 import 'package:http/http.dart' as http;
 
-import '../main/main_page.dart';
+import '../main/nav_bar_item.dart';
 import 'forgot_pwd_viewmodel.dart';
 
 
@@ -97,7 +97,7 @@ class ForgotPwdPage extends ViewModelBuilderWidget<ForgotPwdViewModel> {
                           width: double.infinity,
                           isLoading: viewModel.state == ViewState.Busy,
                           onPressed: () {
-                            viewModel.forgot_pwd();
+                            viewModel.forgotPwd(context);
                           },
                         ),
                       ),

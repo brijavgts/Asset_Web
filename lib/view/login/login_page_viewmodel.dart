@@ -1,6 +1,7 @@
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
 
@@ -24,7 +25,7 @@ class LogInViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Password field is required");
 
 
-  login() async {
+  login(BuildContext context) async {
 
     if(loginFormKey.currentState?.validate() != true) {
       return;
@@ -33,8 +34,10 @@ class LogInViewModel extends VGTSBaseViewModel {
     LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(emailController.text,passwordController.text));
     if (auth != null) {
       Fluttertoast.showToast(msg: "Your Journey with us");
-      // locator<PushNotificationService>().configure(mobileNumController.text);
-      navigationService.popAllAndPushNamed(Routes.main);
+
+      print(auth.accessToken);
+      preferenceService.setAccessToken(auth.accessToken!);
+      context.go(Routes.dashboard);
     }
     setState(ViewState.Idle);
     notifyListeners();

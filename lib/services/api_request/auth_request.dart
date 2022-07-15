@@ -33,6 +33,7 @@ class AuthRequest {
     );
   }
 
+
   //---------
   //verify Email
   static RequestSettings verifyEmail(String hashedEmail) {
@@ -96,7 +97,14 @@ class AuthRequest {
     );
   }
 
-
+  static RequestSettings verifyRegister(String path) {
+    return RequestSettings(
+        path ,
+        RequestMethod.GET,
+        params: null,
+        authenticated: true
+    );
+  }
 
   static RequestSettings homeApi(String path) {
     return RequestSettings(

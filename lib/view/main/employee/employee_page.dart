@@ -12,15 +12,12 @@ import 'employee_viewmodel.dart';
 
 class EmployeePage extends ViewModelBuilderWidget<EmployeeViewModel> {
 
-
-
-
   @override
   Widget builder(BuildContext context, EmployeeViewModel viewModel,
       Widget? child) {
 
-    return Container(
-      child: Column(
+    return Scaffold(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(

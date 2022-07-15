@@ -1,6 +1,4 @@
 
-
-
 import 'package:asset_management/core/model/service/auth/change_pwd_auth.dart';
 import 'package:asset_management/core/model/service/auth/forgot_pwd_auth.dart';
 import 'package:asset_management/core/model/service/auth/login_auth.dart';
@@ -58,7 +56,6 @@ class BaseModel extends BaseObject {
         return VerifyEmailAuth() as T;
       case ChangeAuth:
         return ChangeAuth() as T;
-
     }
     throw "Requested Model not initialised in Base Model";
   }

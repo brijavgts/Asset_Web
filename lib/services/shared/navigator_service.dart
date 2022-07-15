@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart' show GlobalKey, NavigatorState;
+import 'package:go_router/go_router.dart';
 
 class NavigationService {
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -8,7 +9,6 @@ class NavigationService {
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
   Future<dynamic>? pushNamed(String routeName, {Object? arguments,  bool rootNavigator = false}) {
-    //TODO: Implement RootNavigator
     return navigatorKey.currentState?.pushNamed(routeName, arguments: arguments);
   }
 

@@ -177,6 +177,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.0"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
   http:
     dependency: "direct main"
     description:
@@ -204,7 +211,7 @@ packages:
       name: image_picker_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5"
+    version: "0.8.5+1"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -247,6 +254,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   matcher:
     dependency: transitive
     description:
@@ -565,7 +579,7 @@ packages:
     description:
       path: "."
       ref: form-field-update
-      resolved-ref: "3ad680eebe1e2bf1055d2cc4d8ff1b977fe0803e"
+      resolved-ref: "6793665d30b820563d06bdc5f45d62d301efcb72"
       url: "https://github.com/santhoshvgts/vgts_plugin.git"
     source: git
     version: "0.0.2"

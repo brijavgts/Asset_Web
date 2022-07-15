@@ -1,3 +1,4 @@
+import 'dart:convert';
 
 import 'package:asset_management/services/api_request/auth_request.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
@@ -5,6 +6,7 @@ import 'package:asset_management/view/register/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
@@ -20,9 +22,6 @@ import '../../vgts_base_view_model.dart';
 
 class RegisterViewModel extends VGTSBaseViewModel {
 
-
-
-
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
   ScrollController regScrollController = ScrollController();
@@ -34,7 +33,7 @@ class RegisterViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Please enter Organization Name"
   );
 
-  EmailFormFieldController emailController=EmailFormFieldController(ValueKey("regEmail"),
+  EmailFormFieldController emailController = EmailFormFieldController(ValueKey("regEmail"),
       required: true,requiredText: "Please enter an Email"
   );
 
@@ -42,43 +41,23 @@ class RegisterViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Password field is required");
 
 
-  register() async {
+  register(BuildContext context) async {
 
     if(registerFormKey.currentState?.validate() != true) {
       return;
     }
-    //else{navigationService.pushNamed("/verification");}
+
     setState(ViewState.Busy);
 
-    RegisterAuth? auth = await request<RegisterAuth>(AuthRequest.register(nameController.text,
-        emailController.text, passwordController.text,orgController.text));
+    RegisterAuth? auth = await request<RegisterAuth>(AuthRequest.register(nameController.text, emailController.text, passwordController.text,orgController.text));
     if (auth != null) {
-      preferenceService.setHashedEmail(auth.hashedEmail ?? '');
       Fluttertoast.showToast(msg: "Verifying Email.....");
-      navigationService.popAllAndPushNamed(Routes.verification,);
+      context.go(Routes.verification,);
     }
     setState(ViewState.Idle);
+
     notifyListeners();
   }
 
-
-  @override
-  Future onInit() async {
-    // await locator<PreferenceService>().init();
-    setState(ViewState.Busy);
-    if(preferenceService.getHashedEmail().isNotEmpty) {
-      VerifyEmailAuth? auth = await request<VerifyEmailAuth>(
-          AuthRequest.verifyEmail(preferenceService.getHashedEmail()));
-      if (auth != null) {
-        preferenceService.setAccessToken(auth.accessToken ?? "");
-        navigationService.pushNamed(Routes.main);
-      }
-    }
-    setState(ViewState.Idle);
-    return super.onInit();
-  }
-
-
-
-
 }
+

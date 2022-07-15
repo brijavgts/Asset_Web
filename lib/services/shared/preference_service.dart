@@ -2,8 +2,9 @@ import 'dart:convert';
 // import 'package:asset_management/core/model/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stacked/stacked.dart';
 
-class PreferenceService {
+class PreferenceService extends ChangeNotifier{
    // static const String bearerToken = "BEARERTOKEN";
   // static const String user = "USER";
   // static const String studentId = "studentId";

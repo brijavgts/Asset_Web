@@ -2,6 +2,7 @@ import 'package:asset_management/router.dart';
 import 'package:asset_management/services/shared/dialog_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/enum/view_state.dart';
 // import '../../core/model/auth.dart';
@@ -20,7 +21,7 @@ class ForgotPwdViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Please enter your Email"
   );
 
-  forgot_pwd() async {
+  forgotPwd(BuildContext context) async {
 
     if(forgotPwdFormKey.currentState?.validate() != true) {
       return;
@@ -30,7 +31,7 @@ class ForgotPwdViewModel extends VGTSBaseViewModel {
     ForgotAuth? auth=await request<ForgotAuth>(AuthRequest.forgot_pwd(emailController.text));
     if(auth != null){
       preferenceService.setToken(auth.token ?? '');
-      navigationService.pushNamed(Routes.change_pwd);
+      context.go(Routes.change_pwd);
     }
 
     setState(ViewState.Idle);
