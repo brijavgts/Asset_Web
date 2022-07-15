@@ -43,6 +43,17 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
                         },
                         ))).values.toList(),),
                     ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
+                            viewModel.index = key;
+                            context.go(value.path!);
+                            print("Key${key}");
+                            viewModel.notifyListeners();
+                          },
+                          ))).values.toList(),),
+                      ],
+                    ),
                   ),
                 ),
 
