@@ -10,7 +10,6 @@ import '../../locator.dart';
 import '../../router.dart';
 import '../../services/api_request/auth_request.dart';
 import '../../vgts_base_view_model.dart';
-//import '../views/vgts_base_view_model.dart';
 
 class LogInViewModel extends VGTSBaseViewModel {
 
