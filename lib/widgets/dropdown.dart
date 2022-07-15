@@ -147,7 +147,7 @@ class _DropdownFieldState<T extends BaseModel> extends State<DropdownField<T>> {
                     child: DropdownButton<T>(
                       key: widget.controller.fieldKey,
                       value: widget.controller.value,
-                      icon: Image.asset(Images.arrow_down),
+                      icon: Icon(Icons.keyboard_arrow_down_rounded),
                       // elevation: 16,
                       itemHeight: 48,
                       hint: Text(widget.placeholder, style: _hintTextStyle,),

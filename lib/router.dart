@@ -134,19 +134,19 @@ class AppRouter {
           builder: (BuildContext context, GoRouterState state) => LogInPage(),
           redirect: (state){
             final loggedIn  = preferenceService.getAccessToken().isNotEmpty;
-            return loggedIn ? "/main/assets" : "/login";
+            return loggedIn ? "/main/assets" : null;
           },
         ),
         GoRoute(
             path: "/main",
            builder: (BuildContext context, GoRouterState state) {
-             return Center(child: Text("assets"),);
+             return AssetPage();
            } ,
             routes: <GoRoute>[
               GoRoute(
                 path: "assets" ,
                 builder: (BuildContext context, GoRouterState state) {
-                  return Center(child: Text("assets"),);
+                  return AssetPage();
                 },
               ),
               GoRoute(

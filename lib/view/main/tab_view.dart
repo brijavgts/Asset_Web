@@ -56,7 +56,7 @@ class _TabViewMenuState extends State<TabViewMenu> with SingleTickerProviderStat
                   children: [
                     Icon(CupertinoIcons.circle_grid_3x3_fill),
                     SizedBox(width: 27,),
-                    Image.asset("assets/images/Frame 349.png"),
+                    Image.asset("assets/images/app_logo.png"),
                     SizedBox(width: 24,),
                     VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
                   ],
@@ -129,7 +129,7 @@ class _TabViewMenuState extends State<TabViewMenu> with SingleTickerProviderStat
 
 
                     CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/Frame 349.png"),
+                      backgroundImage: AssetImage("assets/images/app_logo.png"),
                     ),
                   ],),
               ),
