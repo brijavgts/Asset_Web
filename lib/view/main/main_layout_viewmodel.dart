@@ -10,7 +10,6 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
 
   int _index = 0;
 
-
   int get index => _index;
 
   set index(int value) {

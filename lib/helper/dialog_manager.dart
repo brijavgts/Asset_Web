@@ -1,7 +1,14 @@
 
+import 'package:asset_management/core/model/base_model.dart';
+import 'package:asset_management/view/main/employee/employee_page.dart';
+import 'package:asset_management/widgets/dropdown.dart';
+import 'package:asset_management/widgets/edit_text_field.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../core/model/service/alert_request.dart';
 import '../core/model/service/alert_response.dart';
 import '../core/res/colors.dart';
@@ -15,7 +22,7 @@ import '../widgets/button.dart';
 class DialogManager extends StatefulWidget {
   final Widget child;
 
-  const DialogManager({ required this.child});
+   DialogManager({ required this.child});
 
   _DialogManagerState createState() => _DialogManagerState();
 }
@@ -23,10 +30,23 @@ class DialogManager extends StatefulWidget {
 class _DialogManagerState extends State<DialogManager> {
   final _dialogService = locator<DialogService>();
 
+
+
+  var items =["Employee","Owner","Manager"];
+  String dropDownvalue ="Employee";
+
+
+
+
+  
+  
+
+  
+
   @override
   void initState() {
     super.initState();
-    _dialogService.registerDialogListener(_showInfoDialog, _showCustomAlertDialog, _showConfirmationDialog,_bottomSheet,);
+    _dialogService.registerDialogListener(_dialogNewEmployee,_showInfoDialog, _showCustomAlertDialog, _showConfirmationDialog,_bottomSheet,);
   }
 
   @override
@@ -103,6 +123,124 @@ class _DialogManagerState extends State<DialogManager> {
         });
   }
 
+
+
+  //New Employee Dialog Box
+  void _dialogNewEmployee(AlertRequest request) {
+    showCupertinoDialog(
+        context: context,
+        barrierDismissible: request.dismissable,
+        builder: (context) {
+        
+          return WillPopScope(
+              onWillPop: () async {
+                _dialogService.dialogComplete(AlertResponse(status: false));
+                return false;
+              },
+              child: StatefulBuilder(
+                builder: (context,setState){
+                 return AlertDialog(
+                  scrollable: true,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                content: Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color: AppColor.background),
+                  padding: EdgeInsets.all(12),
+                  width: 498,
+                  height: 276,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(onPressed: () {
+                            _dialogService.dialogComplete(AlertResponse(status: true));
+                          }, icon:  Icon(CupertinoIcons.clear_thick,size: 18),),
+                          Text("Send Invite",style: AppTextStyle.body3.copyWith(fontSize: 16),),
+                        ],
+                      ),
+                      SizedBox(height: 12,),
+                      Divider(height: 0.2,),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 12),
+                            height: 40,
+                            width: ResponsiveValue(context,defaultValue:356.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 200),
+                            Condition.largerThan(name: TABLET)
+                            ] ).value,
+                            child: CupertinoTextField(
+
+                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 12),
+                              placeholder: "email id",
+                              placeholderStyle: AppTextStyle.body3.copyWith(fontSize: 14,color: AppColor.nav),
+                              suffix: IntrinsicHeight(
+                                child: Row(
+                                  children: [
+                                    VerticalDivider(indent: 10,endIndent: 10,),
+                                    SizedBox(width: 12,),
+                                    DropdownButtonHideUnderline(
+                                      child: DropdownButton(
+                                        icon: Padding(
+                                          padding:  EdgeInsets.symmetric(horizontal: 12),
+                                          child: Icon(CupertinoIcons.chevron_down,size: 12),
+                                        ),
+                                          style: AppTextStyle.body3.copyWith(fontSize: 14),
+                                        onChanged: (String? newValue){
+                                            setState(() {
+                                              dropDownvalue = newValue!;
+                                            });
+                                        },
+                                        value:dropDownvalue,
+                                        items:items.map((String item) {
+                                          return DropdownMenuItem(
+                                            value: item,
+                                            child: Text(item),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ),
+                         SizedBox(width: 12,),
+                          Container(
+                            height: 40,
+                              width:  ResponsiveValue(context,defaultValue:106.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 85),
+                                Condition.largerThan(name: TABLET)
+                              ] ).value,
+                              child: Button("Send Invite",textStyle: AppTextStyle.body3.copyWith(color: AppColor.white,
+                                  fontSize:  ResponsiveValue(context,defaultValue:14.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 12),
+                                    Condition.largerThan(name: TABLET)
+                                  ] ).value,),
+                                  key: ValueKey("EmpButnKey"),
+                                  onPressed: (){}))
+                        ],
+                      ),
+
+                      Divider(height: 0.2,),
+                    ],
+                  ),
+                ),
+
+                );
+        }
+              ));
+        });
+  }
+
+
+  /*
+  * ,*/
+
+  
+  
   // void _showLogModelBottomSheet() {
   //   showModalBottomSheet(
   //       context: context,

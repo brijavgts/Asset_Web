@@ -132,7 +132,7 @@ class _DropdownFieldState<T extends BaseModel> extends State<DropdownField<T>> {
                 ),
 
                 const Padding(
-                  padding: EdgeInsets.only(top:4),
+                  padding: EdgeInsets.only(top:0),
                 ),
 
                 SizedBox(
@@ -143,7 +143,7 @@ class _DropdownFieldState<T extends BaseModel> extends State<DropdownField<T>> {
                         border: _outlineInputBorder(state.hasError),
                         borderRadius: _borderRadius,
                     ),
-                    padding: widget.padding ?? const EdgeInsets.only(left:12, right: 12,bottom: 10,top: 8),
+                    padding: widget.padding ?? const EdgeInsets.only(left:12, right: 12,bottom: 0,top: 0),
                     child: DropdownButton<T>(
                       key: widget.controller.fieldKey,
                       value: widget.controller.value,

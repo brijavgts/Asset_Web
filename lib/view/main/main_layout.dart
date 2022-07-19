@@ -34,50 +34,47 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
                       VerticalDivider(width: 1,),
                       SizedBox(width: 27.12,),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
-                          viewModel.index = key;
-                          context.goNamed(value.path!,params:{'id': key.toString()});
-                          viewModel.notifyListeners();
-                        },
-                        ))).values.toList(),),
-                    ],
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
+                      //     viewModel.index = key;
+                      //     context.goNamed(value.path!,params:{'id': key.toString()});
+                      //     viewModel.notifyListeners();
+                      //   },
+                      //   ))).values.toList(),),
+                    // ],
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
                             viewModel.index = key;
                             context.go(value.path!);
-                            print("Key${key}");
                             viewModel.notifyListeners();
                           },
                           ))).values.toList(),),
                       ],
                     ),
                   ),
+    IntrinsicHeight(
+    child: Row(
+
+    children: [
+
+    VerticalDivider(width: 1,),
+
+    SizedBox(width: 27.75,),
+
+    IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell)),
+
+    SizedBox(width:31.75,),
+
+    CircleAvatar(
+    backgroundImage: AssetImage(Images.appLogo),
+    ),
+    ],),
+    ),
+    ]
                 ),
 
-
-                IntrinsicHeight(
-                  child: Row(
-
-                    children: [
-
-                      VerticalDivider(width: 1,),
-
-                      SizedBox(width: 27.75,),
-
-                      IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell)),
-
-                      SizedBox(width:31.75,),
-
-                      CircleAvatar(
-                        backgroundImage: AssetImage(Images.appLogo),
-                      ),
-                    ],),
-                ),
-              ],
-            ),
           )
               :Padding(
             padding: EdgeInsets.fromLTRB(24, 12, 32, 12),
@@ -101,11 +98,12 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
                       ],),
                   ],
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
                     viewModel.index = key;
-                    context.goNamed(value.path!,params:{'id': key.toString()});
+                    context.go(value.path!);
                     viewModel.notifyListeners();
                   },
                   ))).values.toList(),),
@@ -113,11 +111,10 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
           ),
               ),
 
-          Divider(height: 0.5,color: Color(0xFF999999),),
+          Divider(height: 1,color: Color(0xFF999999),),
 
           Flexible(child: contentChild),
 
-          Text(" FOOTER"),
 
         ],
       ),

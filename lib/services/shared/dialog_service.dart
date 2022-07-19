@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:asset_management/view/login/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,8 @@ class DialogService {
   final _dialogNavigationKey = GlobalKey<NavigatorState>();
 
   GlobalKey<NavigatorState> get dialogNavigationKey => _dialogNavigationKey;
+
+  Function(AlertRequest)? _dialogNewEmployeeListener;//-------------
   Function(AlertRequest)? _showDialogListener;
   Function(AlertRequest)? _showCustomDialogListener;
   Function(AlertRequest)? _showConfirmationDialogListener;
@@ -19,7 +22,9 @@ class DialogService {
 
   Completer<AlertResponse>? _dialogCompleter;
 
-  void registerDialogListener(Function(AlertRequest) showDialogListener, Function(AlertRequest) showCustomDialogListener, Function(AlertRequest) showConfirmationDialogListener, Function(AlertRequest) bottomSheetListener,) {
+  void registerDialogListener(Function(AlertRequest) dialogNewEmployeeListener,Function(AlertRequest) showDialogListener, Function(AlertRequest) showCustomDialogListener, Function(AlertRequest) showConfirmationDialogListener, Function(AlertRequest) bottomSheetListener,) {
+
+    _dialogNewEmployeeListener=dialogNewEmployeeListener;//----------
     _showDialogListener = showDialogListener;
     _showCustomDialogListener = showCustomDialogListener;
     _showConfirmationDialogListener = showConfirmationDialogListener;
@@ -27,19 +32,17 @@ class DialogService {
     _bottomSheetListener = bottomSheetListener;
   }
 
-  // //Custom Dialog Box for New Employee
-  // Future<AlertResponse>? showDialogbox({Widget? title , Widget? description , String buttonTitle = 'OK', bool dismissable = true}) {
-  //   _dialogCompleter = Completer<AlertResponse>();
-  //   _showDialogListener!(AlertRequest(
-  //       description: description,
-  //       buttonTitle: buttonTitle,
-  //       title: title,
-  //       dismissable: dismissable
-  //   ));
-  //
-  //   return _dialogCompleter?.future;
-  // }
+//Custom Dialog Box for add New Employee
+  Future<AlertResponse>? newEmpDialog({  bool dismissable = false,Widget? content,}) {
+    _dialogCompleter = Completer<AlertResponse>();
+    _dialogNewEmployeeListener!(AlertRequest(
+        content: content,
+        dismissable: dismissable,
 
+    ));
+
+    return _dialogCompleter?.future;
+  }
 
 
   Future<AlertResponse>? showDialog({String title = 'Message', String description = '', String buttonTitle = 'OK', bool dismissable = true}) {

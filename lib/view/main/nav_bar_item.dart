@@ -66,6 +66,7 @@ class NavBarItem extends StatefulWidget {
   IconData iconData;
   Function() tap;
 
+
   NavBarItem({
     required this.text,required this.iconData,required this.tap,
   });
@@ -78,6 +79,7 @@ class _NavBarItemState extends State<NavBarItem> {
   Color color = notSelected;
   BoxDecoration boxDecoration = BoxDecoration(border: Border(bottom: BorderSide.none));
 
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -89,14 +91,15 @@ class _NavBarItemState extends State<NavBarItem> {
       },
       onExit: (value) {
         setState(() {
-            color = notSelected;
+          color = notSelected;
             boxDecoration = BoxDecoration(border: Border(bottom: BorderSide.none));
         });
       },
       onHover: (value){
         setState(() {
-          color = selected;
+         color = selected;
           boxDecoration = BoxDecoration(border: Border(bottom: BorderSide(color:selected,width: 2)));
+
         });
       },
       child: Material(
@@ -105,10 +108,11 @@ class _NavBarItemState extends State<NavBarItem> {
           onTap: () {
            setState(() {
              widget.tap();
+
            });
           },
           child: Container(
-            decoration: boxDecoration,
+            decoration: boxDecoration ,
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.fromLTRB(0, 0, 18.5, 0),
             child: Row(

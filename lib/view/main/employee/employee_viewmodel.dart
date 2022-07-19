@@ -26,6 +26,8 @@ class Emplopyee {
 
 class EmployeeViewModel extends VGTSBaseViewModel {
 
+
+
   List<Emplopyee> employes=[
     Emplopyee(name: "Seyit Mehmet Sansi", dept: "(R&D) Research & Development", asset: "00", worth: "₹99,99,99,999.99", profile: Images.appLogo, color: AppColor.rd),
     Emplopyee(name: "Jenny Wilson", dept: "Project Management", asset: "00", worth: "₹99,99,99,999.99", profile: Images.appLogo, color: AppColor.pm,),
@@ -38,24 +40,34 @@ class EmployeeViewModel extends VGTSBaseViewModel {
   ];
   List<Emplopyee> selectedEmployes=[];
 
+
+  String searchResult ="";
+
+  TextFormFieldController searchController= TextFormFieldController(ValueKey("searchPwd"),);
+
    bool sort=true;
 
   final columns=["Employee Name","Department","Asset","Worth"];
 
+
   int indexColumn=0;
 
-  Widget buildDataTable(){
-    return DataTable(
-        sortAscending: sort,
-        sortColumnIndex: indexColumn,
-        border: TableBorder(verticalInside: BorderSide(width: 0.2),top: BorderSide(width: 0.5),bottom: BorderSide(width: 0.2)),
-        dividerThickness: 0.4,
-        onSelectAll: (isSelectedAll){
-          selectedEmployes = isSelectedAll! ? employes : [];
-          notifyListeners();
-        },
-        columns: getColumns(columns),
-        rows:getRows (employes));
+  Widget buildDataTable(BuildContext context){
+    var width=MediaQuery.of(context).size.width;
+    return Container(
+      width: width,
+      child: DataTable(
+          sortAscending: sort,
+          sortColumnIndex: indexColumn,
+          border: TableBorder(verticalInside: BorderSide(width: 0.2),top: BorderSide(width: 0.2),bottom: BorderSide(width: 0.2)),
+          dividerThickness: 0.4,
+          onSelectAll: (isSelectedAll){
+            selectedEmployes = isSelectedAll! ? employes : [];
+            notifyListeners();
+          },
+          columns: getColumns(columns),
+          rows:getRows (employes)),
+    );
   }
 
   onSortColum(int columnIndex, bool ascending) {
@@ -138,11 +150,11 @@ class EmployeeViewModel extends VGTSBaseViewModel {
         )),
 
         DataCell(Container(
-          // width: 130.w,
+            // width: 130,
             child: Text(employe.asset!,style: AppTextStyle.body3.copyWith(fontSize: 14)))),
 
         DataCell(Container(
-          // width: 178.w,
+          // width: 178,
             child: Text(employe.worth!,style: AppTextStyle.body3.copyWith(fontSize: 14)))),
       ])).toList();
 
@@ -150,7 +162,7 @@ class EmployeeViewModel extends VGTSBaseViewModel {
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
 
-  TextFormFieldController searchController= TextFormFieldController(ValueKey("searchPwd"),);
+
 
 
 
@@ -165,5 +177,4 @@ class EmployeeViewModel extends VGTSBaseViewModel {
   //   notifyListeners();
   // }
 }
-
 
