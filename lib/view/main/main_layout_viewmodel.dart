@@ -17,12 +17,24 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
     _index = value;
   }
 
-  List<Item> navBarItems = [
+  List<Item> topBarItems = [
     Item(
       text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets
     ),
     Item(
       text: 'Employees',iconData: Icons.group_outlined,path: Routes.employee
+    ),
+  ];
+
+  List<Item> navBarItems = [
+    Item(
+        text: 'Menu', iconData:Icons.menu,path: Routes.assets
+    ),
+    Item(
+        text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets
+    ),
+    Item(
+        text: 'Employees',iconData: Icons.group_outlined,path: Routes.employee
     ),
   ];
 

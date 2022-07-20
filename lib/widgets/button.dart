@@ -27,7 +27,7 @@ class Button extends StatelessWidget {
 
   bool isOutline = false;
 
-  Button(this.text, {required this.key, this.textStyle, this.width =82, this.height = 30, required this.onPressed,
+  Button(this.text, {required this.key, this.textStyle, this.width = 82, this.height = 30, required this.onPressed,
     this.color = AppColor.primary, this.borderColor = AppColor.primary, this.borderRadius, this.disabled = false,this.isLoading=false, this.icon, this.padding});
 
   Button.outline(this.text, {required this.key, this.textStyle, this.width = 82, this.height = 30, required this.onPressed,

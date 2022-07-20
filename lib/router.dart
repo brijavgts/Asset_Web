@@ -123,7 +123,6 @@ class AppRouter {
   static GoRouter goRouters = GoRouter(
     urlPathStrategy: UrlPathStrategy.path,
     navigatorBuilder: (context, state, child) {
-      print("Nav${preferenceService.getAccessToken()}");
       return preferenceService.getAccessToken().isEmpty ? child : MainLayout(child);
     },
     refreshListenable: preferenceService,
@@ -140,6 +139,8 @@ class AppRouter {
         GoRoute(
             path: "/main",
            builder: (BuildContext context, GoRouterState state) {
+             Map<String,dynamic> data = <String,dynamic>{};
+              data['index'] = 0;
              return AssetPage();
            } ,
             routes: <GoRoute>[
@@ -178,7 +179,7 @@ class AppRouter {
           },
           redirect: (state){
             final loggedIn  = preferenceService.getAccessToken().isNotEmpty;
-            return loggedIn ? "/main/assets" : "/login";
+            return loggedIn ? "/main/assets" : null;
           }
         ),
 

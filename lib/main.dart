@@ -1,18 +1,11 @@
-
-
 import 'package:asset_management/locator.dart';
 import 'package:asset_management/router.dart';
 import 'package:asset_management/services/shared/dialog_service.dart';
 import 'package:asset_management/services/shared/navigator_service.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
-import 'package:asset_management/view/login/login_page.dart';
-import 'package:asset_management/view/main/assets/asset_page.dart';
-import 'package:asset_management/view/main/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'core/res/styles.dart';
 import 'helper/dialog_manager.dart';

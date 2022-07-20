@@ -154,7 +154,6 @@ class _EditTextFieldState extends State<EditTextField> {
                     children: [
                       Expanded(
                         child: Row(
-                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment:CrossAxisAlignment.center,
                           children: [
                             Text(
@@ -181,10 +180,9 @@ class _EditTextFieldState extends State<EditTextField> {
                   padding: EdgeInsets.only(top:6),
                 ),
 
-                SizedBox(
-                  height: widget.controller.minLines > 1 ? null : state.hasError ? 65 : widget.height ?? 40,
+                Container(
+                  height: widget.controller.minLines > 1 ? null : state.hasError ? 65 : widget.height ?? 36,
                   child: TextField(
-
                       key: widget.controller.fieldKey,
                       controller: widget.controller.textEditingController,
                       enableInteractiveSelection: true,
