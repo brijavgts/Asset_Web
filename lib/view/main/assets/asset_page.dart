@@ -22,8 +22,6 @@ import '../main_layout_viewmodel.dart';
 
 class AssetPage extends ViewModelBuilderWidget<AssetViewModel> {
 
-  Item item;
-
   @override
   void onViewModelReady(AssetViewModel viewModel) {
     viewModel.onInit();
