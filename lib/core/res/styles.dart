@@ -16,7 +16,7 @@ class AppStyle {
     primaryColorDark: AppColor.primary,
     dividerColor: AppColor.grey,
     indicatorColor: AppColor.primary,
-    backgroundColor: AppColor.white,
+    backgroundColor: AppColor.background,
     fontFamily: fontFamily,
     scaffoldBackgroundColor: AppColor.secondaryBackground,
     appBarTheme: const AppBarTheme(
@@ -118,7 +118,6 @@ class AppTextStyle {
 
   //Navigation Text
   static  TextStyle body1SemiBold = TextStyle(
-
       fontSize: AppFontSize.dp16.sp,letterSpacing: 0.44,
       fontWeight: FontWeight.w500,
       // height: 24.sp,

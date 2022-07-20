@@ -10,6 +10,7 @@ class AppColor {
 
   //Text
   static const Color black=Color(0xFF000000);
+  static const Color black5=Color(0x0D000000);
   static const Color hint = Color(0xFF999999);
 
   //Container Color
@@ -103,6 +104,7 @@ class AppColor {
 
   static const Color iconColor = Color(0xFF3A3541);
   static const Color grey = Color(0xFF8A8D93);
+  static const Color lightGrey = Color(0xFFCCCCCC);
   static const Color green = Color(0xFF0C8021);
   static const Color green60 = Color(0xFF56CA00);
   static const Color yellow0 = Color(0xFFFFB400);

@@ -154,9 +154,8 @@ import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../core/res/colors.dart';
 import '../../core/res/styles.dart';
 
-// NameFormFieldController orgController=NameFormFieldController(ValueKey("regtOrg"),
-//     required: true,requiredText: "Please enter Organization Name"
-// );
+TextEditingController controller =TextEditingController();
+
 List<String> suggestions=["Design","Administration","Project Management","Human Resource"];
 Widget Complete(){
   return Autocomplete(

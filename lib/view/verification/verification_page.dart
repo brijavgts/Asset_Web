@@ -26,3 +26,24 @@ class VerificationPage extends StatelessWidget {
     );
   }
 }
+
+class ExpiredPage extends StatelessWidget {
+  const ExpiredPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Expired",style: AppTextStyle.h4Heading.copyWith(fontSize: 32),),
+            SizedBox(height: 10,),
+            Text("Your Link has been Expired",style: AppTextStyle.body2.copyWith(fontSize: 14),)
+          ],
+        ),
+      ),
+
+    );
+  }
+}

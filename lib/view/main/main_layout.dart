@@ -1,10 +1,13 @@
 
 import 'package:asset_management/core/res/colors.dart';
+import 'package:asset_management/core/res/styles.dart';
+import 'package:asset_management/locator.dart';
 import 'package:asset_management/router.dart';
 import 'package:asset_management/view/main/nav_bar_item.dart';
 import 'package:asset_management/view/main/main_layout_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,105 +22,101 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
   @override
   Widget builder(BuildContext context, MainLayoutViewModel viewModel, Widget? child) {
     return Scaffold(
-      body: Column(
-        children: [
-          MediaQuery.of(context).size.width > 800 ?  Padding(
-            padding: EdgeInsets.fromLTRB(24, 12, 32, 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IntrinsicHeight(
-                  child: Row(
-                    children: [
-                      Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
-                      SizedBox(width: 23.89,),
-                      VerticalDivider(width: 1,),
-                      SizedBox(width: 27.12,),
-
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.start,
-                      //   children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
-                      //     viewModel.index = key;
-                      //     context.goNamed(value.path!,params:{'id': key.toString()});
-                      //     viewModel.notifyListeners();
-                      //   },
-                      //   ))).values.toList(),),
-                    // ],
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
-                            viewModel.index = key;
-                            context.go(value.path!);
-                            viewModel.notifyListeners();
-                          },
-                          ))).values.toList(),),
-                      ],
-                    ),
-                  ),
-    IntrinsicHeight(
-    child: Row(
-
-    children: [
-
-    VerticalDivider(width: 1,),
-
-    SizedBox(width: 27.75,),
-
-    IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell)),
-
-    SizedBox(width:31.75,),
-
-    CircleAvatar(
-    backgroundImage: AssetImage(Images.appLogo),
-    ),
-    ],),
-    ),
-    ]
-                ),
-
-          )
-              :Padding(
-            padding: EdgeInsets.fromLTRB(24, 12, 32, 12),
-                child: Column(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+         return Column(
             children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Container(
+                color: AppColor.background,
+                height: 56.0,
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
                   children: [
+                    Expanded(
+                      flex: 10,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
 
-                    Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
+                            SizedBox(width: 24,),
 
-                    Row(
-                      children: [
-                        IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.bell)),
+                            if(constraints.maxWidth > 800)  VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
 
-                        SizedBox(width: 31.75,),
 
-                        CircleAvatar(
-                          backgroundImage: AssetImage(Images.appLogo),
+                            if(constraints.maxWidth > 800) Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: viewModel.topBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
+                                viewModel.index = key;
+                                context.go(value.path!,extra: {'index': viewModel.index.toString()});
+                                print("Key${key}");
+                                viewModel.notifyListeners();
+                              },
+                              ))).values.toList(),),
+                          ],
                         ),
-                      ],),
+                      ),
+                    ),
+
+
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+
+                          VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
+
+                          SizedBox(width: 39,),
+
+                          IconButton(onPressed: () async{
+                              await preferenceService.clearData();
+                              await Fluttertoast.showToast(msg: "Logout.....");
+                              context.go(Routes.login,);
+                          }, icon: Icon(CupertinoIcons.bell)),
+
+                          SizedBox(width: 24,),
+
+                          CircleAvatar(
+                            backgroundImage: AssetImage(Images.appLogo),
+                          ),
+                        ],),
+                    ),
                   ],
                 ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
-                    viewModel.index = key;
-                    context.go(value.path!);
-                    viewModel.notifyListeners();
-                  },
-                  ))).values.toList(),),
-            ],
-          ),
               ),
 
-          Divider(height: 1,color: Color(0xFF999999),),
+              Divider(height: 0.5,color: Color(0xFF999999),),
 
-          Flexible(child: contentChild),
+              Flexible(child: contentChild),
 
-
-        ],
+            ],
+          );
+        },
       ),
+      bottomNavigationBar: MediaQuery.of(context).size.width <= 800 ?
+       BottomNavigationBar(
+          selectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize:12),
+          unselectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize: 10),
+            unselectedItemColor: AppColor.textOnPrimary,
+            selectedItemColor: AppColor.primary,
+            showSelectedLabels: false,
+            // showUnselectedLabels: true,
+            iconSize: 20,
+            currentIndex: viewModel.index,
+            onTap: (int index){
+              viewModel.index = index;
+              context.go(viewModel.navBarItems[index].path!);
+              viewModel.notifyListeners();
+            },
+            items: [
+              ...viewModel.navBarItems.asMap().map((key, value) => MapEntry(key,BottomNavigationBarItem(label: value.text!,activeIcon:Icon(value.iconData!,color: AppColor.primary,) ,
+                icon: Icon(value.iconData!,color: AppColor.lightGrey,),
+              ))).values.toList()
+            ],
+
+          ) : null
     );
   }
 

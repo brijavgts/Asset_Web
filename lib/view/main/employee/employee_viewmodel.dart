@@ -1,14 +1,9 @@
-import 'dart:js';
-
 import 'package:asset_management/core/res/colors.dart';
 import 'package:asset_management/core/res/styles.dart';
-import 'package:asset_management/view/main/assets/asset_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
-
-import '../../../core/enum/view_state.dart';
 import '../../../core/res/images.dart';
 import '../../../vgts_base_view_model.dart';
 

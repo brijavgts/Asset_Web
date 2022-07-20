@@ -5,6 +5,7 @@ import 'package:asset_management/services/shared/api_model/error_response_except
 import 'package:asset_management/services/shared/api_model/string_extension.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stacked/stacked.dart';
 //import '../../../helper/firebase_remote_helper.dart';
@@ -32,6 +33,7 @@ class SplashViewModel extends VGTSBaseViewModel {
         _auth = await request<VerifyEmailAuth>(AuthRequest.verifyEmail(hashedEmail));
         if (_auth != null) {
           await preferenceService.setAccessToken(_auth!.accessToken ?? "");
+          await Fluttertoast.showToast(msg: "Successfully Verified.....");
           context.go(Routes.dashboard);
         }
         notifyListeners();
