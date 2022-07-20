@@ -1,6 +1,7 @@
 import 'package:asset_management/router.dart';
 import 'package:asset_management/view/register/register_page_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_value.dart';
@@ -35,117 +36,132 @@ class LogInPage extends ViewModelBuilderWidget<LogInViewModel> {
       backgroundColor: AppColor.background,
       body: SafeArea(
         child: TapOutsideUnFocus(
-          child: Form(
-            key: viewModel.loginFormKey,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 131.5, 0, 212),
-                child: Column(
-                  children: [
-                    Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
-                    SizedBox(height: 21.1),
-                    Text("Login",
-                        style: AppTextStyle.h4Heading.copyWith(
-                          fontSize: 32,
-                        )),
+          child: SingleChildScrollView(
+          child: Center(
+            child: Form(
+              key: viewModel.loginFormKey,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 131.5, 0, 212),
+                  child: Column(
+                    children: [
+                      Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
+                      SizedBox(height: 21.1),
+                      Text("Login",
+                          style: AppTextStyle.h4Heading.copyWith(
+                            fontSize: 32,
+                          )),
 
-                    VerticalSpacing.d8px(),
+                      VerticalSpacing.d8px(),
 
-                    Text("Welcome back.",
-                        style: AppTextStyle.body2SemiBold.copyWith(fontSize: 14,)
-                    ),
-
-                    VerticalSpacing.custom(value:16),
-
-                    SizedBox(
-                      width: 438,
-                      child: EditTextField(
-                        "Email",
-                        textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
-                        viewModel.emailController,
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: 4.0, left: 4.0),
-                        ),
-                        onChanged: (value) {},
-                        onSubmitted: (val) {
-                          FocusNode().requestFocus();
-                        },
+                      Text("Welcome back.",
+                          style: AppTextStyle.body2SemiBold.copyWith(fontSize: 14,)
                       ),
-                    ),
 
-                    VerticalSpacing.d16px(),
+                      VerticalSpacing.custom(value:16),
 
-                    SizedBox(
-                      width: 438,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: 40,
-                            right: 0.2,
-                            child: TextButton(onPressed: (){
-                              context.go(Routes.forgot_pwd);
-                            },
-                                child: Text("Forgot your password?",
-                                  style: AppTextStyle.label.copyWith(
-                                    fontSize: 12,
-                                    decoration: TextDecoration.underline
-                                  ),
-                                )),
+                      SizedBox(
+                        width: 438,
+                        child: EditTextField(
+                          "Email",
+                          textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
+                          viewModel.emailController,
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(right: 4.0, left: 4.0),
                           ),
-                          EditTextField.password(
-                            "Password",
-                            textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
-                            viewModel.passwordController,
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(right: 4.0, left: 4.0),
-                            ),
-                            onChanged: (value) {},
-                            onSubmitted: (val) {
-                              FocusNode().requestFocus();
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    VerticalSpacing.custom(value: 24.0),
-
-                    SizedBox(
-                      width: 438,
-                      height: 40,
-                      child: Button(
-                        "Login",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
-                          color: AppColor.white,
-                          fontWeight: FontWeight.w500),
-                        key: const ValueKey("logKey"),
-                        width: double.infinity,
-                        isLoading: viewModel.state == ViewState.Busy,
-                        onPressed: () {
-                          viewModel.login(context);
-                          //navigationService.popAllAndPushNamed("/main");
-                        },
-                      ),
-                    ),
-
-                     VerticalSpacing.custom(value: 20.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Don’t have an account?",
-                            style: AppTextStyle.body2.copyWith(fontSize: 14)),
-                        TextButton(
-                          onPressed: () {
-                            context.go(Routes.register);
-                            // context.goNamed(Routes.register,params: {'id': "1"});
+                          onChanged: (value) {},
+                          onSubmitted: (val) {
+                            FocusNode().requestFocus();
                           },
-                          child: Text("Join service name",
-                              style: AppTextStyle.body2.copyWith(fontSize: 14,
-                                  color: AppColor.textOnSecondary,
-                                  decoration: TextDecoration.underline)),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+
+                      VerticalSpacing.d16px(),
+
+                      SizedBox(
+                        width: 438,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: 40,
+                              right: 0.2,
+                              child: TextButton(onPressed: (){
+                                context.go(Routes.forgot_pwd);
+                              },
+                                  child: Text("Forgot your password?",
+                                    style: AppTextStyle.label.copyWith(
+                                      fontSize: 12,
+                                      decoration: TextDecoration.underline
+                                    ),
+                                  )),
+                            ),
+                            EditTextField.password(
+                              "Password",
+                              textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
+                              viewModel.passwordController,
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                              ),
+                              onChanged: (value) {},
+                              onSubmitted: (val) {
+                                FocusNode().requestFocus();
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      VerticalSpacing.custom(value: 24.0),
+
+                      SizedBox(
+                        width: 438,
+                        height: 40,
+                        child: Button(
+                          "Login",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
+                            color: AppColor.white,
+                            fontWeight: FontWeight.w500),
+                          key: const ValueKey("logKey"),
+                          width: double.infinity,
+                          isLoading: viewModel.state == ViewState.Busy,
+                          onPressed: () {
+                            viewModel.login(context);
+                            //navigationService.popAllAndPushNamed("/main");
+                          },
+                        ),
+                      ),
+
+                       VerticalSpacing.custom(value: 20.0),
+
+                      RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                              style: AppTextStyle.body2,
+                              children: [
+                                TextSpan(text:"Don’t have an account? "),
+                                TextSpan(text:"Join service name",style: AppTextStyle.body4.copyWith(decoration: TextDecoration.underline),
+                                    recognizer: TapGestureRecognizer()..onTap=(){context.go(Routes.register);}
+                                ),
+                              ]
+                          )),
+
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     Text("Don’t have an account?",
+                      //         style: AppTextStyle.body2.copyWith(fontSize: 14)),
+                      //     TextButton(
+                      //       onPressed: () {
+                      //         context.go(Routes.register);
+                      //         // context.goNamed(Routes.register,params: {'id': "1"});
+                      //       },
+                      //       child: Text("Join service name",
+                      //           style: AppTextStyle.body2.copyWith(fontSize: 14,
+                      //               color: AppColor.textOnSecondary,
+                      //               decoration: TextDecoration.underline)),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
+                  ),
                 ),
               ),
             ),

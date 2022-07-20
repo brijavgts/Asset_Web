@@ -42,6 +42,7 @@ class EditTextField extends StatefulWidget {
 
   bool enabled = true;
   int? maxLength;
+  // Iterable<String>? autofillHints;
 
   ValueChanged<String>? onChanged = (terms) {};
   ValueChanged<String>? onSubmitted = (terms) {};
@@ -65,6 +66,7 @@ class EditTextField extends StatefulWidget {
         this.suffixIcon,
         this.maxLength,
         this.counterText,
+        // this.autofillHints = const <String>[],
 
       });
 
@@ -149,7 +151,7 @@ class _EditTextFieldState extends State<EditTextField> {
               children: <Widget>[
                 if(widget.label.isNotEmpty == true)
                   Padding(
-                  padding:const EdgeInsets.only(left:4.0),
+                  padding:const EdgeInsets.only(left:0),
                   child: Row(
                     children: [
                       Expanded(
@@ -185,6 +187,7 @@ class _EditTextFieldState extends State<EditTextField> {
                   height: widget.controller.minLines > 1 ? null : state.hasError ? 65 : widget.height ?? 40,
                   child: TextField(
 
+                      // autofillHints: widget.autofillHints,
                       key: widget.controller.fieldKey,
                       controller: widget.controller.textEditingController,
                       enableInteractiveSelection: true,

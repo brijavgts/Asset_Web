@@ -1,6 +1,7 @@
 import 'package:asset_management/core/res/styles.dart';
 import 'package:asset_management/locator.dart';
 import 'package:asset_management/widgets/button.dart';
+import 'package:asset_management/widgets/tap_outside_unfocus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -33,13 +34,12 @@ class EmployeePage extends ViewModelBuilderWidget<EmployeeViewModel> {
                       Condition.smallerThan(name: TABLET,value: 200.0),
                       Condition.equals(name: MOBILE)]).value,
                     child: EditTextField("",viewModel.searchController,
-
-                      // //Search Selected
-                      // onChanged: (value){
-                      // viewModel.searchResult = value;
-                      // viewModel.selectedEmployes = viewModel.employes.where((element) => element.name!.contains(viewModel.searchResult) || element.dept!.contains(viewModel.searchResult)).toList();
-                      // viewModel.notifyListeners();
-                      // },
+                      //Search Selected
+                      onChanged: (value){
+                      viewModel.searchResult = value;
+                      viewModel.selectedEmployes = viewModel.employes.where((element) => element.name!.contains(viewModel.searchResult) || element.dept!.contains(viewModel.searchResult)).toList();
+                      viewModel.notifyListeners();
+                      },
 
                       placeholder: "Search",
                       prefixIcon: Padding(

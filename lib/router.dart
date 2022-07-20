@@ -3,6 +3,7 @@ import 'package:asset_management/locator.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/vgts_base_view_model.dart';
 import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
+import 'package:asset_management/view/employee_invite/employee_invite_page.dart';
 import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
 import 'package:asset_management/view/login/login_page.dart';
 import 'package:asset_management/view/main/assets/asset_page.dart';
@@ -32,6 +33,7 @@ class Routes {
   static const String verification="/verification";
   static const String forgot_pwd="/forgot_pwd";
   static const String change_pwd="/change_pwd";
+  static const String invite_employee ="/invite_employee";
 
 }
 
@@ -197,6 +199,11 @@ class AppRouter {
           path: Routes.forgot_pwd,
           builder: (BuildContext context, GoRouterState state) => ForgotPwdPage(),
         ),
+
+      GoRoute(
+        path: Routes.invite_employee,
+        builder: (BuildContext context, GoRouterState state)=>EmployeeInvite(),
+      )
 
       ],
   );

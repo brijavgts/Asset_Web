@@ -36,63 +36,65 @@ class ChangePwdPage extends ViewModelBuilderWidget<ChangePwdViewModel> {
       backgroundColor: AppColor.background,
       body: SafeArea(
         child: TapOutsideUnFocus(
-          child: Form(
-            key: viewModel.changePwdFormKey,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 131.5, 0, 360),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
-                      SizedBox(height: 21.1),
-                      Text("Change your password",
-                          textAlign: TextAlign.center,
-                          style: AppTextStyle.h4Heading.copyWith(
-                            fontSize: 32,
-                          )),
+          child: SingleChildScrollView(
+          child: Center(
+            child: Form(
+              key: viewModel.changePwdFormKey,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 131.5, 0, 360),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
+                        SizedBox(height: 21.1),
+                        Text("Change your password",
+                            textAlign: TextAlign.center,
+                            style: AppTextStyle.h4Heading.copyWith(
+                              fontSize: 32,
+                            )),
 
-                      VerticalSpacing.custom(value:16),
+                        VerticalSpacing.custom(value:16),
 
-                      SizedBox(
-                        width: 438,
-                        child: EditTextField(
-                          "New Password",
-                          textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
-                          viewModel.passwordController,
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                        SizedBox(
+                          width: 438,
+                          child: EditTextField(
+                            "New Password",
+                            textStyle: AppTextStyle.inputText.copyWith(fontSize: 16),
+                            viewModel.passwordController,
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(right: 4.0, left: 4.0),
+                            ),
+                            onChanged: (value) {},
+                            onSubmitted: (val) {
+                              FocusNode().requestFocus();
+                            },
                           ),
-                          onChanged: (value) {},
-                          onSubmitted: (val) {
-                            FocusNode().requestFocus();
-                          },
                         ),
-                      ),
 
-                      VerticalSpacing.custom(value: 24.0),
+                        VerticalSpacing.custom(value: 24.0),
 
-                      SizedBox(
-                        width: 438,
-                        height: 40,
-                        child: Button(
-                          "Change password",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
-                            color: AppColor.white,
-                            fontWeight: FontWeight.w500),
-                          key: const ValueKey("changeKey"),
-                          width: double.infinity,
-                          isLoading: viewModel.state == ViewState.Busy,
-                          onPressed: () {
-                            viewModel.changePwd(context);
-                          },
+                        SizedBox(
+                          width: 438,
+                          height: 40,
+                          child: Button(
+                            "Change password",textStyle: AppTextStyle.body2.copyWith(fontSize: 14,
+                              color: AppColor.white,
+                              fontWeight: FontWeight.w500),
+                            key: const ValueKey("changeKey"),
+                            width: double.infinity,
+                            isLoading: viewModel.state == ViewState.Busy,
+                            onPressed: () {
+                              viewModel.changePwd(context);
+                            },
+                          ),
                         ),
-                      ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
+          ),
           ),
         ),
       ),

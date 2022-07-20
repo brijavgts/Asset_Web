@@ -164,64 +164,63 @@ class _DialogManagerState extends State<DialogManager> {
                       SizedBox(height: 12,),
                       Divider(height: 0.2,),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 12),
-                            height: 40,
-                            width: ResponsiveValue(context,defaultValue:356.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 200),
-                            Condition.largerThan(name: TABLET)
-                            ] ).value,
-                            child: CupertinoTextField(
-
-                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 12),
-                              placeholder: "email id",
-                              placeholderStyle: AppTextStyle.body3.copyWith(fontSize: 14,color: AppColor.nav),
-                              suffix: IntrinsicHeight(
-                                child: Row(
-                                  children: [
-                                    VerticalDivider(indent: 10,endIndent: 10,),
-                                    SizedBox(width: 12,),
-                                    DropdownButtonHideUnderline(
-                                      child: DropdownButton(
-                                        icon: Padding(
-                                          padding:  EdgeInsets.symmetric(horizontal: 12),
-                                          child: Icon(CupertinoIcons.chevron_down,size: 12),
+                      Padding(
+                        padding:  EdgeInsets.symmetric(vertical: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: SizedBox(
+                                height: 40,
+                                child: CupertinoTextField(
+                                  padding: EdgeInsets.symmetric(vertical: 10,horizontal: 12),
+                                  placeholder: "email id",
+                                  placeholderStyle: AppTextStyle.body3.copyWith(fontSize: 14,color: AppColor.nav),
+                                  suffix: IntrinsicHeight(
+                                    child: Row(
+                                      children: [
+                                        VerticalDivider(indent: 10,endIndent: 10,),
+                                        SizedBox(width: 12,),
+                                        DropdownButtonHideUnderline(
+                                          child: DropdownButton(
+                                            icon: Padding(
+                                              padding:  EdgeInsets.symmetric(horizontal: 12),
+                                              child: Icon(CupertinoIcons.chevron_down,size: 12),
+                                            ),
+                                              style: AppTextStyle.body3.copyWith(fontSize: 14),
+                                            onChanged: (String? newValue){
+                                                setState(() {
+                                                  dropDownvalue = newValue!;
+                                                });
+                                            },
+                                            value:dropDownvalue,
+                                            items:items.map((String item) {
+                                              return DropdownMenuItem(
+                                                value: item,
+                                                child: Text(item),
+                                              );
+                                            }).toList(),
+                                          ),
                                         ),
-                                          style: AppTextStyle.body3.copyWith(fontSize: 14),
-                                        onChanged: (String? newValue){
-                                            setState(() {
-                                              dropDownvalue = newValue!;
-                                            });
-                                        },
-                                        value:dropDownvalue,
-                                        items:items.map((String item) {
-                                          return DropdownMenuItem(
-                                            value: item,
-                                            child: Text(item),
-                                          );
-                                        }).toList(),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            )
-                          ),
-                         SizedBox(width: 12,),
-                          Container(
-                            height: 40,
-                              width:  ResponsiveValue(context,defaultValue:106.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 85),
-                                Condition.largerThan(name: TABLET)
-                              ] ).value,
-                              child: Button("Send Invite",textStyle: AppTextStyle.body3.copyWith(color: AppColor.white,
-                                  fontSize:  ResponsiveValue(context,defaultValue:14.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 12),
-                                    Condition.largerThan(name: TABLET)
-                                  ] ).value,),
-                                  key: ValueKey("EmpButnKey"),
-                                  onPressed: (){}))
-                        ],
+                            ),
+                           SizedBox(width: 12,),
+                            Container(
+                              height: 40,
+                                width:  ResponsiveValue(context,defaultValue:106.0,valueWhen: [Condition.smallerThan(name: TABLET,value: 80.0),
+                                ] ).value,
+                                child: Button("Send Invite",textStyle: AppTextStyle.body3.copyWith(color: AppColor.white,
+                                    fontSize:  ResponsiveValue(context,defaultValue:14.0,valueWhen: [Condition.smallerThan(name:TABLET,value: 12.0),
+                                    ] ).value,),
+                                    key: ValueKey("EmpButnKey"),
+                                    onPressed: (){}))
+                          ],
+                        ),
                       ),
 
                       Divider(height: 0.2,),

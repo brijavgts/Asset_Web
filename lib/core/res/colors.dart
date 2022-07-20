@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class AppColor {
 
   static const Color background = Color(0xFFFAFAFA);
+  static const Color suggestion = Color(0xFFCCCCCC);
 
   //Text
   static const Color black=Color(0xFF000000);

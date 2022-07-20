@@ -1,4 +1,5 @@
 
+import 'package:asset_management/core/res/colors.dart';
 import 'package:asset_management/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
 
   int _index = 0;
 
+
   int get index => _index;
 
   set index(int value) {
@@ -18,7 +20,7 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
 
   List<Item> navBarItems = [
     Item(
-      text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets
+      text: 'Assets', iconData:CupertinoIcons.cube_box,path: Routes.assets,
     ),
     Item(
       text: 'Employees',iconData: Icons.group_outlined,path: Routes.employee
@@ -35,6 +37,7 @@ class MainLayoutViewModel extends VGTSBaseViewModel {
     notifyListeners();
   }
 
+
 }
 
 
@@ -44,3 +47,4 @@ class Item {
   String? path;
   Item({this.text, this.iconData,this.path});
 }
+

@@ -67,6 +67,8 @@ class NavBarItem extends StatefulWidget {
   Function() tap;
 
 
+
+
   NavBarItem({
     required this.text,required this.iconData,required this.tap,
   });
@@ -108,7 +110,6 @@ class _NavBarItemState extends State<NavBarItem> {
           onTap: () {
            setState(() {
              widget.tap();
-
            });
           },
           child: Container(
@@ -119,7 +120,7 @@ class _NavBarItemState extends State<NavBarItem> {
               children: [
                 Icon(widget.iconData,color: color),
                 SizedBox(width: 8.5,),
-                Text(widget.text,style: AppTextStyle.body1SemiBold.copyWith(fontSize: 16,color: color),),
+                Text(widget.text,style: AppTextStyle.body1SemiBold.copyWith(fontSize: 16,color:color),),
               ],
             ),
 

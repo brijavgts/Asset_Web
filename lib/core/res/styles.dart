@@ -82,9 +82,22 @@ class AppTextStyle {
       color: AppColor.black.withOpacity(0.8)
   );
 
+  static  TextStyle body4 = TextStyle(
+      fontSize: AppFontSize.dp14,letterSpacing: 0.1,
+      fontWeight: FontWeight.w500,
+      color: AppColor.black.withOpacity(0.6),
+  );
+
+  static  TextStyle body5 = TextStyle(
+      fontSize: AppFontSize.dp14,letterSpacing: 0.1,
+      fontWeight: FontWeight.w500,
+      // height: 20.sp,
+      color: AppColor.black
+  );
+
   // TextButton
   static  TextStyle body2 = TextStyle(
-      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.1,
+      fontSize: AppFontSize.dp14,letterSpacing: 0.1,
       fontWeight: FontWeight.w600,
       // height: 20.sp,
       color: AppColor.black
@@ -98,7 +111,7 @@ class AppTextStyle {
   );
 
   static  TextStyle body3 = TextStyle(
-      fontSize: AppFontSize.dp14.sp,letterSpacing: 0.1,
+      fontSize: AppFontSize.dp14,letterSpacing: 0.1,
       fontWeight: FontWeight.w500,
       color: AppColor.black
   );
