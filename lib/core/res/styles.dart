@@ -74,6 +74,13 @@ class AppTextStyle {
       color: AppColor.black
   );
 
+  static  TextStyle subHeading = TextStyle(
+      fontSize: AppFontSize.dp24,letterSpacing: 0.15,
+      fontWeight: FontWeight.w700,
+      //height: 42.sp,
+      color: AppColor.black
+  );
+
   //EditTextField Label
   static  TextStyle label = TextStyle(
       fontSize: AppFontSize.dp12.sp,letterSpacing: 0.5,

@@ -15,6 +15,7 @@ import '../../core/res/images.dart';
 
 class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
 
+
   Widget contentChild;
 
   MainLayout(this.contentChild);
@@ -44,15 +45,21 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
 
                             if(constraints.maxWidth > 800)  VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
 
+                            SizedBox(width: 26.5,),
 
                             if(constraints.maxWidth > 800) Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: viewModel.topBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(text: value.text!,iconData: value.iconData!,tap: (){
-                                viewModel.index = key;
+                              children: viewModel.topBarItems.asMap().map((key, value) => MapEntry(key,NavBarItem(
+                                text: value.text!,
+                                iconData: value.iconData!,
+                                tap: (){
+                                  viewModel.index = key;
                                 context.go(value.path!,extra: {'index': viewModel.index.toString()});
                                 print("Key${key}");
                                 viewModel.notifyListeners();
                               },
+                                position: key,
+                                selectPos: viewModel.index,
                               ))).values.toList(),),
                           ],
                         ),
@@ -66,7 +73,7 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
 
-                          VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
+                         if(constraints.maxWidth > 800) VerticalDivider(width: 0.5,indent: 10,endIndent: 10,),
 
                           SizedBox(width: 39,),
 
@@ -97,8 +104,8 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
       ),
       bottomNavigationBar: MediaQuery.of(context).size.width <= 800 ?
        BottomNavigationBar(
-          selectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize:12),
-          unselectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize: 10),
+          selectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize:12,),
+          unselectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize: 10,),
             unselectedItemColor: AppColor.textOnPrimary,
             selectedItemColor: AppColor.primary,
             showSelectedLabels: false,

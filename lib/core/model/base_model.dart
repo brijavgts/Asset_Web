@@ -4,6 +4,7 @@ import 'package:asset_management/core/model/service/auth/forgot_pwd_auth.dart';
 import 'package:asset_management/core/model/service/auth/login_auth.dart';
 import 'package:asset_management/core/model/service/auth/register_auth.dart';
 import 'package:asset_management/core/model/service/auth/verify_mail_auth.dart';
+import 'package:asset_management/view/main/employee/employee_viewmodel.dart';
 import 'package:vgts_plugin/form/base_object.dart';
 
 class BaseModel extends BaseObject {
@@ -43,7 +44,8 @@ class BaseModel extends BaseObject {
   String toString() {
     return toJson().toString();
   }
-  //---------------
+
+  //Postman response class
   static T object<T extends BaseModel>() {
     switch (T) {
       case RegisterAuth:

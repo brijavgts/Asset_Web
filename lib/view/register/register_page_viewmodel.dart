@@ -22,6 +22,7 @@ import '../../vgts_base_view_model.dart';
 
 class RegisterViewModel extends VGTSBaseViewModel {
 
+
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
   ScrollController regScrollController = ScrollController();

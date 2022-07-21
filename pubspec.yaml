@@ -45,6 +45,7 @@ dependencies:
   stacked: ^2.2.3
   dotted_decoration: ^2.0.0
   popover: ^0.2.6+3
+  advanced_datatable: ^0.0.8
 
   #custom plugin
   vgts_plugin:
