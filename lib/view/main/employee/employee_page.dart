@@ -17,7 +17,7 @@ import 'employee_viewmodel.dart';
  class EmployeePage extends ViewModelBuilderWidget<EmployeeViewModel> {
 
 
-     bool filter=true;
+
   @override
   Widget builder(BuildContext context, EmployeeViewModel viewModel,
       Widget? child) {
@@ -73,7 +73,7 @@ import 'employee_viewmodel.dart';
                                                           key: ValueKey(
                                                               "filterKey"),
                                                           onPressed: () {
-                                                              filter = !filter;
+                                                              viewModel.filter = !viewModel.filter;
                                                               viewModel
                                                                   .notifyListeners();
                                                           },
@@ -84,7 +84,7 @@ import 'employee_viewmodel.dart';
                                                                       color: AppColor
                                                                           .primary,
                                                                       size: 20,),
-                                                                  Text(filter
+                                                                  Text(viewModel.filter
                                                                       ? "Filter"
                                                                       : "Close Filter",
                                                                       style: AppTextStyle
@@ -102,19 +102,11 @@ import 'employee_viewmodel.dart';
                                                   SizedBox(
                                                       width: 256,
                                                       child: EditTextField("",
-                                                          viewModel
-                                                              .searchController,
+                                                          viewModel.searchController,
                                                           //Search Selected
                                                           onChanged: (value) {
-                                                              viewModel
-                                                                  .searchResult =
-                                                                  value;
-                                                              viewModel
-                                                                  .selectedEmployes =
-                                                                  viewModel
-                                                                      .employes
-                                                                      .where((
-                                                                      element) =>
+                                                              viewModel.searchResult = value;
+                                                              viewModel.filterRow = viewModel.employes.where((element) =>
                                                                   element.name!
                                                                       .contains(
                                                                       viewModel
@@ -192,31 +184,16 @@ import 'employee_viewmodel.dart';
                                                   SizedBox(
                                                       width: width * 0.4,
                                                       child: EditTextField("",
-                                                          viewModel
-                                                              .searchController,
+                                                          viewModel.searchController,
                                                           //Search Selected
                                                           onChanged: (value) {
-                                                              viewModel
-                                                                  .searchResult =
-                                                                  value;
-                                                              viewModel
-                                                                  .selectedEmployes =
-                                                                  viewModel
-                                                                      .employes
-                                                                      .where((
-                                                                      element) =>
-                                                                  element.name!
-                                                                      .contains(
-                                                                      viewModel
-                                                                          .searchResult) ||
-                                                                      element
-                                                                          .dept!
-                                                                          .contains(
-                                                                          viewModel
-                                                                              .searchResult))
+                                                              viewModel.searchResult = value;
+                                                              viewModel.filterRow = viewModel.employes.where((element) =>
+                                                                  element.name!.contains(
+                                                                      viewModel.searchResult) || element.dept!.contains(
+                                                                          viewModel.searchResult))
                                                                       .toList();
-                                                              viewModel
-                                                                  .notifyListeners();
+                                                              viewModel.notifyListeners();
                                                           },
 
                                                           placeholder: "Search",
@@ -241,13 +218,13 @@ import 'employee_viewmodel.dart';
                                                   Row(
                                                       children: [
                                                           Tooltip(
-                                                              message: filter ? "Filter" : "Close Filter",
+                                                              message: viewModel.filter ? "Filter" : "Close Filter",
                                                             child: IconButton(
                                                                 onPressed: () {
-                                                                    filter = !filter;
+                                                                    viewModel.filter = !viewModel.filter;
                                                                     viewModel.notifyListeners();
                                                                 },
-                                                                icon: Icon(filter ? Icons
+                                                                icon: Icon(viewModel.filter ? Icons
                                                                     .filter_alt_outlined :
                                                                     Icons.filter_alt_off_outlined,
                                                                     color: AppColor
@@ -271,13 +248,12 @@ import 'employee_viewmodel.dart';
                                                   ),
                                               ],
                                           ),
-
                                       ],
                                   ),
 
-                                  SizedBox(height: 24,),
+                                  SizedBox(height:16,),
 
-                                  filter ? Text("")
+                                  viewModel.filter ? Text("")
                                   :Row(
                                       children: [
 
@@ -289,42 +265,46 @@ import 'employee_viewmodel.dart';
 
                                           Text("Department: ",style: AppTextStyle.body3,),
 
-                                          DropdownButtonHideUnderline(
+                                          SizedBox(
+                                              width: 200,
+                                            child: DropdownButtonHideUnderline(
+                                                child: DropdownButton(
+                                                    isExpanded: true,
+                                                    icon: Icon(CupertinoIcons.chevron_down,size: 12),
+                                                    style: AppTextStyle.body3,
 
-                                              child: DropdownButton(
+                                                    onChanged: (String? newValue){
+                                                        viewModel.dropDownvalue = newValue!;
+                                                        viewModel.filterRow = viewModel.employes.where((element) =>
+                                                            element.dept!.contains(viewModel.dropDownvalue )).toList();
+                                                        viewModel.notifyListeners();
+                                                    },
 
-                                                  icon: Icon(CupertinoIcons.chevron_down,size: 12),
-                                                  style: AppTextStyle.body3,
-
-                                                  onChanged: (String? newValue){
-                                                      viewModel.dropDownvalue = newValue!;
-                                                      viewModel.selectedEmployes = viewModel.employes.where((element) =>  element.dept!.contains(viewModel.dropDownvalue )).toList();
-                                                      viewModel.notifyListeners();
-                                                  },
-
-                                                  value:viewModel.dropDownvalue,
-                                                  items:viewModel.items.map((String item) {
-                                                      return DropdownMenuItem(
-                                                          value: item,
-                                                          child: Text(item),
-                                                      );
-                                                  }).toList(),
-                                              ),
+                                                    value:viewModel.dropDownvalue,
+                                                    items:viewModel.items.map((String item) {
+                                                        return DropdownMenuItem(
+                                                            alignment: Alignment.center,
+                                                            value: item,
+                                                            child: Padding(
+                                                              padding: EdgeInsets.all(3.0),
+                                                              child: Text(item),
+                                                            ),
+                                                        );
+                                                    }).toList(),
+                                                ),
+                                            ),
                                           ),
                                       ],
                                   ),
 
-                                  SizedBox(height: 16,),
+                                  SizedBox(height: 8,),
 
                                   SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       physics: ClampingScrollPhysics(),
                                       child: viewModel.buildDataTable(context),
                                   ),
-
-
-                              ]
-                              ,
+                              ],
                           );
                       }
                   ),

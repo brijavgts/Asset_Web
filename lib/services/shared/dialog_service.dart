@@ -32,8 +32,8 @@ class DialogService {
     _bottomSheetListener = bottomSheetListener;
   }
 
-//Custom Dialog Box for add New Employee
-  Future<AlertResponse>? newEmpDialog({  bool dismissable = false,Widget? content,}) {
+//Custom Dialog Box to show add New Employee
+  Future<AlertResponse>? newEmpDialog({  bool dismissable = false, Widget? content,}) {
     _dialogCompleter = Completer<AlertResponse>();
     _dialogNewEmployeeListener!(AlertRequest(
         content: content,

@@ -37,7 +37,7 @@ class ApiBaseService extends ApiBaseHelper {
         if (response.statusCode == 200 || response.statusCode == 201) {
           print("RESPONSE BODY");
           print(response.body);
-          return jsonDecode(response.body).map((e) => BaseModel.createFromMap<T>(e)).cast<T>().toList() ;
+          return jsonResponse.map((e) => BaseModel.createFromMap<T>(e)).cast<T>().toList() ;
         }
 
         // else {
@@ -61,7 +61,7 @@ class ApiBaseService extends ApiBaseHelper {
       if (response != null) {
         var jsonResponse = jsonDecode(response.body);
         if (response.statusCode == 200 || response.statusCode == 201) {
-          return BaseModel.createFromMap<T>(jsonDecode(response.body));
+          return BaseModel.createFromMap<T>(jsonResponse);
         }
         // else {
         //   throw ErrorResponseException.fromJson(jsonResponse);
@@ -81,7 +81,7 @@ class ApiBaseService extends ApiBaseHelper {
 
     // Generate URL from Base Url & Endpoint
     // Concatenate query params if exists
-   // print(_appConfigService.config.baseApiUrl);
+    // print(_appConfigService.config.baseApiUrl);
 
     String baseUrl = "http://asset.dev.api.vgts.tech";
 
@@ -144,7 +144,7 @@ class ApiBaseService extends ApiBaseHelper {
   }
 
   HTTP.MultipartRequest _initMultipartRequest(String method, String path){
-    String baseUrl = "http://asset.dev.api.vgts.tech";;
+    String baseUrl = "http://asset.dev.api.vgts.tech";
     var url = Uri.parse(baseUrl + path);
     return new HTTP.MultipartRequest(method, url);
   }

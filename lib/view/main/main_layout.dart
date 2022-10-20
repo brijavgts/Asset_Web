@@ -27,16 +27,21 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
         builder: (BuildContext context, BoxConstraints constraints) {
          return Column(
             children: [
+
               Container(
                 color: AppColor.background,
                 height: 56.0,
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
+
                 child: Row(
                   children: [
+
                     Expanded(
                       flex: 10,
+
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
+
                         child: Row(
                           children: [
                             Image.asset(Images.appLogo,width: 235.11,height: 23.9,),
@@ -66,9 +71,9 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
                       ),
                     ),
 
-
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
+
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -103,7 +108,8 @@ class MainLayout extends ViewModelBuilderWidget<MainLayoutViewModel> {
         },
       ),
       bottomNavigationBar: MediaQuery.of(context).size.width <= 800 ?
-       BottomNavigationBar(
+
+        BottomNavigationBar(
           selectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize:12,),
           unselectedLabelStyle: AppTextStyle.subtitle2.copyWith(height: 0,fontSize: 10,),
             unselectedItemColor: AppColor.textOnPrimary,

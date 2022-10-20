@@ -14,7 +14,6 @@ import '../../core/res/colors.dart';
 import '../../core/res/images.dart';
 import '../../core/res/spacing.dart';
 import '../../core/res/styles.dart';
-import '../../locator.dart';
 import '../../widgets/button.dart';
 import '../../widgets/edit_text_field.dart';
 import '../../widgets/tap_outside_unfocus.dart';

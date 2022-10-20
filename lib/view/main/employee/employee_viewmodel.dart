@@ -8,6 +8,7 @@ import 'package:stacked/stacked.dart';
 import 'package:vgts_plugin/form/utils/form_field_controller.dart';
 import '../../../core/res/images.dart';
 import '../../../vgts_base_view_model.dart';
+import '../../../widgets/dropdown.dart';
 
 class Emplopyee {
   String profile;
@@ -30,7 +31,7 @@ class Department extends BaseModel {
 
 class EmployeeViewModel extends VGTSBaseViewModel {
 
-  var items =["Employee",
+  var items =["All",
     "Owner",
     "Manager",
     "Administration",
@@ -41,22 +42,57 @@ class EmployeeViewModel extends VGTSBaseViewModel {
     "Production"
   ];
 
-  String dropDownvalue ="Employee";
+  String dropDownvalue ="All";
 
-  @override
-  Future onInit() {
-    deptController.list = [
-      Department(id: 1, dept: "dept"),
-      Department(id: 1, dept: "dept"),
-      Department(id: 1, dept: "dept"),
-      Department(id: 1, dept: "dept"),
-    ];
-    return super.onInit();
-  }
+  // DropdownField<Currency>(
+  // "Currency Type",
+  // viewModel.currencyController,
+  // placeholder: "Select Currency Type",
+  // margin: EdgeInsets.only(top: 15),
+  // onChange: (value) {
+  //
+  // },
+  // ),
+  // DropdownFieldController<Currency> currencyController = DropdownFieldController<Currency>(ValueKey("dCurrency"), keyId: "id", valueId: "name");
+  // currencyController.list = [
+  // Currency(id: 1, name: "INR"),
+  // Currency(id: 2, name: "USD"),
+  // Currency(id: 3, name: "SBC"),
+  // Currency(id: 4, name: "ADS"),
+  // Currency(id: 5, name: "FGT"),
+  // ];
 
-  DropdownFieldController<Department> deptController= DropdownFieldController<Department>(
-    ValueKey("gf"), keyId: "id", valueId: "name",
-  );
+  ///Dropdown button from widgets
+  // @override
+  // Future onInit() {
+  //   deptController.list = [
+  //     Department(id: 1, dept: "dept"),
+  //     Department(id: 1, dept: "dept"),
+  //     Department(id: 1, dept: "dept"),
+  //     Department(id: 1, dept: "dept"),
+  //   ];
+  //   return super.onInit();
+  // }
+  //
+  // DropdownFieldController<Department> deptController= DropdownFieldController<Department>(
+  //   ValueKey("gf"), keyId: "id", valueId: "name",
+  // );
+
+  // Container button(){
+  //   return Container(
+  //     child: DropdownField<Deparment>(
+  //       "Currency Type",
+  //       deptController,
+  //       placeholder: "Select Currency Type",
+  //       margin: EdgeInsets.only(top: 15),
+  //       onChange: (value) {
+  //
+  //       },
+  //     ),
+  //   );
+  // }
+
+
 
   List<Emplopyee> employes=[
     Emplopyee(name: "Seyit Mehmet Sansi", dept: "(R&D) Research & Development", asset: "00", worth: 1, profile: Images.appLogo, color: AppColor.rd),
@@ -68,21 +104,28 @@ class EmployeeViewModel extends VGTSBaseViewModel {
     Emplopyee(name: "Tuncay Sahin", dept: "Production", asset: "00", worth: 2, profile:Images.appLogo, color: AppColor.production),
 
   ];
+
+  DropdownButton? dialogDrop;
+
   List<Emplopyee> selectedEmployes=[];
 
+  List<Emplopyee> filterRow=[];
 
   String searchResult ="";
-
 
   TextFormFieldController searchController= TextFormFieldController(ValueKey("searchPwd"),);
 
    bool sort=true;
 
-  final columns=["Employee Name","Department","Asset","Worth",];
+  bool filter=true;
+
+  final columns=["Employee Name","Department","No of Assets","Worth",];
 
   int indexColumn=0;
 
   Widget buildDataTable(BuildContext context){
+
+
     var width=MediaQuery.of(context).size.width;
 
     return Container(
@@ -97,7 +140,9 @@ class EmployeeViewModel extends VGTSBaseViewModel {
             notifyListeners();
           },
           columns: getColumns(columns),
-          rows:getRows (selectedEmployes.isEmpty ? employes : selectedEmployes)),
+           rows:getRows (filterRow.isEmpty  ? employes : filterRow)),
+           // rows:getRows (filterRow.isEmpty || filter ? employes : filterRow)),
+
     );
   }
 
@@ -137,15 +182,16 @@ class EmployeeViewModel extends VGTSBaseViewModel {
   }
 
 
-  List<DataColumn>getColumns(List<String> columns) =>
-      columns.map((String column) => DataColumn(
+  List<DataColumn>getColumns(List<String> columns) => columns
+      .map((String column) => DataColumn(
     onSort: ((columnIndex, ascending) {
       this.indexColumn=columnIndex;
      sort = !sort;
      notifyListeners();
      onSortColum(columnIndex, ascending);
     }),
-      label: Text(column,style: AppTextStyle.body2.copyWith(fontSize: 14),))).toList();
+      label: Expanded(
+          child: Text(column,style: AppTextStyle.body2.copyWith(fontSize: 14),)))).toList();
 
 
 
@@ -154,10 +200,11 @@ class EmployeeViewModel extends VGTSBaseViewModel {
       selected:selectedEmployes.contains(employe),
       onSelectChanged: (isSelected) {
         final isAdding = isSelected != null && isSelected;
-        isAdding ? selectedEmployes.add(employe):selectedEmployes.remove(employe);
+        isAdding ? selectedEmployes.add(employe) : selectedEmployes.remove(employe);
         notifyListeners();
       },
       cells: [
+        
         DataCell(Container(
           width: 616.w,
           child: Row(
@@ -166,7 +213,7 @@ class EmployeeViewModel extends VGTSBaseViewModel {
                child: Center(child: Text(employe.name!.substring(0,1))),
                width: 24,height: 24,decoration: BoxDecoration(color: employe.color,borderRadius: BorderRadius.circular(12)),),
               SizedBox(width: 8,),
-              Text(employe.name!,style: AppTextStyle.body3.copyWith(fontSize: 14),),
+              Expanded(child: Text(employe.name!,style: AppTextStyle.body3.copyWith(fontSize: 14),)),
             ],
           ),
         )),
@@ -188,15 +235,68 @@ class EmployeeViewModel extends VGTSBaseViewModel {
             child: Text("₹${employe.worth!}",style: AppTextStyle.body3.copyWith(fontSize: 14)))),
       ])).toList();
 
-
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
 
+  // DropDown Widget for dialog box
+  // dialogDropDown(){
+  //   return DropdownButtonHideUnderline(
+  //     child: DropdownButton(
+  //       icon: Padding(
+  //         padding:  EdgeInsets.symmetric(horizontal: 12),
+  //         child: Icon(CupertinoIcons.chevron_down,size: 12),
+  //       ),
+  //       style: AppTextStyle.body3.copyWith(fontSize: 14),
+  //       onChanged: (String? newValue){
+  //           dropDownvalue = newValue!;
+  //         notifyListeners();
+  //       },
+  //       value:dropDownvalue,
+  //       items:items.map((String item) {
+  //         return DropdownMenuItem(
+  //           value: item,
+  //           child: Text(item),
+  //         );
+  //       }).toList(),
+  //     ),
+  //   );
+  // }
+
 }
 
-// onChanged: (String? newValue){
-// viewModel.searchResult = newValue!;
-// viewModel.selectedEmployes = viewModel.employes.where((element) =>  element.dept!.contains(viewModel.searchResult)).toList();
-// viewModel.dropDownvalue = newValue!;
-// viewModel.notifyListeners();
-// },
+
+// final _transformationController = TransformationController();
+// TapDownDetails _doubleTapDetails;
+//
+// @override
+// Widget build(BuildContext context) {
+//   return GestureDetector(
+//     onDoubleTapDown: _handleDoubleTapDown,
+//     onDoubleTap: _handleDoubleTap,
+//     child: Center(
+//       child: InteractiveViewer(
+//         transformationController: _transformationController,
+//         /* ... */
+//       ),
+//     ),
+//   );
+// }
+//
+// void _handleDoubleTapDown(TapDownDetails details) {
+//   _doubleTapDetails = details;
+// }
+//
+// void _handleDoubleTap() {
+//   if (_transformationController.value != Matrix4.identity()) {
+//     _transformationController.value = Matrix4.identity();
+//   } else {
+//     final position = _doubleTapDetails.localPosition;
+//     // For a 3x zoom
+//     _transformationController.value = Matrix4.identity()
+//       ..translate(-position.dx * 2, -position.dy * 2)
+//       ..scale(3.0);
+//     // Fox a 2x zoom
+//     // ..translate(-position.dx, -position.dy)
+//     // ..scale(2.0);
+//   }
+// }

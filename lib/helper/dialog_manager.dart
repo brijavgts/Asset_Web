@@ -31,17 +31,10 @@ class _DialogManagerState extends State<DialogManager> {
   final _dialogService = locator<DialogService>();
 
 
-
   var items =["Employee","Owner","Manager"];
   String dropDownvalue ="Employee";
 
 
-
-
-  
-  
-
-  
 
   @override
   void initState() {
@@ -124,7 +117,6 @@ class _DialogManagerState extends State<DialogManager> {
   }
 
 
-
   //New Employee Dialog Box
   void _dialogNewEmployee(AlertRequest request) {
     showCupertinoDialog(
@@ -182,6 +174,9 @@ class _DialogManagerState extends State<DialogManager> {
                                       children: [
                                         VerticalDivider(indent: 10,endIndent: 10,),
                                         SizedBox(width: 12,),
+                                        Container(
+                                          child: request.content,
+                                        ),
                                         DropdownButtonHideUnderline(
                                           child: DropdownButton(
                                             icon: Padding(
@@ -234,12 +229,9 @@ class _DialogManagerState extends State<DialogManager> {
         });
   }
 
+  // DropdownFieldController<Currency> currencyController = DropdownFieldController<Currency>(ValueKey("dCurrency"), keyId: "id", valueId: "name");
 
-  /*
-  * ,*/
 
-  
-  
   // void _showLogModelBottomSheet() {
   //   showModalBottomSheet(
   //       context: context,

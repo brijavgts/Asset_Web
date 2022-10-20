@@ -3,11 +3,12 @@ import 'package:asset_management/locator.dart';
 import 'package:asset_management/services/shared/preference_service.dart';
 import 'package:asset_management/vgts_base_view_model.dart';
 import 'package:asset_management/view/change_pwd/change_pwd_page.dart';
-import 'package:asset_management/view/employee_invite/employee_invite_page.dart';
 import 'package:asset_management/view/forgot_pwd/forgot_pwd_page.dart';
 import 'package:asset_management/view/login/login_page.dart';
 import 'package:asset_management/view/main/assets/asset_page.dart';
 import 'package:asset_management/view/main/employee/employee_page.dart';
+import 'package:asset_management/view/main/employee/invite_emp/invite_emp_page.dart';
+import 'package:asset_management/view/main/employee/profile_emp/profile_emp_page.dart';
 import 'package:asset_management/view/main/main_layout.dart';
 import 'package:asset_management/view/main/nav_bar_item.dart';
 import 'package:asset_management/view/main/main_layout_viewmodel.dart';
@@ -34,6 +35,7 @@ class Routes {
   static const String forgot_pwd="/forgot_pwd";
   static const String change_pwd="/change_pwd";
   static const String invite_employee ="/invite_employee";
+  static const String profile_employee ="/main/employee/profile";
 
 }
 
@@ -156,7 +158,22 @@ class AppRouter {
                 builder: (BuildContext context, GoRouterState state) {
                   return EmployeePage();
                 },
+                //
+                routes: <GoRoute> [
+                  GoRoute(path: "profile",
+                    builder: (BuildContext context, GoRouterState state) {
+                      return EmployeeProfile();
+                    },
+                  ),
+                ]
               ),
+                // GoRoute(//---------
+                //   path: "profile",
+                //   builder: (BuildContext context, GoRouterState state) {
+                //     return EmployeeProfile();
+                //   },
+                // ),
+
             ],
           redirect: (state){
             final loggedIn  = preferenceService.getAccessToken().isNotEmpty;

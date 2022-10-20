@@ -20,6 +20,9 @@ class AuthRequest {
 
     );
   }
+
+
+
   //Login Request
   static RequestSettings login(String emailId,String password ){
     Map<String, dynamic> params = <String, dynamic>{};
@@ -34,7 +37,7 @@ class AuthRequest {
   }
 
 
-  //---------
+
   //verify Email
   static RequestSettings verifyEmail(String hashedEmail) {
     return RequestSettings(
@@ -44,7 +47,7 @@ class AuthRequest {
         authenticated: false
     );
   }
-  //----------
+
 
   //Forgot Password Request
   static RequestSettings forgot_pwd(String emailId){

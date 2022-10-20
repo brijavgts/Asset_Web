@@ -20,7 +20,7 @@ class LogInViewModel extends VGTSBaseViewModel {
       required: true,requiredText: "Email field is required "
   );
 
- TextFormFieldController passwordController= TextFormFieldController(ValueKey("logPwd"),
+ PasswordFormFieldController passwordController= PasswordFormFieldController(ValueKey("logPwd"),
       required: true,requiredText: "Password field is required");
 
 
@@ -32,8 +32,6 @@ class LogInViewModel extends VGTSBaseViewModel {
      setState(ViewState.Busy);
     LoginAuth? auth = await request<LoginAuth>(AuthRequest.login(emailController.text,passwordController.text));
     if (auth != null) {
-      Fluttertoast.showToast(msg: "Your Journey with us");
-
       print(auth.accessToken);
       preferenceService.setAccessToken(auth.accessToken!);
       context.go(Routes.dashboard);
